@@ -20,5 +20,5 @@ import Container from "@mui/material/Container";
 //
 // https://next-auth.js.org/getting-started/example#frontend---add-react-hook
 export default function Index() {
-  return <Container>app</Container>;
+  return <Container>app.start</Container>;
 }
