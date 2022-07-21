@@ -8,7 +8,7 @@
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: #0c0d0f;
+  background-color: steelblue;
 }
 
 @keyframes blockuiRotation {

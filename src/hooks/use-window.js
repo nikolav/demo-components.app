@@ -1,4 +1,6 @@
 import { useEffect, useState, createContext, useContext } from "react";
+import useIsMounted from "./use-is-mounted";
+import { useJQuery } from "./use-jquery";
 import ready from "../util/ready";
 
 //
@@ -36,9 +38,11 @@ export const WindowDocumentContext = createContext();
 export const useWindowDocument = () => useContext(WindowDocumentContext);
 
 export const WindowDocumentProvider = ({ children }) => {
+  const isMounted = useIsMounted();
   const w$ = useWindow();
+  const jq$ = useJQuery()
   const [doc$, setDoc] = useState(null);
-  const [isReady$, setIsReady] = useState(null);
+  const [isReady, setIsReady] = useState(null);
 
   useEffect(() => {
     if (w$ && w$?.document) {
@@ -48,9 +52,11 @@ export const WindowDocumentProvider = ({ children }) => {
   }, [w$, w$?.document]);
 
   const g = {
-    window: w$,
+    isMounted,
+    isReady,
     document: doc$,
-    isReady: isReady$,
+    window: w$,
+    jQuery: jq$,
   };
 
   return (

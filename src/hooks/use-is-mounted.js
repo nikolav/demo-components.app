@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useStateSwitch from "./use-state-switch";
 //
 export default function useIsMounted() {
@@ -7,7 +7,7 @@ export default function useIsMounted() {
   useEffect(() => {
     toggleMounted.on();
     return toggleMounted.off;
-  }, []);
+  }, [isWindow]);
   //
   return isWindow && isMounted;
 }

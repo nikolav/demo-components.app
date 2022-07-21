@@ -19,10 +19,14 @@ import Rotation from "./Rotation/Rotation";
 import Slider from "./Slider/Slider";
 import Tooltip from "./Tooltip/Tooltip";
 
+// @next
+import Image from "next/Image";
+import Link from "next/link";
+//
 export {
   Accordion,
-  Body,
   BlockUI,
+  Body,
   ChooseFile,
   DarkModeToggle,
   Details,
@@ -30,6 +34,8 @@ export {
   DrawerBox,
   DrawerDrag,
   Effect,
+  Image,
+  Link,
   Modal,
   OverlayHover,
   Panel,

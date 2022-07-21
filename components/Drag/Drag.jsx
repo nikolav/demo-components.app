@@ -1,32 +1,36 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, forwardRef } from "react";
 import { motion, useDragControls } from "framer-motion";
 import { useStateSwitch } from "../../src/hooks";
 import modcss from "./Drag.module.css";
 
-
 const DragContext = createContext();
 //
-const Drag = ({ classDrag = "drag", className = "", children, ...rest }) => {
+const Drag = forwardRef(function Drag_(
+  { classDrag = "drag", className = "", children, ...rest },
+  ref
+) {
   const { isActive: isDrag$, toggle: toggleIsDrag } = useStateSwitch();
   const dragControls = useDragControls();
   return (
-      <DragContext.Provider value={{ dragControls }}>
+    <DragContext.Provider value={{ dragControls }}>
       <motion.div
         // whileDrag: VariantLabels | TargetAndTransition
         // drag: boolean | "x" | "y"
-        // dragControls: DragControls
         // dragConstraints: false | Partial<BoundingBox2D> | RefObject<Element>
+        // dragControls: DragControls
         // dragElastic: DragElastic 0 | 1
-        // dragSnapToOrigin: boolean
-        // dragMomentum: boolean
         // dragListener: boolean
-        // dragTransition: InertiaOptions
+        // dragMomentum: boolean
         // dragPropagation: boolean
+        // dragSnapToOrigin: boolean
+        // dragTransition: InertiaOptions
         //
         // onDrag(event, info): void
         // onDragStart(event, info): void
         // onDragEnd(event, info): void
         // onDirectionLock(axis): void
+        //
+        ref={ref}
         drag
         dragListener={false}
         dragControls={dragControls}
@@ -43,7 +47,7 @@ const Drag = ({ classDrag = "drag", className = "", children, ...rest }) => {
       </motion.div>
     </DragContext.Provider>
   );
-};
+});
 
 const DragHandle = ({ children, ...rest }) => {
   const { dragControls } = useContext(DragContext);
@@ -56,7 +60,6 @@ const DragHandle = ({ children, ...rest }) => {
 };
 
 Drag.Handle = DragHandle;
-
 //
 
 export default Drag;

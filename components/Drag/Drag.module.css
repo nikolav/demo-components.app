@@ -1,4 +1,5 @@
 .drag {
 }
-.dragIsDragging {
+.dragIsDragging * {
+    user-select: none;
 }

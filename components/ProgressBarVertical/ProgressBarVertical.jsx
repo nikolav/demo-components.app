@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import modcss from "./ProgressBarVertical.module.css";
 import { motion } from "framer-motion";
 import { noop, clamp } from "../../src/util";
-import { useIsMounted, useStateSwitch } from "../../src/hooks";
+import { useWindowDocument, useStateSwitch } from "../../src/hooks";
 
 //
 const percentage = [0, 100];
@@ -38,7 +38,7 @@ const ProgressBarVertical = ({
   const [p$, setP] = useState(0);
   const [height$, setHeight] = useState(0);
   const y$ = (p$ * height$) / 100;
-  const isMounted$ = useIsMounted();
+  const { isReady } = useWindowDocument();
   const { isActive: isHover$, toggle: toggleHover } = useStateSwitch();
   const yHalf$ = y$ / 2;
   const heightHalf$ = height$ / 2;
@@ -83,9 +83,9 @@ const ProgressBarVertical = ({
   //
   // canvas.setup @init
   useEffect(() => {
-    if (isMounted$ && refCanvas?.current)
+    if (isReady && refCanvas?.current)
       setHeight(refCanvas.current.getBoundingClientRect().height);
-  }, [isMounted$, refCanvas]);
+  }, [isReady, refCanvas]);
   //
   useEffect(() => {
     onProgress(p$);
