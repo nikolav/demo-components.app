@@ -20,7 +20,7 @@ import Slider from "./Slider/Slider";
 import Tooltip from "./Tooltip/Tooltip";
 
 // @next
-import Image from "next/Image";
+import Image from "next/image";
 import Link from "next/link";
 //
 export {
