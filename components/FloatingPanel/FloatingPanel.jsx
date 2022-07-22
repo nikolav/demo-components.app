@@ -18,22 +18,28 @@ const styleRoot = css`
   position: fixed !important;
   zindex: 1;
 `;
+/* @t */
 const styleToolbar = css`
   position: absolute;
-  top: -36px;
-  left: 0;
+  top: -43px;
   width: 100%;
+  background: none;
+  padding-top: 4px;
+  color: steelblue;
+  > header {
+    text-align: left;
+  }
 `;
 const styleToolbarClosed = css``;
+const styleToolbarMinimized = css`
+  background: #b8cfe2;
+`;
 const styleDragHandle = css`
   cursor: grab;
   display: inline-block;
   font-size: 32px;
   color: steelblue;
-  transition: transform 0.11s linear;
-  &:hover {
-    transform: scale(1.11);
-  }
+  transform: translate(-15px, 0px);
 `;
 const styleControlls = css`
   cursor: pointer;
@@ -47,8 +53,13 @@ const styleControlls = css`
 `;
 const styleControllsMM = css`
   font-size: 40px;
+  &:hover {
+    transform: scale(1.034);
+  }
 `;
-const styleContent = css``;
+const styleContent = css`
+
+`;
 const styleIsDrag = css`
   & * {
     user-select: none;
@@ -58,25 +69,32 @@ const styleIsDrag = css`
 const variants = {
   max: {
     y: 0,
-    transition: { type: "spring", duration: 0.24 },
+    transition: { type: "spring", duration: 0.2 },
     opacity: 1,
     scale: 1,
   },
   min: (offsetTop) => ({
     y: `calc(100vh - ${offsetTop}px)`,
-    transition: { ease: "easeOut", duration: 0.12 },
-    opacityy: 0.88,
-    scale: 0.88,
+    transition: { type: "spring", duration: 0.18 },
+    opacityy: 0.82,
+    scale: 0.78,
   }),
 };
 ////
 ////
 const FloatingPanel = forwardRef(function FloatingPanel_(
   {
+    /* render toolbar header content btw. icons; */
+    header = "floating.panel@nikolav.rs",
+    /* add margin above FloatingPanel */
     offsetTop = 156,
+    /* add classes when draging gesture is active */
     classDrag = "dragging",
+    /* arbitrary classes to apply to root */
     className = "",
+    /* content */
     children,
+    /* rest root attributes */
     ...rest
   },
   ref
@@ -84,14 +102,15 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
   //
   const [goto$, goto] = useState("max");
   const { isActive: isOpen$, toggle: toggleIsOpen } = useStateSwitch(true);
-  const { isActive: isMinimied$, toggle: toggleIsMinimized } = useStateSwitch();
+  const { isActive: isMinimized$, toggle: toggleIsMinimized } =
+    useStateSwitch();
   const { isActive: isDrag$, toggle: toggleIsDrag } = useStateSwitch();
   //
   const dragControls = useDragControls();
   const dragStart = (e) => dragControls.start(e);
   //
   useEffect(() => {
-    if (isMinimied$) {
+    if (isMinimized$) {
       toggleIsOpen.off();
       goto("min");
       return;
@@ -99,7 +118,7 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
     //
     toggleIsOpen.on();
     goto("max");
-  }, [isMinimied$]);
+  }, [isMinimized$]);
   //
   return (
     <motion.div
@@ -128,24 +147,29 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
       onDragEnd={toggleIsDrag.off}
       {...rest}
     >
-      {/*  */}
+      {/* @t */}
       {/* toolbar */}
       <div
         css={styleToolbar}
         className={cls("flex items-center duration-100 transition-colors", {
-          ["justify-between"]: !isMinimied$,
-          ["justify-end"]: isMinimied$,
+          ["justify-between"]: !isMinimized$,
+          ["justify-end"]: isMinimized$,
+          [styleToolbarMinimized]: isMinimized$,
           [styleToolbarClosed]: !isOpen$,
         })}
       >
         {/*  */}
         {/* drag handle */}
-        {!isMinimied$ && (
+        {!isMinimized$ && (
           <MdDragIndicator css={styleDragHandle} onPointerDown={dragStart} />
         )}
+        {header && <header>{header}</header>}
         {/* controlls right */}
-        <div className="space-x-2">
-          {!isMinimied$ && (
+        <span css={css`
+          display: inline-block;
+          transform: translate(6px, -2px);
+        `} className="space-x-2 flex items-center">
+          {!isMinimized$ && (
             <IconCrossfade
               i0={{
                 key: "i0",
@@ -155,7 +179,12 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
                 key: "i1",
                 icon: <BsChevronExpand css={styleControlls} />,
               }}
+              css={css`
+                display: inline-block;
+                transform: scale(.94) translate(8px, 0px);
+              `}
               onClick={toggleIsOpen}
+              duration={122}
             />
           )}
           <IconCrossfade
@@ -165,17 +194,19 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
             }}
             i1={{
               key: "max",
-              icon: <VscChromeMaximize css={[styleControlls, styleControllsMM]} />,
+              icon: (
+                <VscChromeMaximize css={[styleControlls, styleControllsMM]} />
+              ),
             }}
             css={css`
               display: inline-block;
-              transform: translate(-1px, -6px);
-              transform-origin: center top;
+              transform: translate(-5px, -4px);
+              transform-origin: center;
             `}
             onClick={toggleIsMinimized}
             duration={122}
           />
-        </div>
+        </span>
       </div>
       {/*  */}
       {/* content */}
@@ -183,8 +214,8 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
         css={styleContent}
         header={null}
         isActive={isOpen$}
-        durationIn={0.15}
-        durationOut={0.12}
+        durationIn={0.1}
+        durationOut={0.1}
         spring={false}
       >
         {children}
@@ -194,3 +225,6 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
   );
 });
 export default FloatingPanel;
+
+// 4682B3
+//  @steelblue

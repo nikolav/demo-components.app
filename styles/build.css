@@ -1171,6 +1171,11 @@ select {
   border-top-right-radius: 1.5rem;
 }
 
+.rounded-b-2xl {
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
 .border-2 {
   border-width: 2px;
 }
@@ -1301,6 +1306,10 @@ select {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .text-slate-500 {

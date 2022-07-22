@@ -31,7 +31,7 @@ export default forwardRef(function Details_(
       {/*  */}
       {/* render <Details> content */}
       <AnimatePresence initial={false}>
-        {true === isActive && (
+        {isActive && (
           <motion.div
             animate={{
               opacity: 1,

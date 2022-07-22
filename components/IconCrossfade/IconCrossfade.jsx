@@ -21,7 +21,7 @@ const IconCrossfade = ({
   };
   //
   return (
-    <strong style={{ position: "relative", display: "inline-block" }}>
+    <strong style={{ position: "relative", display: "inline-block" }} {...rest}>
       <AnimatePresence>
         <motion.span
           key={i$.key}
@@ -30,7 +30,6 @@ const IconCrossfade = ({
           exit={{ opacity: 0, position: "absolute", zIndex: -1 }}
           transition={{ duration: duration / 1000 }}
           onClick={handle}
-          {...rest}
         >
           {i$.icon}
         </motion.span>

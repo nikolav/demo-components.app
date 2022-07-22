@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import { Drag, Link, FloatingPanel } from "../components";
 import { Button, Container} from "../components/mui";
 import { useMemo, useCallback, useState, useRef, useEffect } from "react";
@@ -20,7 +22,11 @@ import { useStateSwitch } from "../src/hooks";
 export default function Index() {
   const {isActive, toggle} = useStateSwitch(true);
   return (
-    <Container>
+    <Container
+      css={css`
+        background-color: steelblue;
+      `}      
+    >
       {/* <Drag className="***w-fit fixed">
         <div
           className="border-2 border-slate-600 shadow-md rounded-xl bg-gradient-to-b from-slate-500 to-slate-600"
@@ -50,8 +56,12 @@ export default function Index() {
         </div>
       </Drag> */}
       <FloatingPanel
-        isActive={isActive}
-        className="w-96 bg-slate-400 right-24"
+        header={<em css={css`
+          opacity: .56;
+          fontSize: 87%;
+          fontStyle: italic;
+        `}>floating.panel@nikolav.rs</em>}
+        className="w-96 bg-white right-24 p-2 rounded-b-2xl shadow"
       >
         <p>Lorem  ad porro  dolorum ipsum provident?</p>
         <p>Lorem  ad porro  dolorum ipsum provident?</p>
