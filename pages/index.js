@@ -1,6 +1,6 @@
 import { Drag, Link, FloatingPanel } from "../components";
 import { Button, Container} from "../components/mui";
-// import { useMemo, useCallback, useState, useRef, useEffect } from "react";
+import { useMemo, useCallback, useState, useRef, useEffect } from "react";
 // @todo.slider
 //   https://codesandbox.io/s/bold-hill-stmnwk?file=/src/App.js
 //
@@ -13,11 +13,12 @@ import { Button, Container} from "../components/mui";
 //   DarkModeToggle,
 //   Drag,
 // } from "../components";
-// import { useStateSwitch } from "../src/hooks";
+import { useStateSwitch } from "../src/hooks";
 // import { random } from "../src/util";
 //
 // https://next-auth.js.org/getting-started/example#frontend---add-react-hook
 export default function Index() {
+  const {isActive, toggle} = useStateSwitch(true);
   return (
     <Container>
       {/* <Drag className="***w-fit fixed">
@@ -49,12 +50,14 @@ export default function Index() {
         </div>
       </Drag> */}
       <FloatingPanel
-        className="w-96 bg-slate-400 top-12 right-24"
+        isActive={isActive}
+        className="w-96 bg-slate-400 right-24"
       >
         <p>Lorem  ad porro  dolorum ipsum provident?</p>
         <p>Lorem  ad porro  dolorum ipsum provident?</p>
         <p>Lorem  ad porro  dolorum ipsum provident?</p>
       </FloatingPanel>
+      <Button onClick={toggle}>run</Button>
     </Container>
   );
 }

@@ -9,6 +9,7 @@ import DrawerBox from "./DrawerBox/DrawerBox";
 import DrawerDrag from "./DrawerDrag/DrawerDrag";
 import Effect from "./Effect/Effect";
 import FloatingPanel from "./FloatingPanel/FloatingPanel";
+import IconCrossfade from "./IconCrossfade/IconCrossfade";
 import Modal from "./Modal/Modal";
 import OverlayHover from "./OverlayHover/OverlayHover";
 import Panel from "./Panel/Panel";
@@ -36,6 +37,7 @@ export {
   DrawerDrag,
   Effect,
   FloatingPanel,
+  IconCrossfade,
   Image,
   Link,
   Modal,

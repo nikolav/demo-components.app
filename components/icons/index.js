@@ -28,7 +28,7 @@ import {
 } from "react-icons/fa";
 import { IoHelp } from "react-icons/io5";
 import { FiCamera, FiShare2 } from "react-icons/fi";
-import { BsStarFill, BsPlayFill } from "react-icons/bs";
+import { BsStarFill, BsPlayFill, BsChevronContract, BsChevronExpand } from "react-icons/bs";
 import { RiGithubLine, RiTwitterLine, RiMessengerLine } from "react-icons/ri";
 import {
   BiShow,
@@ -43,10 +43,12 @@ import {
   MdDeleteOutline,
   MdCreate,
   MdClose,
+  MdDragIndicator,
   MdOutlineMail,
   MdOutlineAddPhotoAlternate,
   MdOutlinePostAdd,
   MdOutlineEditNote,
+  MdMinimize,
 } from "react-icons/md";
 import {
   AiOutlineUnderline,
@@ -65,6 +67,7 @@ import {
 } from "react-icons/ri";
 import { FiMoon, FiSend } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
+import { VscChromeMaximize } from "react-icons/vsc";
 //// 
 ////
 export {
@@ -80,7 +83,10 @@ export {
   BiImage,
   BiRefresh,
   BiShow,
+  BiSun,
   BiUserCircle,
+  BsChevronContract,
+  BsChevronExpand,
   BsPlayFill,
   BsStarFill,
   CgFormatItalic,
@@ -101,6 +107,7 @@ export {
   FaWindowMinimize,
   FcGoogle,
   FiCamera,
+  FiMoon,
   FiSend,
   FiShare2,
   GoListOrdered,
@@ -116,6 +123,8 @@ export {
   MdClose,
   MdCreate,
   MdDeleteOutline,
+  MdDragIndicator,
+  MdMinimize,
   MdOutlineAddPhotoAlternate,
   MdOutlineEditNote,
   MdOutlineMail,
@@ -127,4 +136,5 @@ export {
   RiMessengerLine,
   RiTwitterLine,
   TiArrowLeftThick,
+  VscChromeMaximize,
 };
