@@ -32,11 +32,11 @@ const styleIsDrag = css`
 const variants = {
   max: {
     y: 0,
-    transition: { type: "spring", bounce: 0.34, duration: 0.24 },
+    transition: { type: "spring", duration: 0.24},
   },
   min: {
     y: "calc(100vh - 48px)",
-    transition: { ease: "easeOut", duration: 0.1 },
+    transition: { ease: "easeOut", duration: 0.12 },
   },
 };
 ////
@@ -112,7 +112,14 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
         </div>
         {/*  */}
         {/* content */}
-        <Details css={styleContent} header={null} isActive={isOpen$}>
+        <Details
+          css={styleContent}
+          header={null}
+          isActive={isOpen$}
+          durationIn={0.15}
+          durationOut={0.12}
+          spring={false}
+        >
           {children}
         </Details>
         {/*  */}
