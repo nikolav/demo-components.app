@@ -1,30 +1,33 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Details = ({
-  // open/close
-  isActive,
-  // accordion header
-  header,
-  //
-  height = "auto",
-  // content
-  children,
-  //
-  // animation in/out speeds/easy
-  durationIn = 0.23,
-  durationOut = 0.12,
-  spring = true,
-  //
-  // container
-  ...rest
-}) => {
+export default forwardRef(function Details_(
+  {
+    // open/close
+    isActive,
+    // accordion header
+    header,
+    //
+    height = "auto",
+    // content
+    children,
+    //
+    // animation in/out speeds/easy
+    durationIn = 0.23,
+    durationOut = 0.12,
+    spring = true,
+    //
+    // container
+    ...rest
+  },
+  ref
+) {
   //
   return (
-    <div className="m-0 p-0" {...rest}>
+    <div ref={ref} className="m-0 p-0" {...rest}>
       {/*  */}
       {/* render header */}
-      {null != header && <div>{header}</div>}
+      {null != header && <header className="m-0 p-0">{header}</header>}
       {/*  */}
       {/* render <Details> content */}
       <AnimatePresence initial={false}>
@@ -57,6 +60,4 @@ const Details = ({
       </AnimatePresence>
     </div>
   );
-};
-
-export default Details;
+});

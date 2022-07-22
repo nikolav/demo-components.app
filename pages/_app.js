@@ -9,7 +9,6 @@ import {
   // GravatarsProvider,
   // AuthApiProvider,
   AppEventsProvider,
-  JQueryProvider,
   WindowDocumentProvider,
 } from "../app/providers";
 //
@@ -91,49 +90,47 @@ function App({
                   {/* mui css reset */}
                   <CssBaseline />
                   {/*  */}
-                  <JQueryProvider>
-                    {/*  */}
-                    {/* toasts */}
-                    {/* https://fkhadra.github.io/react-toastify/api/toast-container */}
-                    <PortalOverlays>
-                      <ToastContainer
-                        autoClose={4567}
-                        closeOnClick
-                        draggable
-                        hideProgressBar
-                        limit={3}
-                        newestOnTop={false}
-                        pauseOnFocusLoss
-                        pauseOnHover
-                        // top-right, top-center, top-left,
-                        // bottom-right, bottom-center, bottom-left
-                        //   @toast.POSITION
-                        position="top-right"
-                        rtl={false}
-                        //
-                        // closeButton
-                        // icon={false}
-                        // theme=light|dark|colored
-                      />
-                    </PortalOverlays>
-                    <AnimatePresence exitBeforeEnter initial={false}>
-                      <motion.div
-                        key={route}
-                        initial="out"
-                        animate="in"
-                        exit="out"
-                        variants={pageVariantsMotion}
-                      >
-                        {/*  */}
-                        {/* page content */}
-                        <Component {...pageProps} />
-                      </motion.div>
-                    </AnimatePresence>
-                    {/*  */}
-                    {/* flags app-processing status */}
-                    <LoaderBars />
-                    {/*  */}
-                  </JQueryProvider>
+                  {/*  */}
+                  {/* toasts */}
+                  {/* https://fkhadra.github.io/react-toastify/api/toast-container */}
+                  <PortalOverlays>
+                    <ToastContainer
+                      autoClose={4567}
+                      closeOnClick
+                      draggable
+                      hideProgressBar
+                      limit={3}
+                      newestOnTop={false}
+                      pauseOnFocusLoss
+                      pauseOnHover
+                      // top-right, top-center, top-left,
+                      // bottom-right, bottom-center, bottom-left
+                      //   @toast.POSITION
+                      position="top-right"
+                      rtl={false}
+                      //
+                      // closeButton
+                      // icon={false}
+                      // theme=light|dark|colored
+                    />
+                  </PortalOverlays>
+                  <AnimatePresence exitBeforeEnter initial={false}>
+                    <motion.div
+                      key={route}
+                      initial="out"
+                      animate="in"
+                      exit="out"
+                      variants={pageVariantsMotion}
+                    >
+                      {/*  */}
+                      {/* page content */}
+                      <Component {...pageProps} />
+                    </motion.div>
+                  </AnimatePresence>
+                  {/*  */}
+                  {/* flags app-processing status */}
+                  <LoaderBars />
+                  {/*  */}
                 </MuiThemeProvider>
                 {/* </GravatarsProvider> */}
               </AuthSessionProvider>

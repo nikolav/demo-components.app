@@ -4,6 +4,7 @@ import q from "nikolav-q";
 //
 import assign from "lodash/assign";
 import clamp from "lodash/clamp";
+import debounce from "lodash/debounce";
 import each from "lodash/each";
 import filter from "lodash/filter";
 import isFunction from "lodash/isFunction";
@@ -22,6 +23,8 @@ import sample from "lodash/sample";
 import shuffle from "lodash/shuffle";
 // https://lodash.com/docs/4.17.15#transform
 import transform from "lodash/transform";
+//
+import  classnames from  "classnames";
 //
 const { add: addClass, rm: removeClass } = q.class;
 const { eventListener, prevent, ready, s: select, type } = q;
@@ -42,6 +45,8 @@ export {
   arrayRand,
   assign,
   clamp,
+  classnames,
+  debounce,
   each,
   eventListener,
   False,

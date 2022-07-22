@@ -8,6 +8,7 @@ import Drag from "./Drag/Drag";
 import DrawerBox from "./DrawerBox/DrawerBox";
 import DrawerDrag from "./DrawerDrag/DrawerDrag";
 import Effect from "./Effect/Effect";
+import FloatingPanel from "./FloatingPanel/FloatingPanel";
 import Modal from "./Modal/Modal";
 import OverlayHover from "./OverlayHover/OverlayHover";
 import Panel from "./Panel/Panel";
@@ -34,6 +35,7 @@ export {
   DrawerBox,
   DrawerDrag,
   Effect,
+  FloatingPanel,
   Image,
   Link,
   Modal,

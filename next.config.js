@@ -10,6 +10,10 @@ const nextConfig = {
   // images: {
   //   domains: [],
   // },
+  // experimental: {
+  //   forceSwcTransforms: true,
+  // },
+
 };
 
 module.exports = nextConfig;

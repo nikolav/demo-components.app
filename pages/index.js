@@ -1,9 +1,6 @@
-//
-// import { useMemo, useCallback, useState, useRef, useEffect } from "react";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { Drag, Link } from "../components";
+import { Drag, Link, FloatingPanel } from "../components";
 import { Button, Container} from "../components/mui";
+// import { useMemo, useCallback, useState, useRef, useEffect } from "react";
 // @todo.slider
 //   https://codesandbox.io/s/bold-hill-stmnwk?file=/src/App.js
 //
@@ -23,7 +20,7 @@ import { Button, Container} from "../components/mui";
 export default function Index() {
   return (
     <Container>
-      <Drag className="w-fit">
+      {/* <Drag className="***w-fit fixed">
         <div
           className="border-2 border-slate-600 shadow-md rounded-xl bg-gradient-to-b from-slate-500 to-slate-600"
           css={css`
@@ -50,7 +47,14 @@ export default function Index() {
             <p>app.start</p>
           </div>
         </div>
-      </Drag>
+      </Drag> */}
+      <FloatingPanel
+        className="w-96 bg-slate-400 top-12 right-24"
+      >
+        <p>Lorem  ad porro  dolorum ipsum provident?</p>
+        <p>Lorem  ad porro  dolorum ipsum provident?</p>
+        <p>Lorem  ad porro  dolorum ipsum provident?</p>
+      </FloatingPanel>
     </Container>
   );
 }

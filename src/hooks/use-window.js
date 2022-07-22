@@ -2,6 +2,7 @@ import { useEffect, useState, createContext, useContext } from "react";
 import useIsMounted from "./use-is-mounted";
 import { useJQuery } from "./use-jquery";
 import ready from "../util/ready";
+import { debounce } from "../util";
 
 //
 export const useWindow = () => {
@@ -40,7 +41,7 @@ export const useWindowDocument = () => useContext(WindowDocumentContext);
 export const WindowDocumentProvider = ({ children }) => {
   const isMounted = useIsMounted();
   const w$ = useWindow();
-  const jq$ = useJQuery()
+  const jQuery = useJQuery();
   const [doc$, setDoc] = useState(null);
   const [isReady, setIsReady] = useState(null);
 
@@ -56,7 +57,7 @@ export const WindowDocumentProvider = ({ children }) => {
     isReady,
     document: doc$,
     window: w$,
-    jQuery: jq$,
+    jQuery,
   };
 
   return (
@@ -64,4 +65,13 @@ export const WindowDocumentProvider = ({ children }) => {
       {children}
     </WindowDocumentContext.Provider>
   );
+};
+
+export const useWindowResizeEvent = (callback, isActive$ = true) => {
+  const { jQuery: $, window } = useWindowDocument();
+  const callback_ = debounce(callback, 155);
+  useEffect(() => {
+    isActive$ && window && $ && $(window).on("resize", callback_);
+    return () => $ && $(window).off("resize", callback_);
+  }, [isActive$, $, window]);
 };

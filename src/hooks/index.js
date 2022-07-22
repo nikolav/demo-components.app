@@ -17,7 +17,7 @@ import { useAuthApi } from "./use-auth-api";
 import useAppEvents from "./use-events";
 import { useJQuery } from "./use-jquery";
 import useClickAway from "./use-click-away";
-import { useWindowAddEvents, useWindow, useWindowDocument } from "./use-window";
+import { useWindowAddEvents, useWindowResizeEvent, useWindow, useWindowDocument } from "./use-window";
 
 //
 export {
@@ -41,4 +41,5 @@ export {
   useWindow,
   useWindowAddEvents,
   useWindowDocument,
+  useWindowResizeEvent,
 };

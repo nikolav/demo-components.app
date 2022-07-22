@@ -197,8 +197,8 @@ export default function Effect({
 //
 // helpers
 function animatecss_(node, animation, duration) {
-  // We create a Promise and return it
   return new Promise((resolve, _r) => {
+    //
     const animation_ = `animate__${animation}`;
     //
     node.addEventListener("animationend", end_, { once: true });
