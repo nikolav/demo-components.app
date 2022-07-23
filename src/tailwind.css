@@ -48,4 +48,12 @@
   .input-styled {
     @apply block w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
   }
+  /*  */
+  /*  */
+  .appbar-link {
+    @apply text-white/50 transition-transform hover:text-white hover:scale-[1.012];
+  }
+  .appbar-icon {
+    @apply text-2xl text-white/50 hover:text-white cursor-pointer transition-transform hover:scale-105 duration-100;
+  }
 }

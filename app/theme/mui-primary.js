@@ -1,27 +1,74 @@
-export const themePrimary = {
+export const themeOptions = {
   palette: {
-    type: "light",
+    mode: "light",
     primary: {
-      main: "#000000",
+      // main: '#4682B3',
+      main: "#f00",
     },
     secondary: {
-      main: "#59636b",
-    },
-    text: {
-      primary: "#616161",
+      main: "#385269",
     },
     error: {
-      main: "#f78078",
+      main: "#ef9a9a",
     },
-    background: {
-      default: "#eeeeee",
+    success: {
+      main: "#66bb6a",
     },
   },
-  typography: {
-    fontFamily: '"Montserrat", "Roboto", "Helvetica", "Arial", sans-serif',
-    fontSize: 14,
+  props: {
+    MuiButtonBase: {
+      disableRipple: true,
+    },
+    MuiList: {
+      dense: true,
+    },
+    MuiMenuItem: {
+      dense: true,
+    },
+    MuiTable: {
+      size: "small",
+    },
+    MuiButton: {
+      size: "small",
+    },
+    MuiButtonGroup: {
+      size: "small",
+    },
+    MuiCheckbox: {
+      size: "small",
+    },
+    MuiFab: {
+      size: "small",
+    },
+    MuiFormControl: {
+      margin: "dense",
+      size: "small",
+    },
+    MuiFormHelperText: {
+      margin: "dense",
+    },
+    MuiIconButton: {
+      size: "small",
+    },
+    MuiInputBase: {
+      margin: "dense",
+    },
+    MuiInputLabel: {
+      margin: "dense",
+    },
+    MuiRadio: {
+      size: "small",
+    },
+    MuiSwitch: {
+      size: "small",
+    },
+    MuiTextField: {
+      margin: "dense",
+      size: "small",
+    },
   },
-  overrides: {
+  // overrides: {
+  components: {
     MuiSwitch: {
       root: {
         width: 42,
@@ -52,11 +99,6 @@ export const themePrimary = {
         transition:
           "background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
       },
-    },
-  },
-  props: {
-    MuiButtonBase: {
-      disableRipple: true,
     },
   },
 };

@@ -1,17 +1,12 @@
-export const themeDark = {
+export const themeOptions = {
   palette: {
-    type: "dark",
+    mode: "dark",
     primary: {
-      main: "#ffffff",
+      main: "#000000",
+      light: "#434343",
     },
     secondary: {
-      main: "#7c808a",
-    },
-    background: {
-      default: "#212121",
-    },
-    text: {
-      primary: "#eeeeee",
+      main: "#385269",
     },
     error: {
       main: "#ef9a9a",
@@ -19,10 +14,61 @@ export const themeDark = {
     success: {
       main: "#66bb6a",
     },
+    background: {
+      default: "#101010",
+      paper: "#1a1a1a",
+    },
   },
   props: {
     MuiButtonBase: {
       disableRipple: true,
+    },
+    MuiList: {
+      dense: true,
+    },
+    MuiMenuItem: {
+      dense: true,
+    },
+    MuiTable: {
+      size: "small",
+    },
+    MuiButton: {
+      size: "small",
+    },
+    MuiButtonGroup: {
+      size: "small",
+    },
+    MuiCheckbox: {
+      size: "small",
+    },
+    MuiFab: {
+      size: "small",
+    },
+    MuiFormControl: {
+      margin: "dense",
+      size: "small",
+    },
+    MuiFormHelperText: {
+      margin: "dense",
+    },
+    MuiIconButton: {
+      size: "small",
+    },
+    MuiInputBase: {
+      margin: "dense",
+    },
+    MuiInputLabel: {
+      margin: "dense",
+    },
+    MuiRadio: {
+      size: "small",
+    },
+    MuiSwitch: {
+      size: "small",
+    },
+    MuiTextField: {
+      margin: "dense",
+      size: "small",
     },
   },
   overrides: {

@@ -44,8 +44,9 @@ const pageVariantsMotion = {
     transition: {
       duration: 0.24,
     },
-    // position: "absolute",
-    // zIndex: -1,
+    position: "absolute",
+    width:"100%",
+    zIndex: -1,
   },
 };
 
@@ -114,7 +115,9 @@ function App({
                       // theme=light|dark|colored
                     />
                   </PortalOverlays>
-                  <AnimatePresence exitBeforeEnter initial={false}>
+                  <AnimatePresence 
+                  // exitBeforeEnter 
+                  initial={false}>
                     <motion.div
                       key={route}
                       initial="out"

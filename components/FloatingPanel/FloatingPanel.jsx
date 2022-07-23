@@ -32,16 +32,21 @@ const styleToolbar = css`
   position: absolute;
   top: -43px;
   width: 100%;
-  background: none;
-  padding-top: 4px;
+  background: none; 
+  padding-top: 3px;
   color: steelblue;
-  > header {
-    text-align: left;
-  }
-  left: 50%;
-  transform: translate(-48%, 0);
+  /* left: 50%;
+  transform: translate(-48%, 0);   */
+  padding-left: 16px;
+  padding-right: 4px;
+
 `;
-const styleToolbarClosed = css``;
+const styleToolbarClosed = css`
+  /* width: 100%; */
+  background: white;
+  border-radius: 2px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+`;
 const styleToolbarMinimized = css`
   background: rgb(184 207 226 / 53%);
   header {
@@ -79,9 +84,9 @@ const styleIsDrag = css`
 `;
 const styleHeader = css`
   flex-grow: 1;
-  padding-bottom: 6px;
+  padding-bottom: 2px;
+  display: inline-block;
 `;
-//
 const variants = {
   max: {
     y: 0,
@@ -104,6 +109,8 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
     title = "floating.panel@nikolav.rs",
     /* add margin above FloatingPanel */
     offsetTop = 156,
+    /*  */
+    width = 472,
     /* add classes when draging gesture is active */
     classDrag = "dragging",
     /* arbitrary classes to apply to widget content */
@@ -126,10 +133,6 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
   const dragStart = (e) => dragControls.start(e);
   //
   useEffect(() => {
-    console.log(css`
-      color: yellow;
-    `);
-
     if (isMinimized$) {
       toggleIsOpen.off();
       goto("min");
@@ -153,6 +156,7 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
       /* className={className} */
       style={{
         top: offsetTop,
+        width,
       }}
       /* */
       initial={"in"}
@@ -167,6 +171,7 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
       custom={offsetTop}
       onDragStart={toggleIsDrag.on}
       onDragEnd={toggleIsDrag.off}
+      className={className}
       {...rest}
     >
       {/* @t */}
@@ -185,7 +190,13 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
         {/*  */}
         {/* drag handle */}
         {!isMinimized$ && (
-          <MdDragIndicator css={styleDragHandle} onPointerDown={dragStart} />
+          <strong
+            css={css`
+              transform: translate(-12px, 0px);
+              padding-left: 6px;
+            `}>
+            <MdDragIndicator css={styleDragHandle} onPointerDown={dragStart} />
+          </strong>
         )}
         {title && <header css={styleHeader}>{title}</header>}
         {/* controlls right */}
@@ -193,6 +204,7 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
           css={css`
             display: inline-block;
             transform: translate(6px, -2px);
+            // transform: translate(6px, 3px);
           `}
           className="space-x-2 flex items-center"
         >
@@ -240,11 +252,10 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
       <Details
         css={styleContent}
         header={null}
-        isActive={isOpen$}
+        isActive={isOpen$}  
         durationIn={0.1}
         durationOut={0.1}
         spring={false}
-        className={className}
       >
         <div css={styleWidgetRoot}>{children}</div>
       </Details>
