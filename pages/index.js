@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Drag, Link, FloatingPanel } from "../components";
-import { Button, Container} from "../components/mui";
+import { Button, Container } from "../components/mui";
 import { useMemo, useCallback, useState, useRef, useEffect } from "react";
 // @todo.slider
 //   https://codesandbox.io/s/bold-hill-stmnwk?file=/src/App.js
@@ -20,12 +20,12 @@ import { useStateSwitch } from "../src/hooks";
 //
 // https://next-auth.js.org/getting-started/example#frontend---add-react-hook
 export default function Index() {
-  const {isActive, toggle} = useStateSwitch(true);
+  const { isActive, toggle } = useStateSwitch(true);
   return (
     <Container
       css={css`
         background-color: steelblue;
-      `}      
+      `}
     >
       {/* <Drag className="***w-fit fixed">
         <div
@@ -56,16 +56,22 @@ export default function Index() {
         </div>
       </Drag> */}
       <FloatingPanel
-        header={<em css={css`
-          opacity: .56;
-          fontSize: 87%;
-          fontStyle: italic;
-        `}>floating.panel@nikolav.rs</em>}
-        className="w-96 bg-white right-24 p-2 rounded-b-2xl shadow"
+        header={
+          <em
+            css={css`
+              opacity: 0.56;
+              fontsize: 87%;
+              fontstyle: italic;
+            `}
+          >
+            floating.panel@nikolav.rs
+          </em>
+        }
+        className="w-96 right-24"
       >
-        <p>Lorem  ad porro  dolorum ipsum provident?</p>
-        <p>Lorem  ad porro  dolorum ipsum provident?</p>
-        <p>Lorem  ad porro  dolorum ipsum provident?</p>
+          <p>Lorem ad porro dolorum ipsum provident?</p>
+          <p>Lorem ad porro dolorum ipsum provident?</p>
+          <p>Lorem ad porro dolorum ipsum provident?</p>
       </FloatingPanel>
       <Button onClick={toggle}>run</Button>
     </Container>

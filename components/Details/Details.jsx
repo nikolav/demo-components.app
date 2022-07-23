@@ -24,10 +24,10 @@ export default forwardRef(function Details_(
 ) {
   //
   return (
-    <div ref={ref} className="m-0 p-0" {...rest}>
+    <div ref={ref} {...rest}>
       {/*  */}
       {/* render header */}
-      {null != header && <header className="m-0 p-0">{header}</header>}
+      {null != header && <header>{header}</header>}
       {/*  */}
       {/* render <Details> content */}
       <AnimatePresence initial={false}>

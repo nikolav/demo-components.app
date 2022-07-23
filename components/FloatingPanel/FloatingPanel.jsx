@@ -14,10 +14,19 @@ import {
   BsChevronExpand,
 } from "../icons";
 //
-const styleRoot = css`
+const styleWidget = css`
   position: fixed !important;
-  zindex: 1;
+  z-index: 1;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 `;
+const styleWidgetRoot = css`
+  background: white;
+  padding: 2rem;
+`;
+//
+const styleWidgetClosed = css``;
 /* @t */
 const styleToolbar = css`
   position: absolute;
@@ -29,10 +38,15 @@ const styleToolbar = css`
   > header {
     text-align: left;
   }
+  left: 50%;
+  transform: translate(-48%, 0);
 `;
 const styleToolbarClosed = css``;
 const styleToolbarMinimized = css`
-  background: #b8cfe2;
+  background: rgb(184 207 226 / 53%);
+  header {
+    padding-left: 20px;
+  }
 `;
 const styleDragHandle = css`
   cursor: grab;
@@ -57,13 +71,15 @@ const styleControllsMM = css`
     transform: scale(1.034);
   }
 `;
-const styleContent = css`
-
-`;
+const styleContent = css``;
 const styleIsDrag = css`
   & * {
     user-select: none;
   }
+`;
+const styleHeader = css`
+  flex-grow: 1;
+  padding-bottom: 6px;
 `;
 //
 const variants = {
@@ -84,13 +100,13 @@ const variants = {
 ////
 const FloatingPanel = forwardRef(function FloatingPanel_(
   {
-    /* render toolbar header content btw. icons; */
-    header = "floating.panel@nikolav.rs",
+    /* render toolbar title content btw. icons; */
+    title = "floating.panel@nikolav.rs",
     /* add margin above FloatingPanel */
     offsetTop = 156,
     /* add classes when draging gesture is active */
     classDrag = "dragging",
-    /* arbitrary classes to apply to root */
+    /* arbitrary classes to apply to widget content */
     className = "",
     /* content */
     children,
@@ -110,6 +126,10 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
   const dragStart = (e) => dragControls.start(e);
   //
   useEffect(() => {
+    console.log(css`
+      color: yellow;
+    `);
+
     if (isMinimized$) {
       toggleIsOpen.off();
       goto("min");
@@ -124,11 +144,13 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
     <motion.div
       key="FloatingPanel.jkuajcqwawf"
       ref={ref}
-      css={styleRoot}
-      className={cls(className, {
-        [styleIsDrag]: isDrag$,
-        [classDrag]: isDrag$,
-      })}
+      css={[
+        styleWidget,
+        isDrag$ && styleIsDrag,
+        isDrag$ && classDrag,
+        !isOpen$ && styleWidgetClosed,
+      ]}
+      /* className={className} */
       style={{
         top: offsetTop,
       }}
@@ -150,12 +172,14 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
       {/* @t */}
       {/* toolbar */}
       <div
-        css={styleToolbar}
+        css={[
+          styleToolbar,
+          isMinimized$ && styleToolbarMinimized,
+          !isOpen$ && styleToolbarClosed,
+        ]}
         className={cls("flex items-center duration-100 transition-colors", {
           ["justify-between"]: !isMinimized$,
           ["justify-end"]: isMinimized$,
-          [styleToolbarMinimized]: isMinimized$,
-          [styleToolbarClosed]: !isOpen$,
         })}
       >
         {/*  */}
@@ -163,12 +187,15 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
         {!isMinimized$ && (
           <MdDragIndicator css={styleDragHandle} onPointerDown={dragStart} />
         )}
-        {header && <header>{header}</header>}
+        {title && <header css={styleHeader}>{title}</header>}
         {/* controlls right */}
-        <span css={css`
-          display: inline-block;
-          transform: translate(6px, -2px);
-        `} className="space-x-2 flex items-center">
+        <span
+          css={css`
+            display: inline-block;
+            transform: translate(6px, -2px);
+          `}
+          className="space-x-2 flex items-center"
+        >
           {!isMinimized$ && (
             <IconCrossfade
               i0={{
@@ -181,7 +208,7 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
               }}
               css={css`
                 display: inline-block;
-                transform: scale(.94) translate(8px, 0px);
+                transform: scale(0.94) translate(8px, 0px);
               `}
               onClick={toggleIsOpen}
               duration={122}
@@ -200,7 +227,7 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
             }}
             css={css`
               display: inline-block;
-              transform: translate(-5px, -4px);
+              transform: translate(-5px, -3px);
               transform-origin: center;
             `}
             onClick={toggleIsMinimized}
@@ -217,8 +244,9 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
         durationIn={0.1}
         durationOut={0.1}
         spring={false}
+        className={className}
       >
-        {children}
+        <div css={styleWidgetRoot}>{children}</div>
       </Details>
       {/*  */}
     </motion.div>

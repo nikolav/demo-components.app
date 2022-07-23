@@ -7,4 +7,5 @@
 .minimized {
 }
 .maximazed {
+    flex-grow: 1;
 }
