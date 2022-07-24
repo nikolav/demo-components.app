@@ -880,6 +880,39 @@ select {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.icon-primary {
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(70 130 179 / var(--tw-text-opacity));
+}
+
+.dark .icon-primary {
+  color: rgb(255 255 255 / 0.8);
+}
+
+.accordion-header {
+  cursor: pointer;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  --tw-text-opacity: 1;
+  color: rgb(70 130 179 / var(--tw-text-opacity));
+  opacity: 0.9;
+}
+
+.accordion-header:hover {
+  opacity: 1;
+}
+
+.dark .accordion-header {
+  --tw-bg-opacity: 1;
+  background-color: rgb(26 26 26 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 /**
    * This injects Tailwind's utility classes and any utility classes registered
    * by plugins.
@@ -1126,10 +1159,28 @@ select {
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
 .overflow-hidden {
@@ -1155,6 +1206,11 @@ select {
 
 .border {
   border-width: 1px;
+}
+
+.bg-slate-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
 
 .bg-white\/10 {
@@ -1188,12 +1244,12 @@ select {
   --tw-gradient-to: #000;
 }
 
-.p-0 {
-  padding: 0px;
-}
-
 .p-2 {
   padding: 0.5rem;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 .px-6 {
@@ -1220,14 +1276,14 @@ select {
   line-height: 1;
 }
 
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .text-slate-500 {
@@ -1238,6 +1294,11 @@ select {
 .text-slate-800 {
   --tw-text-opacity: 1;
   color: rgb(30 41 59 / var(--tw-text-opacity));
+}
+
+.text-primary {
+  --tw-text-opacity: 1;
+  color: rgb(70 130 179 / var(--tw-text-opacity));
 }
 
 .text-slate-200 {
@@ -1252,6 +1313,14 @@ select {
 
 .opacity-60 {
   opacity: 0.6;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-100 {
+  opacity: 1;
 }
 
 .shadow-lg {
@@ -1361,6 +1430,10 @@ select {
 .dark .dark\:text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.dark .dark\:text-white\/50 {
+  color: rgb(255 255 255 / 0.5);
 }
 
 .dark .dark\:hover\:text-red-400:hover {

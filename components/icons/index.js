@@ -28,7 +28,13 @@ import {
 } from "react-icons/fa";
 import { IoHelp } from "react-icons/io5";
 import { FiCamera, FiShare2 } from "react-icons/fi";
-import { BsStarFill, BsPlayFill, BsChevronContract, BsChevronExpand } from "react-icons/bs";
+import {
+  BsStarFill,
+  BsPlayFill,
+  BsChevronContract,
+  BsChevronExpand,
+  BsCodeSlash,
+} from "react-icons/bs";
 import { RiGithubLine, RiTwitterLine, RiMessengerLine } from "react-icons/ri";
 import {
   BiShow,
@@ -68,9 +74,19 @@ import {
 import { FiMoon, FiSend } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { VscChromeMaximize } from "react-icons/vsc";
-//// 
+//
+//
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+import MenuIcon from "@mui/icons-material/Menu";
+import DeleteIcon from '@mui/icons-material/Delete';
+
+//
+import { GiAccordion } from "react-icons/gi";
+////
 ////
 export {
+  DeleteIcon,
   AiFillTwitterCircle,
   AiOutlineCalendar,
   AiOutlineCloudSync,
@@ -110,6 +126,7 @@ export {
   FiMoon,
   FiSend,
   FiShare2,
+  GiAccordion,
   GoListOrdered,
   GoListUnordered,
   HiOutlineBookOpen,
@@ -118,8 +135,10 @@ export {
   iconGrape,
   iconSearch,
   ImQuotesLeft,
+  InboxIcon,
   IoHelp,
   IoMdPower,
+  MailIcon,
   MdClose,
   MdCreate,
   MdDeleteOutline,
@@ -129,6 +148,7 @@ export {
   MdOutlineEditNote,
   MdOutlineMail,
   MdOutlinePostAdd,
+  MenuIcon,
   RiCheckboxBlankCircleLine,
   RiCheckboxCircleFill,
   RiCloseCircleFill,
@@ -137,4 +157,5 @@ export {
   RiTwitterLine,
   TiArrowLeftThick,
   VscChromeMaximize,
+  BsCodeSlash,
 };

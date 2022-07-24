@@ -1,18 +1,32 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { useStateSwitch } from "../../src/hooks";
 import { DarkModeToggle, Link } from "../../components";
+
 import {
   AppBar,
   Box,
+  Button,
   Container,
+  Divider,
+  Drawer,
   Grid,
   IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Stack,
   Toolbar,
   Typography,
-  MenuIcon,
-  Stack,
 } from "../../components/mui";
-import { FaHome, RiGithubLine } from "../../components/icons";
+import {
+  GiAccordion,
+  FaHome,
+  RiGithubLine,
+  MenuIcon,
+} from "../../components/icons";
 // @todo.slider
 //   https://codesandbox.io/s/bold-hill-stmnwk?file=/src/App.js
 //
@@ -27,12 +41,15 @@ import { FaHome, RiGithubLine } from "../../components/icons";
 // } from "../components";
 //
 // https://next-auth.js.org/getting-started/example#frontend---add-react-hook
-const LayoutMain = ({ children, ...rest }) => {
+const LayoutMain = ({ children }) => {
+  const { isActive: isActiveDrawer, toggle: toggleDrawer } = useStateSwitch();
   return (
     <>
       <AppBar position="static">
-        <Toolbar className="flex justify-between items-center">
-          <Stack direction="horizontal" className="items-center">
+        {/*  */}
+        <Toolbar className="flex items-center justify-between">
+          <Stack direction="row" className="items-center">
+            {/*  */}
             {/* icon.menu */}
             <IconButton
               size="large"
@@ -40,9 +57,11 @@ const LayoutMain = ({ children, ...rest }) => {
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
+              onClick={toggleDrawer.on}
             >
               <MenuIcon className="appbar-icon" />
             </IconButton>
+            {/*  */}
             {/* link.admin */}
             <Link href="https://nikolav.rs/">
               <a target="_blank">
@@ -64,17 +83,21 @@ const LayoutMain = ({ children, ...rest }) => {
               </a>
             </Link>
           </Stack>
+          {/*  */}
+          {/*  */}
+          {/* links */}
 
-          <Stack direction="horizontal" className="items-center">
+          <Stack direction="row" className="items-center">
             {/*  */}
-            {/* accordion */}
-            <Link href="accordion">
+            {/* .accordion */}
+            <Link href="/accordion">
               <a className="appbar-link">accordion</a>
             </Link>
           </Stack>
-
+          {/*  */}
+          {/* menu.right */}
           <Stack
-            direction="horizontal"
+            direction="row"
             // spacing={12}
             className="items-center space-x-2"
           >
@@ -83,7 +106,7 @@ const LayoutMain = ({ children, ...rest }) => {
 
             <Link href="/">
               <IconButton>
-                <FaHome className="appbar-icon text-4xl mr-2" />
+                <FaHome className="mr-2 text-4xl appbar-icon" />
               </IconButton>
             </Link>
 
@@ -98,7 +121,7 @@ const LayoutMain = ({ children, ...rest }) => {
           </Stack>
         </Toolbar>
       </AppBar>
-
+      {/*  */}
       {/* content */}
       <Box
         maxWidth={972}
@@ -120,6 +143,38 @@ const LayoutMain = ({ children, ...rest }) => {
           </Grid>
         </Container>
       </Box>
+      {/*  */}
+      {/*
+       */}
+      <Drawer anchor="left" open={isActiveDrawer} onClose={toggleDrawer.off}>
+        {/*  */}
+        {/* drawer.links */}
+        <Box minWidth={312}>
+          <List>
+            {[
+              {
+                key: "Accordion",
+                icon: (
+                  <GiAccordion className="appbar-icon text-primary dark:text-white/50" />
+                ),
+              },
+            ].map((node) => (
+              <ListItem
+                key={node.key}
+                disablePadding
+                onClick={toggleDrawer.off}
+              >
+                <Link href="/accordion">
+                  <ListItemButton>
+                    <ListItemIcon>{node.icon}</ListItemIcon>
+                    <ListItemText primary={node.key} />
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Drawer>
     </>
   );
 };

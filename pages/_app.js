@@ -40,7 +40,7 @@ const pageVariantsMotion = {
     // zindex: "initial",
   },
   out: {
-    opacity: 0,
+    opacity: 0.34,
     transition: {
       duration: 0.24,
     },

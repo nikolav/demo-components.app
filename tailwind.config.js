@@ -11,6 +11,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: "#4682b3"
+      },
       // https://tailwindcss.com/docs/screens
       screens: {
         // overide small screen 1st; sort..

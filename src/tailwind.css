@@ -27,14 +27,14 @@
 
 @layer components {
   .link {
-    @apply cursor-pointer text-indigo-700 hover:underline active:text-red-600;
+    @apply text-indigo-700 cursor-pointer hover:underline active:text-red-600;
   }
   .link-preview {
-    @apply cursor-zoom-in text-indigo-700 decoration-dashed hover:underline;
+    @apply text-indigo-700 cursor-zoom-in decoration-dashed hover:underline;
   }
   /* default button; dark grey; small padding; white text; rounded */
   .button {
-    @apply rounded-full p-2 px-4 outline-none border-none bg-slate-500 text-white uppercase hover:bg-slate-900 active:bg-black transition-colors cursor-pointer;
+    @apply p-2 px-4 text-white uppercase transition-colors border-none rounded-full outline-none cursor-pointer bg-slate-500 hover:bg-slate-900 active:bg-black;
   }
   .button-primary {
     @apply button bg-slate-800;
@@ -46,7 +46,7 @@
     @apply w-full px-0.5 border-0 border-b-2 border-gray-50 focus:ring-0 focus:border-gray-200 placeholder:italic placeholder:opacity-40 !bg-transparent;
   }
   .input-styled {
-    @apply block w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+    @apply block w-full border-gray-300 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
   }
   /*  */
   /*  */
@@ -54,6 +54,12 @@
     @apply text-white/50 transition-transform hover:text-white hover:scale-[1.012];
   }
   .appbar-icon {
-    @apply text-2xl text-white/50 hover:text-white cursor-pointer transition-transform hover:scale-105 duration-100;
+    @apply text-2xl transition-transform duration-100 cursor-pointer text-white/50 hover:text-white hover:scale-105;
+  }
+  .icon-primary {
+    @apply text-xl cursor-pointer text-primary dark:text-white/80;
+  }
+  .accordion-header {
+    @apply p-2 pl-4 rounded cursor-pointer text-primary opacity-90 hover:opacity-100 dark:bg-[#1a1a1a] dark:text-white;
   }
 }

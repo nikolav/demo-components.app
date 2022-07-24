@@ -12,6 +12,8 @@ const useSocialLike = (id) => {
   //
   const [likeCount, setLikeCount] = useState(0);
   const refLike = ref(db, `like/${id}`);
+  //
+  const isLiked = () => isMounted && null != localStorage.getItem(LIKECACHE);
 
   useEffect(
     () =>
@@ -21,7 +23,7 @@ const useSocialLike = (id) => {
     []
   );
 
-  return { like, likeCount };
+  return { like, likeCount, isLiked };
 
   function like() {
     if (!isMounted) return;

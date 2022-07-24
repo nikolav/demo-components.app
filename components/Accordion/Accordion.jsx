@@ -12,7 +12,7 @@ export default function Accordion({
   // keep tabs open
   expanded = false,
   //
-  // flag accordion children to render
+  // flag; accordion children to render
   item = false,
   //
   // run callback @tabs.toggle
@@ -55,7 +55,7 @@ export default function Accordion({
   //
   return (
     !item && (
-      <section className="m-0 p-0" {...rest}>
+      <section {...rest}>
         {map(items, (node) => (
           <Details
             header={
@@ -75,7 +75,7 @@ export default function Accordion({
                   });
                 }}
               >
-                {node.props.header}
+                {node.props.header || node.key}
               </div>
             }
             isActive={true === tabs[node.key]}

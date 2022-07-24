@@ -67,39 +67,41 @@ const themePrimary = {
       size: "small",
     },
   },
-  // overrides: {
   components: {
     MuiSwitch: {
-      root: {
-        width: 42,
-        height: 26,
-        padding: 0,
-        margin: 8,
-      },
-      switchBase: {
-        padding: 1,
-        "&$checked, &$colorPrimary$checked, &$colorSecondary$checked": {
-          transform: "translateX(16px)",
-          color: "#fff",
-          "& + $track": {
-            opacity: 1,
-            border: "none",
+      styleOverrides: {
+        root: {
+          width: 42,
+          height: 26,
+          padding: 0,
+          margin: 8,
+        },
+        switchBase: {
+          padding: 1,
+          "&$checked, &$colorPrimary$checked, &$colorSecondary$checked": {
+            transform: "translateX(16px)",
+            color: "#fff",
+            "& + $track": {
+              opacity: 1,
+              border: "none",
+            },
           },
         },
-      },
-      thumb: {
-        width: 24,
-        height: 24,
-      },
-      track: {
-        borderRadius: 13,
-        border: "1px solid #bdbdbd",
-        backgroundColor: "#fafafa",
-        opacity: 1,
-        transition:
-          "background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+        thumb: {
+          width: 24,
+          height: 24,
+        },
+        track: {
+          borderRadius: 13,
+          border: "1px solid #bdbdbd",
+          backgroundColor: "#fafafa",
+          opacity: 1,
+          transition:
+            "background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+        },
       },
     },
+    //
   },
 };
 
@@ -124,6 +126,12 @@ const themeDark = {
       paper: "#1a1a1a",
     },
   },
+  // typography: {
+  //   button: {
+  //     color: "#ffffff", 
+  //     borderColor: "#ffffff"
+  //   }
+  // },
   props: {
     MuiButtonBase: {
       disableRipple: true,
@@ -176,41 +184,51 @@ const themeDark = {
       size: "small",
     },
   },
-  overrides: {
+  components: {
     MuiButton: {
-      root: {
-        color: "#fff"
+      styleOverrides: {
+        root: {
+          color: "#ddd",
+          borderColor: "#ddd",
+          "&:hover": {
+            color: "#fff",
+            borderColor: "#fff",
+          },
+        },
       }
     },
     MuiSwitch: {
-      root: {
-        width: 42,
-        height: 26,
-        padding: 0,
-        margin: 8,
-      },
-      switchBase: {
-        padding: 1,
-        "&$checked, &$colorPrimary$checked, &$colorSecondary$checked": {
-          transform: "translateX(16px)",
-          color: "#fff",
-          "& + $track": {
-            opacity: 1,
-            border: "none",
+      styleOverrides: {
+        root: {
+          width: 42,
+          height: 26,
+          padding: 0,
+          margin: 8,
+        },
+        switchBase: {
+          padding: 1,
+          "&$checked, &$colorPrimary$checked, &$colorSecondary$checked": {
+            transform: "translateX(16px)",
+            color: "#fff",
+            "& + $track": {
+              opacity: 1,
+              border: "none",
+            },
           },
         },
-      },
-      thumb: {
-        width: 24,
-        height: 24,
-      },
-      track: {
-        borderRadius: 13,
-        border: "1px solid #bdbdbd",
-        backgroundColor: "#fafafa",
-        opacity: 1,
-        transition:
-          "background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+        thumb: {
+          width: 24,
+          height: 24,
+        },
+        track: {
+          borderRadius: 13,
+          border: "1px solid #bdbdbd",
+          backgroundColor: "#fafafa",
+          opacity: 1,
+          transition:
+            "background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+        },
+
       },
     },
   },
@@ -231,7 +249,7 @@ import {
 } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 // import { deepmerge } from '@mui/utils';
-import { alpha } from '@mui/material/styles';
+import { alpha } from "@mui/material/styles";
 //
 // import themePrimary from "../theme/mui-primary";
 // import themeDark from "../theme/mui-dark";
@@ -250,12 +268,17 @@ export default function MuiThemeProvider({ children }) {
     () => responsiveFontSizes(createTheme(getDesignTokens(mode))),
     [mode]
   );
+  useEffect(() => {
+    setMode(prefersDarkMode ? "dark" : "light");
+  }, [prefersDarkMode]);
+  //
 
   const setModeDark_ = () => setMode("dark");
   // colorMode api
   const colorMode = {
     mode,
     theme,
+    prefersDarkMode,
     //
     alpha,
     //

@@ -8,11 +8,11 @@ const Body = ({ children, ...rest }) => {
   //
   return (
     <body
-      css={{
-        [theme.breakpoints.up("md")]: {
-          overflow: "hidden",
-        },
-      }}
+      // css={{
+      //   [theme.breakpoints.up("md")]: {
+      //     overflow: "hidden",
+      //   },
+      // }}
       className={`scrollbar-thin dark:text-slate-100 ${modcss.body}`}
       {...rest}
     >
