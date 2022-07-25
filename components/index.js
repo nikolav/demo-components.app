@@ -20,6 +20,7 @@ import ProgressRing from "./ProgressRing/ProgressRing";
 import Rotation from "./Rotation/Rotation";
 import Slider from "./Slider/Slider";
 import Tooltip from "./Tooltip/Tooltip";
+import BoxTransition from "./BoxTransition/BoxTransition";
 
 // @next
 import Image from "next/image";
@@ -30,6 +31,7 @@ export {
   Accordion,
   BlockUI,
   Body,
+  BoxTransition,
   ChooseFile,
   DarkModeToggle,
   Details,

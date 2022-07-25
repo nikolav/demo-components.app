@@ -29,6 +29,7 @@ import "../styles/build.css";
 import "../styles/globals.css";
 import "@fancyapps/ui/dist/fancybox.css";
 import "react-toastify/dist/ReactToastify.min.css";
+import "animate.css";
 //
 const pageVariantsMotion = {
   in: {
@@ -40,7 +41,7 @@ const pageVariantsMotion = {
     // zindex: "initial",
   },
   out: {
-    opacity: 0.34,
+    opacity: 0.24,
     transition: {
       duration: 0.24,
     },

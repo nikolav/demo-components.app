@@ -62,4 +62,7 @@
   .accordion-header {
     @apply p-2 pl-4 rounded cursor-pointer text-primary opacity-90 hover:opacity-100 dark:bg-[#1a1a1a] dark:text-white;
   }
+  .place-viewport-center {
+    @apply fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2;
+  }
 }

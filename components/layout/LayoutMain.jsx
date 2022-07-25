@@ -29,18 +29,8 @@ import {
 } from "../../components/icons";
 // @todo.slider
 //   https://codesandbox.io/s/bold-hill-stmnwk?file=/src/App.js
-//
-// import {
-//   ProgressBar,
-//   ProgressBarVertical,
-//   Slider,
-//   ProgressRing,
-//   Modal,
-//   DarkModeToggle,
-//   Drag,
-// } from "../components";
-//
 // https://next-auth.js.org/getting-started/example#frontend---add-react-hook
+/////
 const LayoutMain = ({ children }) => {
   const { isActive: isActiveDrawer, toggle: toggleDrawer } = useStateSwitch();
   return (
@@ -64,7 +54,7 @@ const LayoutMain = ({ children }) => {
             {/*  */}
             {/* link.admin */}
             <Link href="https://nikolav.rs/">
-              <a target="_blank">
+              <a target="_blank" className="inline-block ml-4 origin-center">
                 <Typography
                   variant="h6"
                   component="h1"
@@ -87,11 +77,16 @@ const LayoutMain = ({ children }) => {
           {/*  */}
           {/* links */}
 
-          <Stack direction="row" className="items-center">
+          <Stack direction="row" className="items-center space-x-2">
             {/*  */}
             {/* .accordion */}
             <Link href="/accordion">
               <a className="appbar-link">accordion</a>
+            </Link>
+            {/*  */}
+            {/* .block-ui */}
+            <Link href="/blockui">
+              <a className="appbar-link">block-ui</a>
             </Link>
           </Stack>
           {/*  */}
@@ -149,7 +144,7 @@ const LayoutMain = ({ children }) => {
       <Drawer anchor="left" open={isActiveDrawer} onClose={toggleDrawer.off}>
         {/*  */}
         {/* drawer.links */}
-        <Box minWidth={312}>
+        <Box minWidth={234}>
           <List>
             {[
               {
@@ -157,6 +152,12 @@ const LayoutMain = ({ children }) => {
                 icon: (
                   <GiAccordion className="appbar-icon text-primary dark:text-white/50" />
                 ),
+                link: "/accordion",
+              },
+              {
+                key: "BlockUI",
+                icon: "⛔",
+                link: "/blockui",
               },
             ].map((node) => (
               <ListItem
@@ -164,7 +165,7 @@ const LayoutMain = ({ children }) => {
                 disablePadding
                 onClick={toggleDrawer.off}
               >
-                <Link href="/accordion">
+                <Link href={node.link}>
                   <ListItemButton>
                     <ListItemIcon>{node.icon}</ListItemIcon>
                     <ListItemText primary={node.key} />

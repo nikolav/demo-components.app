@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { createSlice } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
 import { has, paste } from "../../src/util";
-import { useWindow } from "../../src/hooks";
+import { useWindowDocument } from "../../src/hooks";
+import useMediaQuery from "@mui/material/useMediaQuery";
 //
 const MODE = "vgkysucatsmxldnhxhmtzz";
 //
@@ -50,18 +51,20 @@ export default colorModeSlice.reducer;
 //
 // export redux store shortcut
 export function useColorModeTW() {
-  const w$ = useWindow();
+  const { isMounted } = useWindowDocument();
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   //
   const colorMode = useSelector((state) => state.colorMode);
   const dispatch = useDispatch();
   //
   const mode = colorMode[MODE];
   useEffect(() => {
-    if (w$) {
+    if (isMounted) {
       if (
-        w$.localStorage.theme === "dark" ||
-        (!("theme" in w$.localStorage) &&
-          w$.matchMedia("(prefers-color-scheme: dark)").matches)
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          // w$.matchMedia("(prefers-color-scheme: dark)").matches)
+          prefersDarkMode)
       ) {
         dispatch(setColorModeDark());
         return;
@@ -69,20 +72,20 @@ export function useColorModeTW() {
       //
       dispatch(setColorModeLight());
     }
-  }, [w$]);
+  }, [isMounted, prefersDarkMode]);
   //
   useEffect(() => {
-    if (w$) {
+    if (isMounted) {
       if (mode === MODE_DARK) {
         _addClassDark();
-        w$.localStorage.theme = "dark";
+        localStorage.theme = "dark";
         return;
       }
       //
       _rmClassDark();
-      w$.localStorage.theme = "light";
+      localStorage.theme = "light";
     }
-  }, [mode, w$]);
+  }, [mode, isMounted]);
   //
   const handle = paste(() => colorMode[MODE], {
     isDark: () => colorMode[MODE] === MODE_DARK,

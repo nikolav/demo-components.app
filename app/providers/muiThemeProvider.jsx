@@ -245,11 +245,11 @@ import {
   createTheme,
   ThemeProvider,
   responsiveFontSizes,
-  // styled,
+  alpha,
+  styled,
 } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 // import { deepmerge } from '@mui/utils';
-import { alpha } from "@mui/material/styles";
 //
 // import themePrimary from "../theme/mui-primary";
 // import themeDark from "../theme/mui-dark";
@@ -281,6 +281,7 @@ export default function MuiThemeProvider({ children }) {
     prefersDarkMode,
     //
     alpha,
+    styled,
     //
     isDark: () => "dark" === mode,
     isLight: () => "light" === mode,

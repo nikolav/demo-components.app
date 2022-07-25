@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import "animate.css";
 import { has, noop } from "../../src/util";
 
 const DEFAULT_EFFECT = "headShake";
