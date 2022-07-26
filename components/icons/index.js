@@ -74,6 +74,9 @@ import {
   MdOutlinePostAdd,
   MdOutlineEditNote,
   MdMinimize,
+  MdMonitor,
+  MdNetworkCheck,
+  MdSettings,
 } from "react-icons/md";
 // @mui.icons
 import AccessTime from "@mui/icons-material/AccessTime";
@@ -106,6 +109,9 @@ import { GiAccordion } from "react-icons/gi";
 const IconCheck = Check;
 const IconCloud = Cloud;
 const IconAccessTime = AccessTime;
+const IconContentCut = ContentCut;
+const IconContentCopy = ContentCopy;
+const IconContentPaste = ContentPaste;
 ////
 ////
 export {
@@ -133,9 +139,9 @@ export {
   BsPlayFill,
   BsStarFill,
   CgFormatItalic,
-  ContentCopy,
-  ContentCut,
-  ContentPaste,
+  IconContentCut,
+  IconContentCopy,
+  IconContentPaste,
   DeleteIcon,
   ExpandMoreIcon,
   FaAlignCenter,
@@ -181,10 +187,13 @@ export {
   MdDeleteOutline,
   MdDragIndicator,
   MdMinimize,
+  MdMonitor,
+  MdNetworkCheck,
   MdOutlineAddPhotoAlternate,
   MdOutlineEditNote,
   MdOutlineMail,
   MdOutlinePostAdd,
+  MdSettings,
   MenuIcon,
   MoreVertIcon,
   PersonIcon,

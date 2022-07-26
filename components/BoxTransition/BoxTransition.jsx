@@ -4,8 +4,8 @@ import { CSSTransition } from "react-transition-group";
 import { useStateSwitch } from "../../src/hooks";
 import { noop } from "../../src/util";
 //
-const DEFAULT_TIMEOUT = 567;
-const DEFAULT_TIMEOUT_OUT = 234;
+const DEFAULT_TIMEOUT = 543;
+const DEFAULT_TIMEOUT_OUT = 245;
 const DEFAULT_EFFECT = {
   in: "fadeIn",
   out: "fadeOut",

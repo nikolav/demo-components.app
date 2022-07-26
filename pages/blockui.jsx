@@ -12,16 +12,31 @@ import {
   Tooltip,
   Popper,
   Card,
-  CardMedia,
   CardContent,
   CardActions,
   ClickAwayListener,
+  Paper,
+  MenuList,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
+  Divider,
 } from "@mui/material";
-import { useCountDown, useSocialLike, useStateSwitch, useBodyOverflow } from "../src/hooks";
+import {
+  useCountDown,
+  useSocialLike,
+  useStateSwitch,
+  useBodyOverflow,
+} from "../src/hooks";
 import {
   BsCodeSlash,
   FaGithubAlt,
   ArrowDropDownIcon,
+  IconCloud,
+  IconContentPaste,
+  MdSettings,
+  MdMonitor,
+  MdNetworkCheck,
 } from "../components/icons";
 import { prevent, noop } from "../src/util";
 //
@@ -56,26 +71,42 @@ const PageBlockui = () => {
   //
   const { isActive: isBlockui, toggle: toggleBlockui } = useStateSwitch();
   const { count, start } = useCountDown(toggleBlockui.off);
+  //
+  // show screen for [t] seconds
   const blockui = () => {
     toggleBlockui.on();
     start(5);
-  }
-    
+  };
+  //
+  // blockui.default
+  const { isActive: isDefault, toggle: toggleDefault } = useStateSwitch();
+  const { start: start_d } = useCountDown(toggleDefault.off);
+  const blockui_d = () => {
+    toggleDefault.on();
+    start_d(3);
+  };
+  //
+  // blockui.default
+  const [p$, setp] = useState(0);
+  const { isActive: isNetw, toggle: toggleNetw } = useStateSwitch();
+  const { start: start_n } = useCountDown(toggleNetw.off);
+  const blockui_n = () => {
+    toggleNetw.on();
+    start_n(4);
+  };
+  useEffect(() => {
+    setp(isNetw ? 100 : 0);
+  }, [isNetw]);
   //
   return (
     <LayoutMain>
-      <section>
-        <BlockUI isActive={isBlockui}>
-          <Box>
-            <strong>Interakcija zaleđena... [{count}]</strong>
-          </Box>
-        </BlockUI>
+      <section className="flex justify-center">
         <Head>
           <title>nikolav | BlocUI, ReactJS</title>
         </Head>
-        <Box>
-          <ButtonGroup ref={refButtons.current} variant="outlined" size="large">
-            <Button onClick={prevent(blockui)}>BLOKIRAJ</Button>
+        <Box mt="3rem">
+          <ButtonGroup ref={refButtons} variant="outlined" size="large">
+            <Button onClick={prevent(blockui)}>BLOKIRAJ EKRAN</Button>
             <Button onClick={toggleMenu.on}>
               <ArrowDropDownIcon />
             </Button>
@@ -209,6 +240,93 @@ const PageBlockui = () => {
           {/*  */}
           {/*  */}
           {/* @@popper.menu */}
+          <Popper
+            open={isPopperMenu}
+            anchorEl={refButtons.current}
+            placement="bottom-start"
+            keepMounted
+            transition
+          >
+            {({ TransitionProps }) => (
+              <BoxTransition
+                isActive={isMenu}
+                // effect={{ in: "fadeIn", out: "fadeOut" }}
+                duration={234}
+                durationOut={122}
+                onExited={togglePopperMenu.off}
+                {...TransitionProps}
+              >
+                <ClickAwayListener onClickAway={toggleMenu.off}>
+                  <Paper className="shadow-md" sx={{ minWidth: "36ch" }}>
+                    <MenuList>
+                      <MenuItem onClick={blockui_d}>
+                        <ListItemIcon>
+                          <MdMonitor />
+                        </ListItemIcon>
+                        <ListItemText>Podrazumevani ekran</ListItemText>
+                        <Typography variant="body2" color="text.secondary">
+                          [3s]
+                        </Typography>
+                      </MenuItem>
+                      <MenuItem onClick={blockui_n}>
+                        <ListItemIcon>
+                          <MdNetworkCheck />
+                        </ListItemIcon>
+                        <ListItemText>
+                          Simuliraj aktivnost na mreži
+                        </ListItemText>
+                        <Typography variant="body2" color="text.secondary">
+                          [4s]
+                        </Typography>
+                      </MenuItem>
+                      <MenuItem disabled>
+                        <ListItemIcon>
+                          <IconContentPaste fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText>Zalepi</ListItemText>
+                        <Typography variant="body2" color="text.secondary">
+                          [⌘V]
+                        </Typography>
+                      </MenuItem>
+                      <Divider />
+                      <MenuItem disabled>
+                        <ListItemIcon>
+                          <MdSettings />
+                        </ListItemIcon>
+                        <ListItemText>Podesi</ListItemText>
+                        <Typography variant="body2" color="text.secondary">
+                          [⌘K]
+                        </Typography>
+                      </MenuItem>
+                    </MenuList>
+                  </Paper>
+                </ClickAwayListener>
+              </BoxTransition>
+            )}
+          </Popper>
+          {/*  */}
+          {/*  */}
+          {/* @@screen */}
+          <BlockUI isActive={isBlockui}>
+            <Box>
+              <strong>Interakcija je zaleđena... [{count}]</strong>
+            </Box>
+          </BlockUI>
+          <BlockUI isActive={isDefault} />
+          <BlockUI isActive={isNetw}>
+            <section className="w-full h-full flex items-center justify-center">
+              <Box width={128} height={128}>
+                <ProgressRing
+                  progress={p$}
+                  duration={3789}
+                  className="text-primary dark:text-white"
+                  allowDecrease
+                  bg="transparent"
+                  width={4}
+                />
+              </Box>
+            </section>
+          </BlockUI>
         </>
       </section>
     </LayoutMain>

@@ -11,7 +11,7 @@ const ProgressRing = ({
   isActive = true,
   //
   // [0..100]
-  progress = 12,
+  progress = 0,
   //
   // ring width [1..100]
   width = 12,
