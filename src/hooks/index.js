@@ -19,6 +19,7 @@ import { useJQuery } from "./use-jquery";
 import useClickAway from "./use-click-away";
 import { useWindowAddEvents, useWindowResizeEvent, useWindow, useWindowDocument } from "./use-window";
 import useBodyOverflow from "./use-body-overflow";
+import useCountDown from "./use-count-down";
 
 //
 export {
@@ -26,6 +27,7 @@ export {
   useAuthApi,
   useBodyOverflow,
   useClickAway,
+  useCountDown,
   useFancyboxGallery,
   useFileReader,
   useGravatar,

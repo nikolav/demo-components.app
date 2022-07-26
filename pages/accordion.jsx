@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, Fragment } from "react";
+import Head from "next/head"
 import LayoutMain from "../components/layout/LayoutMain";
 import { Link, Accordion, BoxTransition } from "../components";
 import {
@@ -39,6 +40,10 @@ const PageAccordion = () => {
   return (
     <LayoutMain>
       <section>
+      <Head>
+          <title>nikolav | Accordion,  ReactJS</title>
+        </Head>
+
         <Accordion
           onToggle={(tabs) => console.log(tabs)}
           active="react"
