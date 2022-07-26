@@ -5,6 +5,7 @@ import { paste, has, nanoid } from "../../src/util";
 //
 export const TEST = "fktzzfpmzpb";
 export const ADMIN = "otqknvlgpve";
+export const TEMP_FILE = "mngbaguzkgn"
 //
 const initialState = {
   [ADMIN]: {
@@ -14,6 +15,7 @@ const initialState = {
     github: "https://github.com/nikolav",
   },
   [TEST]: "1.22.333",
+  [TEMP_FILE]: null,
 };
 
 export const appdataSlice = createSlice({

@@ -27,7 +27,7 @@
 
 @layer components {
   .link {
-    @apply cursor-pointer hover:underline active:text-red-600 dark:text-white;
+    @apply cursor-pointer hover:underline active:text-red-600;
   }
   .link-preview {
     @apply cursor-zoom-in decoration-dashed hover:underline;
@@ -57,7 +57,7 @@
     @apply text-2xl transition-transform duration-100 cursor-pointer text-white/50 hover:text-white hover:scale-105;
   }
   .appbar-link-icon {
-    @apply cursor-pointer opacity-80 hover:opacity-100 hover:scale-[1.02];
+    @apply cursor-pointer opacity-80 hover:opacity-100 hover:scale-[1.055];
   }
   .icon-primary {
     @apply text-xl cursor-pointer text-primary dark:text-white/80;

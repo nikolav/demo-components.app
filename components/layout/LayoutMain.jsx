@@ -4,9 +4,9 @@ import { DarkModeToggle, Link } from "../../components";
 import {
   AppBar,
   Box,
-  Button,
+  // Button,
   Container,
-  Divider,
+  // Divider,
   Drawer,
   Grid,
   IconButton,
@@ -17,14 +17,15 @@ import {
   ListItemText,
   Stack,
   Toolbar,
+  Tooltip,
   Typography,
 } from "../../components/mui";
 import {
-  GiAccordion,
+  // GiAccordion,
   FaHome,
   RiGithubLine,
   MenuIcon,
-  iconAccordionColor,
+  // iconAccordionColor,
 } from "../../components/icons";
 
 //
@@ -82,22 +83,40 @@ const LayoutMain = ({ children }) => {
           {/* links */}
 
           <Stack direction="row" className="items-center space-x-2">
-            {/*  */}
-            {/* .accordion */}
-            <Link href="/accordion">
-              {/* <a className="appbar-link-icon">{imgAccordion}</a> */}
-              <a className="appbar-link-icon text-xl">📰</a>
-            </Link>
-            {/*  */}
-            {/* .block-ui */}
-            <Link href="/blockui">
-              <a className="appbar-link-icon text-xl">⛔</a>
-            </Link>
-            {/*  */}
-            {/* .box-tansition */}
-            <Link href="/box-transition">
-              <a className="appbar-link-icon text-xl">🍱</a>
-            </Link>
+            {[
+              {
+                component: "Accordion",
+                icon: "📰",
+                link: "accordion",
+              },
+              {
+                component: "BlockUI",
+                icon: "⛔",
+                link: "blockui",
+              },
+              {
+                component: "BoxTransition",
+                icon: "🍱",
+                link: "box-transition",
+              },
+              {
+                component: "ChooseFile",
+                icon: "📜",
+                link: "choose-file",
+              },
+            ].map(({ component, icon, link }) => (
+              <Tooltip
+                placement="bottom"
+                title={`<${component}>`}
+                key={component}
+              >
+                <Box component="strong">
+                  <Link href={`/${link}`}>
+                    <a className="appbar-link-icon text-xl">{icon}</a>
+                  </Link>
+                </Box>
+              </Tooltip>
+            ))}
           </Stack>
           {/*  */}
           {/* menu.right */}
@@ -111,11 +130,11 @@ const LayoutMain = ({ children }) => {
 
             <Link href="/">
               <IconButton>
-                <FaHome className="mr-2 text-4xl appbar-icon" />
+                <FaHome className="text-3xl appbar-icon" />
               </IconButton>
             </Link>
 
-            <IconButton size="md">
+            <IconButton size="md" className="ml-2">
               <Link href="https://github.com/nikolav">
                 <a target="_blank">
                   <RiGithubLine className="appbar-icon" />
@@ -164,6 +183,11 @@ const LayoutMain = ({ children }) => {
                 key: "BoxTransition",
                 icon: "🍱",
                 link: "/box-transition",
+              },
+              {
+                key: "BoxTransition",
+                icon: "📜",
+                link: "/choose-file",
               },
             ].map((node) => (
               <ListItem

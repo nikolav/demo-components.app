@@ -1,4 +1,4 @@
-import { useAppData, ADMIN, TEST } from "./slice-appdata";
+import { useAppData, ADMIN, TEST, TEMP_FILE } from "./slice-appdata";
 import {
   useFlags,
   FLAG_TEST,
@@ -39,6 +39,7 @@ export {
   useAppData,
   ADMIN,
   TEST,
+  TEMP_FILE,
   useFlags,
   FLAG_BLOKUI,
   FLAG_TEST,

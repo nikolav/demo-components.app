@@ -123,7 +123,7 @@ const PageBlockui = () => {
                   <BsCodeSlash className="icon-primary" />
                 </Button>
               </Tooltip>
-              <Tooltip placement="top" title="komponenta @github">
+              <Tooltip placement="top" title="👨🏻‍💻 komponenta @github">
                 <Button>
                   <Link href={LINK_GITHUB_COMPONENT}>
                     <a target="_blank">

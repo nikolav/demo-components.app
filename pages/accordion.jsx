@@ -124,7 +124,7 @@ const PageAccordion = () => {
                   <BsCodeSlash className="icon-primary" />
                 </Button>
               </Tooltip>
-              <Tooltip placement="top" title="komponenta @github">
+              <Tooltip placement="top" title="👨🏻‍💻 komponenta @github">
                 <Button>
                   <Link href="https://github.com/nikolav/demo-components.app/blob/main/components/Accordion/Accordion.jsx">
                     <a target="_blank">

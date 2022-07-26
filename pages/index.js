@@ -1,53 +1,71 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Link from "next/link";
 import LayoutMain from "../components/layout/LayoutMain";
 import {
-  FormGroup,
-  Checkbox,
-  FormControlLabel,
-  Stack,
   Box,
-  Button,
-  Modal,
-  Typography,
-  Popper,
-  Popover,
+  Divider,
+  Paper,
+  MenuList,
+  MenuItem,
+  ListItemText,
 } from "@mui/material";
-import { useStateSwitch } from "../src/hooks";
-import { BoxTransition } from "../components";
-import img from "../public/accordion.props.default.jpg"
-
+////
+/////
 export default function Index(props) {
-  const { isActive, toggle } = useStateSwitch();
   //
   return (
     <LayoutMain {...props}>
       {/*  */}
       {/* left */}
       <section>
-        <Button variant="outlined" color="primary" onClick={toggle}>
-          ok
-        </Button>
-        <BoxTransition
-          isActive={isActive}
-          effect={{ in: "rotateIn", out: "rotateOut" }}
-          duration={1222}
-          durationOut={466}
-        >
-          <Box
-            component="img"
-            src={img.src}
-            className="block p-1 bg-white shadow"
-            width={312}
-            height="auto"
+        <Paper component="p" elevation={2} className="p-4 leading-relaxed">
+          Pozdrav 👋🏻 <br />
+          Trenutno radim na ovoj aplikaciji. <br />
+          Planiram da postavim komponente iz{" "}
+          <a
+            href="https://github.com/nikolav/demo-components.app/tree/main/components"
+            target="_blank"
+            rel="noreferrer"
+            className="link text-primary"
           >
+            ovog foldera
+          </a>
+          . <br />
+          <Divider className="my-4" />
+          <MenuList className="p-4">
+            {[
+              {
+                name: "Accordion",
+                link: "/accordion",
+              },
+              {
+                name: "BlockUI",
+                link: "/blockui",
+              },
+              {
+                name: "BoxTransition",
+                link: "/box-transition",
+              },
+              {
+                name: "ChooseFile",
+                link: "/choose-file",
+              },
+            ].map(({ link, name }) => (
+              <Link href={link} key={name}>
+                <MenuItem>
+                  <ListItemText>{name}</ListItemText>
+                </MenuItem>
+              </Link>
+            ))}
+          </MenuList>
+          <Box component="p" className="p-4 opacity-80">
+            Hvala, svako dobro.
           </Box>
-        </BoxTransition>
-
-        
+        </Paper>
       </section>
       {/*  */}
       {/* right */}
-      <section>2</section>
+      <section>👷🏻‍♂️🚧</section>
     </LayoutMain>
   );
 }
