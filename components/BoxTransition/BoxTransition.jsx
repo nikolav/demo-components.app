@@ -1,19 +1,22 @@
 //
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useStateSwitch } from "../../src/hooks";
+import { noop } from "../../src/util";
 //
-const DEFAULT_TIMEOUT = 255;
-const DEFAULT_TIMEOUT_OUT = 122;
+const DEFAULT_TIMEOUT = 567;
+const DEFAULT_TIMEOUT_OUT = 234;
 const DEFAULT_EFFECT = {
   in: "fadeIn",
   out: "fadeOut",
 };
+////
+////
 const TransitionBase = ({
   isActive = false,
+  in: in_ = null,
   duration = DEFAULT_TIMEOUT,
   durationOut = DEFAULT_TIMEOUT_OUT,
-  classNames,
   // delay = 0,
   // repeat = 0,
   // https://www.w3schools.com/cssref/css3_pr_animation-timing-function.asp
@@ -22,24 +25,26 @@ const TransitionBase = ({
   //   step-start|step-end|steps(int,start|end)|
   //   cubic-bezier(n,n,n,n)|initial|inherit;
   // ease = DEFAULT_EASE,
+  onEnter = noop,
+  onEntered = noop,
+  classNames,
   className = "",
   children,
   ...rest
 }) => {
-  const r = useRef();
-  const { isActive: isExit, toggle: toggleIsExit } = useStateSwitch();
-  const { isActive: hidden, toggle: toggleHidden } = useStateSwitch(true);
   //
-  // show div
+  const [inProp, setInProp] = useState(null != in_ ? in_ : isActive);
+  const { isActive: isExit, toggle: toggleIsExit } = useStateSwitch();
+  const refDiv = useRef();
+  //
   useEffect(() => {
-    isActive && toggleHidden.off();
+    setInProp(isActive);
   }, [isActive]);
   //
   // toggle duration @stage change
   useEffect(() => {
-    const node = r.current;
-    if (isActive && node) {
-      node.style.setProperty(
+    if (inProp) {
+      refDiv.current?.style.setProperty(
         "--animate-duration",
         `${(isExit ? durationOut : duration) / 1000}s`
       );
@@ -47,26 +52,26 @@ const TransitionBase = ({
       // node.style.setProperty("--animate-repeat", repeat);
       // node.style.setProperty("animation-timing-function", ease);
     }
-  }, [isActive, isExit]);
+  }, [inProp, isExit]);
+
   //
   return (
     <CSSTransition
-      classNames={classNames}
-      in={isActive}
+      in={inProp}
       timeout={duration}
-      onEnter={toggleIsExit.off}
-      onEntered={toggleIsExit.on}
-      onExited={toggleHidden.on}
+      classNames={classNames}
+      onEnter={(...args) => {
+        toggleIsExit.off();
+        onEnter(...args);
+      }}
+      onEntered={(...args) => {
+        toggleIsExit.on();
+        onEntered(...args);
+      }}
+      unmountOnExit
       {...rest}
     >
-      <div
-        ref={r}
-        style={{
-          transformOrigin: "center",
-          display: hidden ? "none" : "block",
-        }}
-        className={className}
-      >
+      <div ref={refDiv} className={className}>
         {children}
       </div>
     </CSSTransition>

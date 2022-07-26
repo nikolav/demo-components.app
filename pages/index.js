@@ -1,12 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import LayoutMain from "../components/layout/LayoutMain";
-import { Stack, Box, Button, Modal, Typography } from "../components/mui";
+import {
+  FormGroup,
+  Checkbox,
+  FormControlLabel,
+  Stack,
+  Box,
+  Button,
+  Modal,
+  Typography,
+  Popper,
+  Popover,
+} from "@mui/material";
 import { useStateSwitch } from "../src/hooks";
 import { BoxTransition } from "../components";
+import img from "../public/accordion.props.default.jpg"
 
 export default function Index(props) {
   const { isActive, toggle } = useStateSwitch();
-
+  //
   return (
     <LayoutMain {...props}>
       {/*  */}
@@ -17,13 +29,21 @@ export default function Index(props) {
         </Button>
         <BoxTransition
           isActive={isActive}
-          effect={{ in: "flipInX", out: "flipOutX" }}
-          duration={567}
-          durationOut={234}
-          className="w-32 h-32 bg-slate-400 rounded-lg"
+          effect={{ in: "rotateIn", out: "rotateOut" }}
+          duration={1222}
+          durationOut={466}
         >
-          22
+          <Box
+            component="img"
+            src={img.src}
+            className="block p-1 bg-white shadow"
+            width={312}
+            height="auto"
+          >
+          </Box>
         </BoxTransition>
+
+        
       </section>
       {/*  */}
       {/* right */}

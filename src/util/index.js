@@ -26,7 +26,7 @@ import transform from "lodash/transform";
 //
 import  classnames from  "classnames";
 //
-const { add: addClass, rm: removeClass } = q.class;
+const { add: addClass, rm: removeClass, has: hasClass } = q.class;
 const { eventListener, prevent, ready, s: select, type } = q;
 const { has } = q.object;
 const { isEmail } = q.test;
@@ -52,6 +52,7 @@ export {
   False,
   filter,
   has,
+  hasClass,
   isEmail,
   isFunction,
   isString,

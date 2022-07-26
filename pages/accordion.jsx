@@ -1,5 +1,6 @@
+import { useState, useEffect, useRef, Fragment } from "react";
 import LayoutMain from "../components/layout/LayoutMain";
-import { Link, Accordion } from "../components";
+import { Link, Accordion, BoxTransition } from "../components";
 import {
   Stack,
   Box,
@@ -8,18 +9,32 @@ import {
   ButtonGroup,
   Button,
   Tooltip,
-} from "../components/mui";
-import {
-  useSocialLike,
-  // useStateSwitch,
-  useFancyboxGallery,
-} from "../src/hooks";
+  Popper,
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  ClickAwayListener,
+} from "@mui/material";
+import { useSocialLike, useStateSwitch, useBodyOverflow } from "../src/hooks";
 import { BsCodeSlash, FaGithubAlt } from "../components/icons";
+import imgAccProps from "../public/accordion.props.default.jpg";
 //
 const PageAccordion = () => {
-  const { openGallery } = useFancyboxGallery();
   const { like, likeCount, isLiked } = useSocialLike("--accordion");
-
+  //
+  const { isActive, toggle: toggleActive } = useStateSwitch();
+  const { isActive: isOpenPopper, toggle: togglePopper } = useStateSwitch();
+  useEffect(() => {
+    isActive && togglePopper.on();
+  }, [isActive]);
+  //
+  const refButton = useRef();
+  //
+  const overflow = useBodyOverflow();
+  useEffect(() => {
+    overflow.hidden(isOpenPopper);
+  }, [isOpenPopper])
   //
   return (
     <LayoutMain>
@@ -99,18 +114,8 @@ const PageAccordion = () => {
         <Box>
           <Stack mb={2} direction="row" className="justify-center">
             <ButtonGroup variant="outlined" size="small">
-              <Tooltip placement="top" title="ulaz, `props`">
-                <Button
-                  onClick={() =>
-                    openGallery([
-                      {
-                        src: "/accordion.props.default.jpg",
-                        caption:
-                          "PROPS: `active` otvara prvu karticu sa ovim kljucem; `expanded` ostavlja karticu otvorenu posle aktiviranja drugih; `item` prikazuje samo elemente sa ovim atributom; `onToggle` izvrsava proceduru pri promeni kartice",
-                      },
-                    ])
-                  }
-                >
+              <Tooltip placement="top" title="🔎 props">
+                <Button ref={refButton} onClick={toggleActive}>
                   <BsCodeSlash className="icon-primary" />
                 </Button>
               </Tooltip>
@@ -148,6 +153,92 @@ const PageAccordion = () => {
             surface, such as a card.
           </p>
         </Box>
+        <>
+          <Popper
+            open={isOpenPopper}
+            anchorEl={refButton.current}
+            placement="bottom"
+            modifiers={[
+              {
+                name: "offset", 
+                options: {
+                  offset: [0, -128]
+                }
+              }
+            ]}
+            keepMounted
+            transition
+          >
+            {({ TransitionProps }) => (
+              <BoxTransition
+                effect={{ in: "flipInX", out: "flipOutX" }}
+                isActive={isActive}
+                onExited={togglePopper.off}
+                {...TransitionProps}
+              >
+                <ClickAwayListener onClickAway={toggleActive.off}>
+                  <Card
+                  className="shadow-md"
+                  sx={{ maxWidth: 356 }}>
+                    <CardMedia
+                      component="img"
+                      height={96}
+                      image={imgAccProps.src}
+                    />
+                    <CardContent>
+                      <Typography
+                        className="font-bold text-center"
+                        variant="h5"
+                        component="h2"
+                      >
+                        Accordion --props
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        <Box component="dl">
+                          {[
+                            {
+                              key: "active",
+                              value: "otvara karticu sa ovim klučem @mount",
+                            },
+                            {
+                              key: "expanded",
+                              value:
+                                "ostavlja karticu otvorenu nakon aktivacije drugih",
+                            },
+                            {
+                              key: "item",
+                              value: "prikazuje elemente samo sa ovim `flagom`",
+                            },
+                            {
+                              key: "onToggle",
+                              value: "izvršava proceduru pri promeni kartice",
+                            },
+                          ].map((node) => (
+                            <Fragment key={node.key}>
+                              <dt className="font-bold">{node.key}</dt>
+                              <dd className="pl-1 opacity-80">{node.value}</dd>
+                            </Fragment>
+                          ))}
+                        </Box>
+                      </Typography>
+                    </CardContent>
+                    <CardActions className="justify-center">
+                      <Button
+                        onClick={toggleActive.off}
+                        dense
+                        color="secondary"
+                        size="small"
+                        variant="outlined"
+                      >
+                        ok, hvala
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </ClickAwayListener>
+              </BoxTransition>
+            )}
+          </Popper>
+        </>
       </section>
     </LayoutMain>
   );

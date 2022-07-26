@@ -76,22 +76,30 @@ import {
   MdMinimize,
 } from "react-icons/md";
 // @mui.icons
-import AccessTime from '@mui/icons-material/AccessTime';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import AlarmIcon from '@mui/icons-material/Alarm';
-import Check from '@mui/icons-material/Check';
-import Cloud from '@mui/icons-material/Cloud';
-import ContentCopy from '@mui/icons-material/ContentCopy';
-import ContentCut from '@mui/icons-material/ContentCut';
-import ContentPaste from '@mui/icons-material/ContentPaste';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Fingerprint from '@mui/icons-material/Fingerprint';
+import AccessTime from "@mui/icons-material/AccessTime";
+import AddIcon from "@mui/icons-material/Add";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import AlarmIcon from "@mui/icons-material/Alarm";
+import Check from "@mui/icons-material/Check";
+import Cloud from "@mui/icons-material/Cloud";
+import ContentCopy from "@mui/icons-material/ContentCopy";
+import ContentCut from "@mui/icons-material/ContentCut";
+import ContentPaste from "@mui/icons-material/ContentPaste";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import Fingerprint from "@mui/icons-material/Fingerprint";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import SaveIcon from '@mui/icons-material/Save';
-import SendIcon from '@mui/icons-material/Send';
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import PersonIcon from "@mui/icons-material/Person";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import SaveIcon from "@mui/icons-material/Save";
+import SendIcon from "@mui/icons-material/Send";
+import ShareIcon from "@mui/icons-material/Share";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
 //
 import { GiAccordion } from "react-icons/gi";
 //
@@ -101,6 +109,8 @@ const IconAccessTime = AccessTime;
 ////
 ////
 export {
+  ArrowDropDownIcon,
+  AddIcon,
   AddShoppingCartIcon,
   AiFillTwitterCircle,
   AiOutlineCalendar,
@@ -127,6 +137,7 @@ export {
   ContentCut,
   ContentPaste,
   DeleteIcon,
+  ExpandMoreIcon,
   FaAlignCenter,
   FaAlignJustify,
   FaAlignLeft,
@@ -141,6 +152,7 @@ export {
   FaRegWindowMaximize,
   FaStar,
   FaViber,
+  FavoriteIcon,
   FaWindowMinimize,
   FcGoogle,
   FiCamera,
@@ -174,6 +186,8 @@ export {
   MdOutlineMail,
   MdOutlinePostAdd,
   MenuIcon,
+  MoreVertIcon,
+  PersonIcon,
   PhotoCamera,
   RiCheckboxBlankCircleLine,
   RiCheckboxCircleFill,
@@ -183,6 +197,7 @@ export {
   RiTwitterLine,
   SaveIcon,
   SendIcon,
+  ShareIcon,
   TiArrowLeftThick,
   VscChromeMaximize,
 };

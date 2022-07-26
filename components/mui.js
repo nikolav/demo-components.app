@@ -1,10 +1,16 @@
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
+import Avatar from '@mui/material/Avatar';
 import Backdrop from '@mui/material/Backdrop';
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Chip from "@mui/material/Chip";
 import Container from "@mui/material/Container";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import GlobalStyles from "@mui/material/GlobalStyles";
@@ -12,6 +18,7 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
@@ -28,6 +35,13 @@ import Typography from "@mui/material/Typography";
 
 //
 export {
+  DialogActions,
+DialogContent,
+DialogContentText,
+DialogTitle,
+  Avatar,
+ListItemAvatar,
+Dialog,
   AppBar,
   Backdrop,
   Box,

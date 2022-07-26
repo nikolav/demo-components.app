@@ -18,11 +18,13 @@ import useAppEvents from "./use-events";
 import { useJQuery } from "./use-jquery";
 import useClickAway from "./use-click-away";
 import { useWindowAddEvents, useWindowResizeEvent, useWindow, useWindowDocument } from "./use-window";
+import useBodyOverflow from "./use-body-overflow";
 
 //
 export {
   useAppEvents,
   useAuthApi,
+  useBodyOverflow,
   useClickAway,
   useFancyboxGallery,
   useFileReader,

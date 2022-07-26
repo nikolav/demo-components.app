@@ -1,25 +1,11 @@
+import { useState, useEffect, useRef } from "react";
 import LayoutMain from "../components/layout/LayoutMain";
-import { BlockUI, Link } from "../components";
-import {
-  Stack,
-  Box,
-  Typography,
-  Chip,
-  ButtonGroup,
-  Button,
-  Tooltip,
-} from "../components/mui";
-import {
-  useSocialLike,
-  // useStateSwitch,
-  useFancyboxGallery,
-} from "../src/hooks";
-import { BsCodeSlash, FaGithubAlt } from "../components/icons";
+import { BoxTransition, BlockUI, Link } from "../components";
+import { Box, Typography, ButtonGroup, Button, Popper } from "@mui/material";
+import { useSocialLike, useStateSwitch } from "../src/hooks";
 //
 const PageBlockui = () => {
-  const { openGallery } = useFancyboxGallery();
-  const { like, likeCount, isLiked } = useSocialLike("--blockui");
-
+  // const { like, likeCount, isLiked } = useSocialLike("--blockui");
   //
   return (
     <LayoutMain>
@@ -27,9 +13,7 @@ const PageBlockui = () => {
         1
       </section>
       {/*  */}
-      <section className="space-y-4">
-        2
-      </section>
+      <section className="space-y-4">2</section>
     </LayoutMain>
   );
 };
