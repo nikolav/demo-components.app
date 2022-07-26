@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import { useStateSwitch } from "../../src/hooks";
 import { DarkModeToggle, Link } from "../../components";
 
@@ -26,13 +24,26 @@ import {
   FaHome,
   RiGithubLine,
   MenuIcon,
+  iconAccordionColor,
 } from "../../components/icons";
+
+//
+// const imgAccordion = (
+//   <img
+//     src={iconAccordionColor.src}
+//     alt=""
+//     style={{ display: "inline-block", width: "2.11rem", height: "2.11rem" }}
+//   />
+// );
+//
 // @todo.slider
 //   https://codesandbox.io/s/bold-hill-stmnwk?file=/src/App.js
 // https://next-auth.js.org/getting-started/example#frontend---add-react-hook
 /////
 const LayoutMain = ({ children }) => {
   const { isActive: isActiveDrawer, toggle: toggleDrawer } = useStateSwitch();
+  ////
+  ////
   return (
     <>
       <AppBar position="static">
@@ -59,14 +70,7 @@ const LayoutMain = ({ children }) => {
                   variant="h6"
                   component="h1"
                   sx={{ flexGrow: 1 }}
-                  css={css`
-                    transition: transform 0.122s ease;
-                    opacity: 0.55;
-                    &:hover {
-                      opacity: 1;
-                      transform: scale(1.022);
-                    }
-                  `}
+                  className="opacity-[.56] transition-transform hover:opacity-100 hover:scale-[1.012]"
                 >
                   nikolav.rs
                 </Typography>
@@ -81,12 +85,18 @@ const LayoutMain = ({ children }) => {
             {/*  */}
             {/* .accordion */}
             <Link href="/accordion">
-              <a className="appbar-link">accordion</a>
+              {/* <a className="appbar-link-icon">{imgAccordion}</a> */}
+              <a className="appbar-link-icon text-xl">📰</a>
             </Link>
             {/*  */}
             {/* .block-ui */}
             <Link href="/blockui">
-              <a className="appbar-link">block-ui</a>
+              <a className="appbar-link-icon text-xl">⛔</a>
+            </Link>
+            {/*  */}
+            {/* .box-tansition */}
+            <Link href="/box-transition">
+              <a className="appbar-link-icon text-xl">🍱</a>
             </Link>
           </Stack>
           {/*  */}
@@ -118,15 +128,7 @@ const LayoutMain = ({ children }) => {
       </AppBar>
       {/*  */}
       {/* content */}
-      <Box
-        maxWidth={972}
-        pt="4rem"
-        mx="auto"
-        width={{ sm: "92%" }}
-        css={css`
-          /* background-color: #ddd; */
-        `}
-      >
+      <Box maxWidth={972} pt="4rem" mx="auto" width={{ sm: "92%" }}>
         <Container>
           <Grid container spacing={{ xs: 1, sm: 2, md: 4 }}>
             <Grid item xs={12} md={6}>
@@ -149,15 +151,19 @@ const LayoutMain = ({ children }) => {
             {[
               {
                 key: "Accordion",
-                icon: (
-                  <GiAccordion className="appbar-icon text-primary dark:text-white/50" />
-                ),
+                // icon: imgAccordion,
+                icon: "📰",
                 link: "/accordion",
               },
               {
                 key: "BlockUI",
                 icon: "⛔",
                 link: "/blockui",
+              },
+              {
+                key: "BoxTransition",
+                icon: "🍱",
+                link: "/box-transition",
               },
             ].map((node) => (
               <ListItem

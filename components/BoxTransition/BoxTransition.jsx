@@ -13,35 +13,43 @@ const DEFAULT_EFFECT = {
 ////
 ////
 const TransitionBase = ({
+  //
+  // reactive flags passed by consumers
   isActive = false,
   in: in_ = null,
+  //
+  // sensible in/out defaults
   duration = DEFAULT_TIMEOUT,
   durationOut = DEFAULT_TIMEOUT_OUT,
-  // delay = 0,
-  // repeat = 0,
-  // https://www.w3schools.com/cssref/css3_pr_animation-timing-function.asp
-  // animation-timing-function:
-  //   linear|ease|ease-in|ease-out|ease-in-out|
-  //   step-start|step-end|steps(int,start|end)|
-  //   cubic-bezier(n,n,n,n)|initial|inherit;
-  // ease = DEFAULT_EASE,
+  //
+  // lifecycle methods
   onEnter = noop,
   onEntered = noop,
+  //
+  // css transition definitons
   classNames,
+  //
+  // transitioned box styles
   className = "",
+  //
+  // content
   children,
+  //
+  // misc. <Transition> props
   ...rest
 }) => {
   //
   const [inProp, setInProp] = useState(null != in_ ? in_ : isActive);
+  // signal transition stage; more @`react-transition-group`
   const { isActive: isExit, toggle: toggleIsExit } = useStateSwitch();
+  // animated div ref
   const refDiv = useRef();
   //
   useEffect(() => {
     setInProp(isActive);
   }, [isActive]);
   //
-  // toggle duration @stage change
+  // switch duration @stage
   useEffect(() => {
     if (inProp) {
       refDiv.current?.style.setProperty(
@@ -68,6 +76,7 @@ const TransitionBase = ({
         toggleIsExit.on();
         onEntered(...args);
       }}
+      // hide box when done
       unmountOnExit
       {...rest}
     >
@@ -77,15 +86,14 @@ const TransitionBase = ({
     </CSSTransition>
   );
 };
-
+// effect: {in: string, out: string}
 const BoxTransition = ({
   effect = DEFAULT_EFFECT,
-  // isActive,
-  // duration,
-  // durationOut,
+  //
   children,
   ...rest
 }) => (
+  // animate.css, react-transition-group
   <TransitionBase
     classNames={{
       enter: "animate__animated",
@@ -93,6 +101,11 @@ const BoxTransition = ({
       exit: `animate__${effect.out}`,
       exitActive: "animate__animated",
     }}
+    //
+    // --forwarded props
+    //    .isActive
+    //    .duration
+    //    .durationOut
     {...rest}
   >
     {children}
@@ -152,3 +165,12 @@ classNames={{
 >
 </Transition>
 */
+
+  // delay = 0,
+  // repeat = 0,
+  // https://www.w3schools.com/cssref/css3_pr_animation-timing-function.asp
+  // animation-timing-function:
+  //   linear|ease|ease-in|ease-out|ease-in-out|
+  //   step-start|step-end|steps(int,start|end)|
+  //   cubic-bezier(n,n,n,n)|initial|inherit;
+  // ease = DEFAULT_EASE,

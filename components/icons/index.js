@@ -2,6 +2,7 @@ import iconSearch from "../../app/etc/icon-search-primary.svg";
 import iconFactory from "../../app/etc/icon-factory.svg";
 import iconGrape from "../../app/etc/icon-grape.svg";
 import iconDinarCyr from "../../app/etc/icon-dinar-cyr.svg";
+import iconAccordionColor from "../../app/etc/icon-accordion-color.svg";
 //
 import { HiOutlineBookOpen } from "react-icons/hi";
 import { IoMdPower } from "react-icons/io";
@@ -115,7 +116,6 @@ const IconContentPaste = ContentPaste;
 ////
 ////
 export {
-  ArrowDropDownIcon,
   AddIcon,
   AddShoppingCartIcon,
   AiFillTwitterCircle,
@@ -126,6 +126,7 @@ export {
   AiOutlineUnderline,
   AiOutlineWhatsApp,
   AlarmIcon,
+  ArrowDropDownIcon,
   BiBold,
   BiCloudUpload,
   BiImage,
@@ -139,9 +140,6 @@ export {
   BsPlayFill,
   BsStarFill,
   CgFormatItalic,
-  IconContentCut,
-  IconContentCopy,
-  IconContentPaste,
   DeleteIcon,
   ExpandMoreIcon,
   FaAlignCenter,
@@ -171,8 +169,12 @@ export {
   GoListUnordered,
   HiOutlineBookOpen,
   IconAccessTime,
+  iconAccordionColor,
   IconCheck,
   IconCloud,
+  IconContentCopy,
+  IconContentCut,
+  IconContentPaste,
   iconDinarCyr,
   iconFactory,
   iconGrape,

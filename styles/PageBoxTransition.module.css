@@ -1,0 +1,7 @@
+
+.boxContainer {
+    background-image: url("../public/menu1.png");
+    background-repeat: no-repeat;
+    background-position: 48% center;
+    background-size: contain;
+}
