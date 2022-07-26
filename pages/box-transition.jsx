@@ -25,7 +25,6 @@ import {
 } from "@mui/material";
 import { useSocialLike, useStateSwitch, useBodyOverflow } from "../src/hooks";
 import { BsCodeSlash, FaGithubAlt } from "../components/icons";
-import { noop } from "../src/util";
 import imgProps from "../public/box-transition.props.2.jpg";
 import modcss from "../styles/PageBoxTransition.module.css";
 //
