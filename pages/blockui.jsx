@@ -32,13 +32,12 @@ import {
   BsCodeSlash,
   FaGithubAlt,
   ArrowDropDownIcon,
-  IconCloud,
   IconContentPaste,
   MdSettings,
   MdMonitor,
   MdNetworkCheck,
 } from "../components/icons";
-import { prevent, noop } from "../src/util";
+import { prevent } from "../src/util";
 //
 //
 const LINK_WIKI_HTTP =
