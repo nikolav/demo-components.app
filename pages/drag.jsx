@@ -51,12 +51,15 @@ const PageBoxTransition = () => {
           {/*  */}
           {/* widget */}
           <Drag>
-            <Stack direction="column" spacing={2} className="fixed z-[1] min-w-[372px]">
+            <Stack direction="column" spacing={2} className="fixed z-10 w-80">
               <Drag.Handle>
                 <Paper
                   elevation={2}
                   component="h4"
-                  className="bg-primary flex justify-between items-center shadow-lg p-2 px-4 dark:bg-gray-800"
+                  className="flex justify-between items-center shadow-lg p-2 px-4 bg-primary dark:bg-gray-800"
+                  sx={{
+                    backgroundColor: ({ palette }) => "dark" === palette.mode ? palette.background.paper : "primary.main"
+                  }}
                 >
                   <MdDragIndicator className="text-2xl text-white" />
                   <strong className="text-white">Alati</strong>
@@ -116,7 +119,7 @@ const PageBoxTransition = () => {
             endžin za animacije transformacija.
           </p>
         </Box>
-        <Box fontSize="89%" sx={{ opacity: 0.56 }}>
+        <Box fontSize="89%" className="text-black/50 dark:text-white">
           <p>
             <Chip label="en" variant="outlined" />
           </p>

@@ -54,9 +54,11 @@ const DrawerBox = ({
               }}
               className={`overflow-y-auto scrollbar-thin fixed inset-y-0 z-50 w-full sm:w-10/12 md:w-2/3 lg:w-1/2 bg-white shadow-lg ${
                 -1 === placement
-                  ? "right-0 sm:border-l-primary sm:border-l-4"
-                  : "left-0 sm:border-r-primary sm:border-r-4"
-              } ${classes} ${moduleCss.drawerBox}`}
+                  ? "right-0 sm:border-l-primary sm:border-l-4 dark:sm:border-l-slate-800"
+                  : "left-0 sm:border-r-primary sm:border-r-4 dark:sm:border-r-slate-800"
+              } ${classes} ${
+                moduleCss.drawerBox
+              } dark:bg-black dark:text-white`}
             >
               <MdClose
                 onClick={onClose}
