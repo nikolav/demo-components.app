@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, createContext, useContext, forwardRef } from "react";
+import { createContext, useContext, forwardRef } from "react";
 import { motion, useDragControls } from "framer-motion";
 import { useStateSwitch } from "../../src/hooks";
 import modcss from "./Drag.module.css";

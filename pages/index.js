@@ -58,6 +58,10 @@ export default function Index(props) {
                 name: "Details",
                 link: "/details",
               },
+              {
+                name: "Drag",
+                link: "/drag",
+              },
             ].map(({ link, name }) => (
               <Link href={link} key={name}>
                 <MenuItem>
