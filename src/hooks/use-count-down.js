@@ -18,7 +18,7 @@ const useCountDown = (done = noop) => {
   //
   return {
     count: c,
-    isRunning,
+    isRunning, 
     start: start_,
     stop: stop_,
   };

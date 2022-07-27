@@ -50,6 +50,10 @@ export default function Index(props) {
                 name: "ChooseFile",
                 link: "/choose-file",
               },
+              {
+                name: "DarkModeToggle",
+                link: "/dark-mode",
+              },
             ].map(({ link, name }) => (
               <Link href={link} key={name}>
                 <MenuItem>

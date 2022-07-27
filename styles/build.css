@@ -1051,10 +1051,6 @@ select {
   margin-left: 1rem;
 }
 
-.mr-2 {
-  margin-right: 0.5rem;
-}
-
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -1163,10 +1159,6 @@ select {
 .cursor-grab {
   cursor: -webkit-grab;
   cursor: grab;
-}
-
-.resize {
-  resize: both;
 }
 
 .flex-col {
@@ -1328,14 +1320,14 @@ select {
   line-height: 1;
 }
 
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .font-bold {

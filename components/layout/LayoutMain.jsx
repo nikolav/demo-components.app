@@ -104,6 +104,11 @@ const LayoutMain = ({ children }) => {
                 icon: "📜",
                 link: "choose-file",
               },
+              {
+                component: "DarkModeToggle",
+                icon: "🌜",
+                link: "dark-mode",
+              },
             ].map(({ component, icon, link }) => (
               <Tooltip
                 placement="bottom"
@@ -188,6 +193,11 @@ const LayoutMain = ({ children }) => {
                 key: "BoxTransition",
                 icon: "📜",
                 link: "/choose-file",
+              },
+              {
+                key: "DarkModeToggle",
+                icon: "🌜",
+                link: "/dark-mode",
               },
             ].map((node) => (
               <ListItem
