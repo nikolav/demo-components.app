@@ -17,15 +17,8 @@ import {
   CardMedia,
   ClickAwayListener,
 } from "@mui/material";
-import {
-  useSocialLike,
-  useStateSwitch,
-  useBodyOverflow,
-} from "../src/hooks";
-import {
-  BsCodeSlash,
-  FaGithubAlt,
-} from "../components/icons";
+import { useSocialLike, useStateSwitch, useBodyOverflow } from "../src/hooks";
+import { BsCodeSlash, FaGithubAlt } from "../components/icons";
 import imgProps from "../public/details.props.jpg";
 //
 //
@@ -48,13 +41,32 @@ const PageBoxTransition = () => {
     overflow.hidden(isOpenPopper);
   }, [isOpenPopper]);
   //
+  const { isActive: isActiveDetails, toggle: toggleDetails } = useStateSwitch();
+  //
+  //
   return (
     <LayoutMain>
       <section className="flex justify-center">
         <Head>
           <title>nikolav | Details, ReactJS</title>
         </Head>
-        <Box>1</Box>
+        <Box className="justify-center mt-8 sm:w-10/12">
+          <Details
+            isActive={isActiveDetails}
+            header={
+              <Box onClick={toggleDetails} component="h4" className="text-white cursor-pointer p-2 pl-4 bg-primary/90 hover:bg-primary dark:bg-gray-700 rounded-lg">
+                {isActiveDetails ? "Zatvori" : "Prikaži"}
+              </Box>
+            }
+          >
+            <Box component="p" className="p-4 opacity-50">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
+              nobis perferendis explicabo accusantium recusandae? Incidunt quos
+              perspiciatis nemo eligendi! Dolor labore consequuntur reiciendis
+              possimus fugit, quas repellat harum est saepe!
+            </Box>
+          </Details>
+        </Box>
       </section>
 
       {/*  */}
@@ -84,7 +96,9 @@ const PageBoxTransition = () => {
             </ButtonGroup>
           </Stack>
           <p>
-            123
+            Omogućava proizvoljno skrivanje i prikazivanje sadržaja prema
+            `isActive` signalu. Obično je deo većih komponenti, kao Accordion,
+            gde je potrebna funkcionalnost opcionog prikazivanja sadržaja.
           </p>
         </Box>
         <Box fontSize="89%" sx={{ opacity: 0.56 }}>
@@ -92,7 +106,10 @@ const PageBoxTransition = () => {
             <Chip label="en" variant="outlined" />
           </p>
           <p>
-            en
+            Allows arbitrary hiding and displaying of content according to
+            isActive signal. It is usually part of larger components, such as
+            Accordion, where optional content visibilty functionality is
+            required.
           </p>
         </Box>
         <>
@@ -122,9 +139,7 @@ const PageBoxTransition = () => {
                 {...TransitionProps}
               >
                 <ClickAwayListener onClickAway={toggleActive.off}>
-                  <Card
-                    className="shadow-lg max-w-[356px]"
-                  >
+                  <Card className="shadow-lg max-w-[356px]">
                     <CardMedia
                       component="img"
                       height={128}

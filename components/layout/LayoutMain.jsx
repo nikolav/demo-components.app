@@ -109,6 +109,11 @@ const LayoutMain = ({ children }) => {
                 icon: "🌜",
                 link: "dark-mode",
               },
+              {
+                component: "Details",
+                icon: "🎫",
+                link: "details",
+              },
             ].map(({ component, icon, link }) => (
               <Tooltip
                 placement="bottom"
@@ -198,6 +203,11 @@ const LayoutMain = ({ children }) => {
                 key: "DarkModeToggle",
                 icon: "🌜",
                 link: "/dark-mode",
+              },
+              {
+                key: "Details",
+                icon: "🎫",
+                link: "/details",
               },
             ].map((node) => (
               <ListItem

@@ -54,6 +54,10 @@ export default function Index(props) {
                 name: "DarkModeToggle",
                 link: "/dark-mode",
               },
+              {
+                name: "Details",
+                link: "/details",
+              },
             ].map(({ link, name }) => (
               <Link href={link} key={name}>
                 <MenuItem>
