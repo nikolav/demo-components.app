@@ -82,7 +82,7 @@ const LayoutMain = ({ children }) => {
           {/*  */}
           {/* links */}
 
-          <Stack direction="row" className="items-center space-x-2">
+          <Stack direction="row" className="items-center space-x-4">
             {[
               {
                 component: "Accordion",
@@ -118,6 +118,11 @@ const LayoutMain = ({ children }) => {
                 component: "Drag",
                 icon: "🤚🏻",
                 link: "drag",
+              },
+              {
+                component: "DrawerBox",
+                icon: "📦",
+                link: "drawer-box",
               },
             ].map(({ component, icon, link }) => (
               <Tooltip
@@ -218,6 +223,11 @@ const LayoutMain = ({ children }) => {
                 key: "Drag",
                 icon: "🤚🏻",
                 link: "/drag",
+              },
+              {
+                key: "DrawerBox",
+                icon: "📦",
+                link: "/drawer-box",
               },
             ].map((node) => (
               <ListItem

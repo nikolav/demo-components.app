@@ -64,7 +64,7 @@ function App({
       <Head>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <title>nikolav | komponente reactjs</title>
+        <title>nikolav | Komponente, ReactJS</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, shrink-to-fit=no, minimum-scale=1"

@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PortalOverlays from "../PortalOverlays";
 import moduleCss from "./DrawerBox.module.css";
 import { noop } from "../../src/util";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdClose } from "../icons";
+import { useWindowAddEvents } from "../../src/hooks";
 //
 //
 const DrawerBox = ({
@@ -23,12 +24,11 @@ const DrawerBox = ({
   children,
 }) => {
   //
-  const isWindow = "undefined" !== typeof window;
-  const keyup_ = ({ keyCode }) => 27 === keyCode && onClose();
-  useEffect(() => {
-    if (isWindow && isActive) window.addEventListener("keyup", keyup_);
-    return () => isWindow && window.removeEventListener("keyup", keyup_);
-  }, [isActive]);
+  useWindowAddEvents(
+    "keyup",
+    ({ keyCode }) => 27 === keyCode && onClose(),
+    isActive
+  );
   //
   return (
     <PortalOverlays>
@@ -54,8 +54,8 @@ const DrawerBox = ({
               }}
               className={`overflow-y-auto scrollbar-thin fixed inset-y-0 z-50 w-full sm:w-10/12 md:w-2/3 lg:w-1/2 bg-white shadow-lg ${
                 -1 === placement
-                  ? "right-0 sm:border-l-slate-900 sm:border-l-4"
-                  : "left-0 sm:border-r-slate-900 sm:border-r-4"
+                  ? "right-0 sm:border-l-primary sm:border-l-4"
+                  : "left-0 sm:border-r-primary sm:border-r-4"
               } ${classes} ${moduleCss.drawerBox}`}
             >
               <MdClose
