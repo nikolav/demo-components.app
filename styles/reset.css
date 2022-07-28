@@ -6,8 +6,8 @@ body {
   /* "Roboto",  */ "Open Sans", "Segoe UI", Candara,
     "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref",
     sans-serif !important;
-  word-spacing: 0.033rem;
-  letter-spacing: 0.034rem;
+  word-spacing: 0.032rem;
+  letter-spacing: 0.028rem;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;

@@ -30,15 +30,13 @@ const { add: addClass, rm: removeClass, has: hasClass } = q.class;
 const { eventListener, prevent, ready, s: select, type } = q;
 const { has } = q.object;
 const { isEmail } = q.test;
-// const { noop } = q.func;
 const { sortByTimestampDesc } = q.array;
 const { stripEndSlashes } = q.str;
-
 //
 const arrayRand = sample;
-const False = () => false;
 const paste = assign;
 const True = () => true;
+const False = () => false;
 
 export {
   addClass,

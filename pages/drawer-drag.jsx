@@ -54,7 +54,7 @@ const CHARACTER = {
 
   arya: {
     name: "arya",
-    icon: "🐤",
+    icon: "👼🏻",
     about:
       "Arija Stark je treće dete Edarda Starka i Kejtlin Stark. Nakon što je za dlaku izbegao progon Kuće Stark od strane kuće Lanister, Arija je obučena za Bezličnog čoveka u Kući crno-belih u Braavosu i koristi svoje nove veštine da privede pravdi one koji su naneli nepravdu njenoj porodici.",
   },

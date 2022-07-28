@@ -1,6 +1,3 @@
-import { useStateSwitch } from "../../src/hooks";
-import { DarkModeToggle, Link } from "../../components";
-
 import {
   AppBar,
   Box,
@@ -19,7 +16,9 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-} from "../../components/mui";
+} from "@mui/material";
+import { useStateSwitch } from "../../src/hooks";
+import { DarkModeToggle, Link } from "../../components";
 import {
   // GiAccordion,
   FaHome,
@@ -165,7 +164,7 @@ const LayoutMain = ({ children }) => {
             </Link>
 
             <IconButton size="md" className="ml-2">
-              <Link href="https://github.com/nikolav">
+              <Link href="https://github.com/nikolav/demo-components.app/tree/main/components">
                 <a target="_blank">
                   <RiGithubLine className="appbar-icon" />
                 </a>

@@ -6,7 +6,7 @@ import { paste, has, nanoid } from "../../src/util";
 export const TEST = "fktzzfpmzpb";
 export const ADMIN = "otqknvlgpve";
 export const TEMP_FILE = "mngbaguzkgn"
-export const USERNAME = "mngbaguzkgn.USERNAME"
+export const USERNAME = "hmzgqoqouzl"
 //
 const initialState = {
   [ADMIN]: {
@@ -46,7 +46,7 @@ export const { setAppData, removeAppData, clearAppDataEntry } = appdataSlice.act
 export default appdataSlice.reducer;
 
 //
-// export redux store shortcut
+// export redux store shortcut hook
 export function useAppData() {
   //
   const appdata = useSelector((state) => state.appdata);

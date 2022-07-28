@@ -1,9 +1,7 @@
 import { useEffect, useRef, Fragment } from "react";
 import Head from "next/head";
-import LayoutMain from "../components/layout/LayoutMain";
-import { Link, BoxTransition, FloatingPanel } from "../components";
+import { motion } from "framer-motion";
 import {
-  IconButton,
   Box,
   Button,
   ButtonGroup,
@@ -13,19 +11,27 @@ import {
   CardMedia,
   Chip,
   ClickAwayListener,
+  IconButton,
   Paper,
   Popper,
   Stack,
   Tooltip,
   Typography,
 } from "@mui/material";
-import { useSocialLike, useStateSwitch, useBodyOverflow } from "../src/hooks";
-import { SendIcon, BsCodeSlash, FaGithubAlt } from "../components/icons";
-import imgProps from "../public/floating-panel.props.jpg";
-import { useInputSynced, useSocialComments } from "../src/hooks";
+import {
+  useBodyOverflow,
+  useInputSynced,
+  useSocialComments,
+  useSocialLike,
+  useStateSwitch,
+} from "../src/hooks";
 import { useAppData, USERNAME } from "../app/store";
+import LayoutMain from "../components/layout/LayoutMain";
+import { Link, BoxTransition, FloatingPanel } from "../components";
+import { SendIcon, BsCodeSlash, FaGithubAlt } from "../components/icons";
 import { map } from "../src/util";
-import { motion } from "framer-motion";
+import imgProps from "../public/floating-panel.props.jpg";
+
 //
 //
 const LINK_GITHUB_COMPONENT =
@@ -63,7 +69,8 @@ const PageBoxTransition = () => {
         chat.add(message);
         appdata.set(USERNAME, message.name);
         fields.setInput("comment", "");
-        // saved; no reset;
+        // saved
+        // no reset
         return false;
       },
       onError: (fields) => console.log(fields),
@@ -90,7 +97,6 @@ const PageBoxTransition = () => {
             <Paper elevation={0} className="relative z-[1]">
               <Box className="h-[256px] p-2 py-4 overflow-y-auto scrollbar-thin scrollbar-thin--dark">
                 <Box component="section" className="space-y-2">
-                  {/* <p>{JSON.stringify(chat.ls(), null, 2)}</p> */}
                   {map(chat.ls(), (message) => (
                     <motion.div
                       initial={{ opacity: 0, x: 56 }}
@@ -98,7 +104,9 @@ const PageBoxTransition = () => {
                       key={message.key}
                       className="bg-slate-100/80 hover:bg-slate-100 dark:bg-slate-800/20 p-2 rounded flex items-start space-x-4"
                     >
-                      <div className="text-xs w-32 opacity-50">{message.name}</div>
+                      <div className="text-xs w-32 opacity-50">
+                        {message.name}
+                      </div>
                       <div className="text-sm grow">{message.comment}</div>
                     </motion.div>
                   ))}
@@ -117,7 +125,7 @@ const PageBoxTransition = () => {
                       name="name"
                       id="name-box"
                       autoComplete="off"
-                      placeholder="ime..."
+                      placeholder="ime"
                       className="w-32 mx-2 px-2 input-underline placeholder:text-white/70 placeholder:italic"
                     />
                     <input
@@ -187,90 +195,91 @@ const PageBoxTransition = () => {
             place them where it suits or hide them temporarily.
           </p>
         </Box>
-        <>
-          {/*  */}
-          {/*  */}
-          {/* @@popper.props */}
-          <Popper
-            open={isOpenPopper}
-            anchorEl={refButton.current}
-            placement="bottom"
-            modifiers={[
-              {
-                name: "offset",
-                options: {
-                  offset: [0, -128],
-                },
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/* @@popper.props */}
+        <Popper
+          open={isOpenPopper}
+          anchorEl={refButton.current}
+          placement="bottom"
+          modifiers={[
+            {
+              name: "offset",
+              options: {
+                offset: [0, -128],
               },
-            ]}
-            keepMounted
-            transition
-          >
-            {({ TransitionProps }) => (
-              <BoxTransition
-                effect={{ in: "flipInY", out: "flipOutY" }}
-                isActive={isActive}
-                onExited={togglePopper.off}
-                {...TransitionProps}
-              >
-                <ClickAwayListener onClickAway={toggleActive.off}>
-                  <Card className="shadow-lg max-w-[356px]">
-                    <CardMedia
-                      component="img"
-                      height={128}
-                      image={imgProps.src}
-                    />
+            },
+          ]}
+          keepMounted
+          transition
+        >
+          {({ TransitionProps }) => (
+            <BoxTransition
+              effect={{ in: "flipInY", out: "flipOutY" }}
+              isActive={isActive}
+              onExited={togglePopper.off}
+              {...TransitionProps}
+            >
+              <ClickAwayListener onClickAway={toggleActive.off}>
+                <Card className="shadow-lg max-w-[356px]">
+                  <CardMedia
+                    component="img"
+                    height={128}
+                    image={imgProps.src}
+                  />
 
-                    <CardContent>
-                      <Typography
-                        className="font-bold text-center mb-2"
-                        variant="h5"
-                        component="h2"
-                      >
-                        FloatingPanel --props
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        <Box component="dl">
-                          {[
-                            {
-                              key: "title",
-                              value: "naslov krtice",
-                            },
-                            {
-                              key: "offsetTop",
-                              value:
-                                "razmak od vrha ekrana pri prvom otvaranju strane",
-                            },
-                            {
-                              key: "width",
-                              value: "širina kartice",
-                            },
-                          ].map((node) => (
-                            <Fragment key={node.key}>
-                              <dt className="font-bold">{node.key}</dt>
-                              <dd className="pl-1 opacity-80">{node.value}</dd>
-                            </Fragment>
-                          ))}
-                        </Box>
-                      </Typography>
-                    </CardContent>
-                    <CardActions className="justify-center">
-                      <Button
-                        onClick={toggleActive.off}
-                        dense
-                        color="secondary"
-                        size="small"
-                        variant="outlined"
-                      >
-                        ok, hvala
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </ClickAwayListener>
-              </BoxTransition>
-            )}
-          </Popper>
-        </>
+                  <CardContent>
+                    <Typography
+                      className="font-bold text-center mb-2"
+                      variant="h5"
+                      component="h2"
+                    >
+                      FloatingPanel --props
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      <Box component="dl">
+                        {[
+                          {
+                            key: "title",
+                            value: "naslov krtice",
+                          },
+                          {
+                            key: "offsetTop",
+                            value:
+                              "razmak od vrha ekrana pri prvom otvaranju strane",
+                          },
+                          {
+                            key: "width",
+                            value: "širina kartice",
+                          },
+                        ].map((node) => (
+                          <Fragment key={node.key}>
+                            <dt className="font-bold">{node.key}</dt>
+                            <dd className="pl-1 opacity-80">{node.value}</dd>
+                          </Fragment>
+                        ))}
+                      </Box>
+                    </Typography>
+                  </CardContent>
+                  <CardActions className="justify-center">
+                    <Button
+                      onClick={toggleActive.off}
+                      dense
+                      color="secondary"
+                      size="small"
+                      variant="outlined"
+                    >
+                      ok, hvala
+                    </Button>
+                  </CardActions>
+                </Card>
+              </ClickAwayListener>
+            </BoxTransition>
+          )}
+        </Popper>
       </section>
     </LayoutMain>
   );

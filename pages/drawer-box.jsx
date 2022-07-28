@@ -72,7 +72,7 @@ const PageBoxTransition = () => {
           onClose={toggleL.off}
         >
           <Box className="p-6">
-            <p className="prose dark:text-white/80">
+            <p className="prose text-black/50 dark:text-white/80">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
               a consequatur, nobis rerum voluptas temporibus alias? Repudiandae
               et numquam cupiditate voluptatem vero explicabo atque eveniet
@@ -88,7 +88,7 @@ const PageBoxTransition = () => {
         </DrawerBox>
         <DrawerBox isActive={isActiveR} onClose={toggleR.off}>
           <Box className="p-6">
-            <p className="prose dark:text-white/80">
+            <p className="prose text-black/50 dark:text-white/80">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               Repudiandae laboriosam accusamus qui! Reprehenderit laborum
               deleniti eaque consequatur accusamus praesentium possimus vel?
