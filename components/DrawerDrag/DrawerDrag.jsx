@@ -16,15 +16,20 @@ const variantsDrawerWindow = {
 };
 //
 export default function DrawerDrag({
+  // open/close
   isActive,
-  //
+  // run @unmount
   onClose = noop,
-  //
-  className = "",
-  offsetTop = 52,
-  offsetToggle = 256,
+  // display minize/maximize/close controlls
   controlls = true,
-  //
+  // offset from top in [px]
+  offsetTop = 52,
+  // drag distance in [px] to 
+  //  minimize/maximize the panel
+  offsetToggle = 256,
+  // panel styles
+  className = "",
+  // content
   children,
 }) {
   //
@@ -68,7 +73,7 @@ export default function DrawerDrag({
               }}
             >
               <div
-                className="bg-white dark:bg-slate-800 cursor-grab pt-6 px-6 rounded-t-3xl relative"
+                className="bg-white dark:bg-black cursor-grab pt-6 px-6 rounded-t-3xl relative border-4 border-primary dark:border-slate-800"
                 style={{
                   paddingBottom: 122,
                   minHeight: "calc(100vh + 122px)",
@@ -81,19 +86,19 @@ export default function DrawerDrag({
                       <FaWindowMinimize
                         onClick={minimizeDrawer}
                         style={{ fontSize: 28, transformOrigin: "bottom" }}
-                        className="text-slate-800 dark:text-white opacity-60 hover:opacity-80 hover:scale-125 cursor-pointer absolute top-0 right-16 -translate-y-[122%] transition-transform"
+                        className="text-slate-800 dark:text-white opacity-90 hover:opacity-100 hover:scale-125 cursor-pointer absolute top-0 right-16 -translate-y-[130%] transition-transform"
                       />
                     ) : (
                       <FaRegWindowMaximize
                         onClick={maximizeDrawer}
                         style={{ fontSize: 28 }}
-                        className="text-slate-800 dark:text-white opacity-60 hover:opacity-80 hover:scale-110 cursor-pointer absolute top-0 right-16 -translate-y-[112%] transition-transform"
+                        className="text-primary dark:text-white opacity-90 hover:opacity-100 hover:scale-110 cursor-pointer absolute top-0 right-16 -translate-y-[120%] transition-transform"
                       />
                     )}
                     <RiCloseCircleFill
                       onClick={onClose}
                       style={{ fontSize: 33 }}
-                      className="text-slate-800 dark:text-white opacity-60 hover:opacity-80 hover:scale-125 hover:text-red-600 dark:hover:text-red-400 cursor-pointer absolute top-0 right-4 -translate-y-[110%] transition-transform"
+                      className={`dark:text-white opacity-90 hover:opacity-100 hover:scale-125 hover:text-red-600 dark:hover:text-red-400 cursor-pointer absolute top-0 right-4 -translate-y-[118%] transition-transform ${"maximize" === drawerMode ? "text-slate-800" : "text-primary"}`}
                     />
                   </>
                 )}

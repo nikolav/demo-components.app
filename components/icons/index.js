@@ -55,6 +55,7 @@ import {
   AiOutlineTag,
   AiOutlineCalendar,
   AiFillTwitterCircle,
+  AiOutlineIdcard,
 } from "react-icons/ai";
 import {
   RiCloseCircleFill,
@@ -211,4 +212,5 @@ export {
   ShareIcon,
   TiArrowLeftThick,
   VscChromeMaximize,
+  AiOutlineIdcard,
 };

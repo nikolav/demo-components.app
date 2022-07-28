@@ -124,6 +124,11 @@ const LayoutMain = ({ children }) => {
                 icon: "📦",
                 link: "drawer-box",
               },
+              {
+                component: "DrawerDrag",
+                icon: "🔃",
+                link: "drawer-drag",
+              },
             ].map(({ component, icon, link }) => (
               <Tooltip
                 placement="bottom"
@@ -228,6 +233,11 @@ const LayoutMain = ({ children }) => {
                 key: "DrawerBox",
                 icon: "📦",
                 link: "/drawer-box",
+              },
+              {
+                key: "DrawerDrag",
+                icon: "🔃",
+                link: "/drawer-drag",
               },
             ].map((node) => (
               <ListItem
