@@ -163,7 +163,7 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
       style={{
         top: offsetTop,
         width,
-        left: "22%"
+        left: "6%"
       }}
       /* */
       initial={"in"}
