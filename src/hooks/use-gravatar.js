@@ -4,7 +4,7 @@ import { useGravatars } from "../../app/providers/GravatarsProvider";
 import { useAuth } from "../../app/store/slice-auth";
 import { dbRealtime as db } from "../../firebase";
 import { ref, set } from "firebase/database";
-import useIsMounted from "./use-is-mounted";
+import { useWindowDocument } from "./use-window";
 //
 // https://www.gravatar.com/avatar/6621adb9b4f1ee95b68259a2553ac3ab?d=robohash&size=92
 // d=monsterid|wavatar|robohash
@@ -14,7 +14,7 @@ export const DEFAULT_GRAVATAR_SIZE = 64;
 export const GRAVATAR_BASEURL = "https://www.gravatar.com/avatar";
 //
 export default function useGravatar(size = DEFAULT_GRAVATAR_SIZE) {
-  const isMounted = useIsMounted();
+  const { isMounted } = useWindowDocument();
   const { auth } = useAuth();
   const gravatarsDB = useGravatars();
   //

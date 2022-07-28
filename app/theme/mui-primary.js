@@ -2,8 +2,8 @@ export const themeOptions = {
   palette: {
     mode: "light",
     primary: {
-      // main: '#4682B3',
-      main: "#f00",
+      main: '#4682B3',
+      // main: "#f00",
     },
     secondary: {
       main: "#385269",
@@ -13,6 +13,10 @@ export const themeOptions = {
     },
     success: {
       main: "#66bb6a",
+    },
+    background: {
+      default: "#fff",
+      paper: "#fefefe",
     },
   },
   props: {

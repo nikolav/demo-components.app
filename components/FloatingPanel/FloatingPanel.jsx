@@ -23,7 +23,7 @@ const styleWidget = css`
 `;
 const styleWidgetRoot = css`
   background: white;
-  padding: 2rem;
+  /* padding: 2rem; */
 `;
 //
 const styleWidgetClosed = css``;
@@ -32,18 +32,19 @@ const styleToolbar = css`
   position: absolute;
   top: -43px;
   width: 100%;
-  background: none; 
+  background: none;
   padding-top: 3px;
   color: steelblue;
   /* left: 50%;
   transform: translate(-48%, 0);   */
   padding-left: 16px;
   padding-right: 4px;
-
 `;
 const styleToolbarClosed = css`
   /* width: 100%; */
-  background: white;
+  /* background: white; */
+  /* background: #4682B3; */
+  /* color: white; */
   border-radius: 2px;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 `;
@@ -57,14 +58,14 @@ const styleDragHandle = css`
   cursor: grab;
   display: inline-block;
   font-size: 32px;
-  color: steelblue;
-  transform: translate(-15px, 0px);
+  /* color: steelblue; */
+  transform: translate(-13px, 0px);
 `;
 const styleControlls = css`
   cursor: pointer;
   display: inline-block;
   font-size: 32px;
-  color: steelblue;
+  /* color: steelblue; */
   transition: transform 0.11s linear;
   &:hover {
     transform: scale(1.11);
@@ -113,8 +114,13 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
     width = 472,
     /* add classes when draging gesture is active */
     classDrag = "dragging",
-    /* arbitrary classes to apply to widget content */
+    /* apply classes to content parent node */
     className = "",
+    /*  */
+    /* @todo */
+    /* isDark = null, */
+    /*  */
+    /*  */
     /* content */
     children,
     /* rest root attributes */
@@ -157,6 +163,7 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
       style={{
         top: offsetTop,
         width,
+        left: "22%"
       }}
       /* */
       initial={"in"}
@@ -171,7 +178,6 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
       custom={offsetTop}
       onDragStart={toggleIsDrag.on}
       onDragEnd={toggleIsDrag.off}
-      className={className}
       {...rest}
     >
       {/* @t */}
@@ -182,10 +188,15 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
           isMinimized$ && styleToolbarMinimized,
           !isOpen$ && styleToolbarClosed,
         ]}
-        className={cls("flex items-center duration-100 transition-colors", {
-          ["justify-between"]: !isMinimized$,
-          ["justify-end"]: isMinimized$,
-        })}
+        className={cls(
+          "dark:text-white flex items-center duration-100 transition-colors",
+          {
+            ["justify-between"]: !isMinimized$,
+            ["justify-end dark:bg-black"]: isMinimized$,
+            ["text-white bg-primary dark:bg-slate-800"]:
+              !isOpen$ && !isMinimized$,
+          }
+        )}
       >
         {/*  */}
         {/* drag handle */}
@@ -194,8 +205,13 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
             css={css`
               transform: translate(-12px, 0px);
               padding-left: 6px;
-            `}>
-            <MdDragIndicator css={styleDragHandle} onPointerDown={dragStart} />
+            `}
+          >
+            <MdDragIndicator
+              className="dark:text-white"
+              css={css([styleDragHandle])}
+              onPointerDown={dragStart}
+            />
           </strong>
         )}
         {title && <header css={styleHeader}>{title}</header>}
@@ -252,12 +268,12 @@ const FloatingPanel = forwardRef(function FloatingPanel_(
       <Details
         css={styleContent}
         header={null}
-        isActive={isOpen$}  
+        isActive={isOpen$}
         durationIn={0.1}
         durationOut={0.1}
         spring={false}
       >
-        <div css={styleWidgetRoot}>{children}</div>
+        <div className={`dark:bg-slate-800 ${className}`} css={styleWidgetRoot}>{children}</div>
       </Details>
       {/*  */}
     </motion.div>

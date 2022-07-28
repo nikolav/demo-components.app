@@ -129,6 +129,11 @@ const LayoutMain = ({ children }) => {
                 icon: "🔃",
                 link: "drawer-drag",
               },
+              {
+                component: "FloatingPanel",
+                icon: "📟",
+                link: "floating-panel",
+              },
             ].map(({ component, icon, link }) => (
               <Tooltip
                 placement="bottom"
@@ -238,6 +243,11 @@ const LayoutMain = ({ children }) => {
                 key: "DrawerDrag",
                 icon: "🔃",
                 link: "/drawer-drag",
+              },
+              {
+                key: "FloatingPanel",
+                icon: "📟",
+                link: "/floating-panel",
               },
             ].map((node) => (
               <ListItem

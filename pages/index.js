@@ -70,6 +70,10 @@ export default function Index(props) {
                 name: "DrawerDrag",
                 link: "/drawer-drag",
               },
+              {
+                name: "FloatingPanel",
+                link: "/floating-panel",
+              },
             ].map(({ link, name }) => (
               <Link href={link} key={name}>
                 <MenuItem>
