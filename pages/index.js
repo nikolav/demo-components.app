@@ -9,11 +9,9 @@ import {
   ListItemText,
   Button,
 } from "@mui/material";
-import { BoxSwitch } from "../components";
 ////
 /////
 export default function Index({ ...rest }) {
-  const [k$, setk] = useState("a");
   ////
   return (
     <LayoutMain {...rest}>
@@ -91,14 +89,7 @@ export default function Index({ ...rest }) {
       {/*  */}
       {/* right */}
       <section>
-        <Button onClick={() => setk("a" === k$ ? "b" : "a")}>OK</Button>
-        {/* <BoxSwitch
-          key={k$}
-          components={{
-            a: <div className="bg-red-200 w-32 h-32">A</div>,
-            b: <div className="bg-blue-200 w-32 h-32">B</div>,
-          }}
-        /> */}
+        <Button>OK</Button>
       </section>
     </LayoutMain>
   );

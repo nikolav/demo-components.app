@@ -31,6 +31,7 @@ export {
   Accordion,
   BlockUI,
   Body,
+  BoxSwitch,
   BoxTransition,
   ChooseFile,
   DarkModeToggle,
@@ -54,5 +55,4 @@ export {
   Slider,
   SwitchIcon,
   Tooltip,
-  BoxSwitch,
 };

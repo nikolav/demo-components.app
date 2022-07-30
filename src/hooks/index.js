@@ -20,7 +20,7 @@ import useClickAway from "./use-click-away";
 import { useWindowAddEvents, useWindowResizeEvent, useWindow, useWindowDocument } from "./use-window";
 import useBodyOverflow from "./use-body-overflow";
 import useCountDown from "./use-count-down";
-import usePieChart from "./use-pie-chart";
+import usePieChart from "./data/use-pie-chart";
 import usePlotChart from "./data/use-plot-chart";
 
 //

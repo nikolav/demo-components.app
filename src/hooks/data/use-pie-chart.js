@@ -6,12 +6,11 @@ import {
   pie,
   scaleOrdinal,
   schemeCategory10,
-  histogram,
   select,
 } from "d3";
 import { legendColor } from "d3-svg-legend"
-import { merge, map } from "../util";
-import { useWindowDocument } from "./use-window";
+import { merge, map } from "../../util";
+import { useWindowDocument } from "../use-window";
 //
 const OPTIONS = {
   width: 320,

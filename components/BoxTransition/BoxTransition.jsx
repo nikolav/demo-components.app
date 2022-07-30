@@ -4,7 +4,7 @@ import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { useStateSwitch } from "../../src/hooks";
 import { noop } from "../../src/util";
 //
-const DEFAULT_TIMEOUT = 543;
+const DEFAULT_TIMEOUT = 456;
 const DEFAULT_TIMEOUT_OUT = 245;
 const DEFAULT_EFFECT = {
   in: "fadeIn",
@@ -119,6 +119,63 @@ const BoxTransition = ({
 export default BoxTransition;
 
 //
+export const BoxSwitch = ({
+  //
+  effect = DEFAULT_EFFECT_switch,
+  // string.unique # a|b|..
+  current,
+  // ={ [key: string.unique]: Node } # { a: Node, b: Node, .. }
+  components,
+  //
+  // out-in | in-out
+  mode = "out-in",
+  //
+  duration = 456,
+  //
+  onEnter = noop,
+  //
+  className = "",
+  //
+  ...rest
+}) => {
+  const components_ = useRef(components).current;
+  const root = useRef();
+  const setDuration = () => {
+    root.current?.style.setProperty(
+      "--animate-duration",
+      `${duration / 1000}s`
+    );
+  };
+  ////
+  return (
+    <SwitchTransition mode={mode}>
+      <CSSTransition
+        key={current}
+        classNames={{
+          enter: "animate__animated",
+          enterActive: `animate__${effect.in}`,
+          exit: `animate__${effect.out}`,
+          exitActive: "animate__animated",
+        }}
+        timeout={duration}
+        onEnter={(...args) => {
+          setDuration();
+          onEnter(...args);
+        }}
+        unmountOnExit
+        {...rest}
+      >
+        <div ref={root} className={`p-0 m-0 w-fit ${className}`}>
+          {components_[current]}
+        </div>
+      </CSSTransition>
+    </SwitchTransition>
+  );
+};
+
+
+//
+//
 // export const Fade = ({ in: inProp }) => (
 //   <Transition in={inProp} timeout={duration}>
 //     {(state) => (
@@ -178,34 +235,3 @@ classNames={{
 //   step-start|step-end|steps(int,start|end)|
 //   cubic-bezier(n,n,n,n)|initial|inherit;
 // ease = DEFAULT_EASE,
-
-export const BoxSwitch = ({
-  //
-  effect = DEFAULT_EFFECT_switch,
-  //
-  key,
-  // ={ a: Node, b: Node }
-  components,
-  //
-  // out-in | in-out
-  mode = "out-in",
-}) => {
-  const components_ = useRef(components).current;
-  console.log(components_[key]);
-  ////
-  return (
-    <SwitchTransition mode={mode}>
-      <CSSTransition
-        key={key}
-        classNames={{
-          enter: "animate__animated",
-          enterActive: `animate__${effect.in}`,
-          exit: `animate__${effect.out}`,
-          exitActive: "animate__animated",
-        }}
-      >
-        {components_[key]}
-      </CSSTransition>
-    </SwitchTransition>
-  );
-};
