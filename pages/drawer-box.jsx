@@ -138,9 +138,7 @@ const PageBoxTransition = () => {
           </p>
         </Box>
         <Box fontSize="89%" sx={{ opacity: 0.56 }}>
-          <p>
-            <Chip label="en" variant="outlined" />
-          </p>
+          <Chip label="en" variant="outlined" />
           <p>
             This component displays a helper panel on the left or right side
             screen. It is mainly used for displaying navigation or a list of
@@ -189,35 +187,33 @@ const PageBoxTransition = () => {
                       >
                         DrawerBox --props
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        <Box component="dl">
-                          {[
-                            {
-                              key: "isActive",
-                              value: "otvara/zatvara komponentu",
-                            },
-                            {
-                              key: "onClose",
-                              value:
-                                "izvršava proceduru pri zatvaranju kartice",
-                            },
-                            {
-                              key: "placement",
-                              value: "-1 desno, 1 levo",
-                            },
-                          ].map((node) => (
-                            <Fragment key={node.key}>
-                              <dt className="font-bold">{node.key}</dt>
-                              <dd className="pl-1 opacity-80">{node.value}</dd>
-                            </Fragment>
-                          ))}
-                        </Box>
-                      </Typography>
+                      <Box component="dl">
+                        {[
+                          {
+                            key: "isActive",
+                            value: "otvara/zatvara komponentu",
+                          },
+                          {
+                            key: "onClose",
+                            value: "izvršava proceduru pri zatvaranju kartice",
+                          },
+                          {
+                            key: "placement",
+                            value: "-1 desno, 1 levo",
+                          },
+                        ].map((node) => (
+                          <Fragment key={node.key}>
+                            <dt className="font-bold text-sm">{node.key}</dt>
+                            <dd className="pl-1 opacity-80 text-sm">
+                              {node.value}
+                            </dd>
+                          </Fragment>
+                        ))}
+                      </Box>
                     </CardContent>
                     <CardActions className="justify-center">
                       <Button
                         onClick={toggleActive.off}
-                        dense
                         color="secondary"
                         size="small"
                         variant="outlined"

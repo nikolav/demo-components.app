@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, Fragment } from "react";
+import { forwardRef, useState, useEffect, useRef, Fragment } from "react";
 import Head from "next/head";
 import LayoutMain from "../components/layout/LayoutMain";
 import { Link, ChooseFile, BoxTransition } from "../components";
@@ -41,6 +41,18 @@ const LINK_WIKI_HTTP =
 const LINK_GITHUB_COMPONENT =
   "https://github.com/nikolav/demo-components.app/blob/main/components/ChooseFile/ChooseFile.jsx";
 //
+//
+const ChooseFile_ = forwardRef(function ChooseFile_(
+  { children, ...rest },
+  ref
+) {
+  return (
+    <ChooseFile FILE={TEMP_FILE} {...rest} ref={ref}>
+      {children}
+    </ChooseFile>
+  );
+});
+//
 const PageChooseFile = () => {
   const { like, likeCount, isLiked } = useSocialLike("--ChooseFile");
   //
@@ -77,7 +89,7 @@ const PageChooseFile = () => {
               alignItems="center"
               justifyContent="center"
             >
-              <IconButton color="primary">
+              <IconButton>
                 <ChooseFile FILE={TEMP_FILE}>
                   <Avatar
                     className="cursor-pointer bg-slate-100 dark:bg-gray-600"
@@ -87,7 +99,7 @@ const PageChooseFile = () => {
                   </Avatar>
                 </ChooseFile>
               </IconButton>
-              <IconButton color="primary">
+              <IconButton>
                 <ChooseFile FILE={TEMP_FILE}>
                   <Avatar
                     className="cursor-pointer bg-slate-100 dark:bg-gray-600"
@@ -97,13 +109,7 @@ const PageChooseFile = () => {
                   </Avatar>
                 </ChooseFile>
               </IconButton>
-              <Button
-                size="large"
-                variant="outlined"
-                component={({ ...rest }) => (
-                  <ChooseFile FILE={TEMP_FILE} {...rest} />
-                )}
-              >
+              <Button size="large" variant="outlined" component={ChooseFile_}>
                 file...
               </Button>
             </Stack>
@@ -118,7 +124,9 @@ const PageChooseFile = () => {
                 </span>
               </Paper>
             ) : (
-              <Box className="opacity-50 p-2 text-center">Niste izabrali fajl.</Box>
+              <Box className="opacity-50 p-2 text-center">
+                Niste izabrali fajl.
+              </Box>
             )}
           </Box>
         </Box>
@@ -157,9 +165,7 @@ const PageChooseFile = () => {
           </p>
         </Box>
         <Box fontSize="89%" sx={{ opacity: 0.56 }}>
-          <p>
-            <Chip label="en" variant="outlined" />
-          </p>
+          <Chip label="en" variant="outlined" />
           <p>
             The component allows easy replacement of default file input element
             with an icon that fits better into applications design system .
@@ -207,26 +213,25 @@ const PageChooseFile = () => {
                       >
                         ChooseFile --props
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        <Box component="dl">
-                          {[
-                            {
-                              key: "FILE",
-                              value: "naziv ključa za skladištenje datoteke",
-                            },
-                          ].map((node) => (
-                            <Fragment key={node.key}>
-                              <dt className="font-bold">{node.key}</dt>
-                              <dd className="pl-1 opacity-80">{node.value}</dd>
-                            </Fragment>
-                          ))}
-                        </Box>
-                      </Typography>
+                      <Box component="dl">
+                        {[
+                          {
+                            key: "FILE",
+                            value: "naziv ključa za skladištenje datoteke",
+                          },
+                        ].map((node) => (
+                          <Fragment key={node.key}>
+                            <dt className="font-bold text-sm">{node.key}</dt>
+                            <dd className="pl-1 opacity-80 text-sm">
+                              {node.value}
+                            </dd>
+                          </Fragment>
+                        ))}
+                      </Box>
                     </CardContent>
                     <CardActions className="justify-center">
                       <Button
                         onClick={toggleActive.off}
-                        dense
                         color="secondary"
                         size="small"
                         variant="outlined"

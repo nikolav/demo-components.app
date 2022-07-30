@@ -17,15 +17,8 @@ import {
   CardMedia,
   ClickAwayListener,
 } from "@mui/material";
-import {
-  useSocialLike,
-  useStateSwitch,
-  useBodyOverflow,
-} from "../src/hooks";
-import {
-  BsCodeSlash,
-  FaGithubAlt,
-} from "../components/icons";
+import { useSocialLike, useStateSwitch, useBodyOverflow } from "../src/hooks";
+import { BsCodeSlash, FaGithubAlt } from "../components/icons";
 import imgProps from "../public/details.props.jpg";
 //
 //
@@ -83,17 +76,11 @@ const PageBoxTransition = () => {
               </Button>
             </ButtonGroup>
           </Stack>
-          <p>
-            123
-          </p>
+          <p>123</p>
         </Box>
         <Box fontSize="89%" sx={{ opacity: 0.56 }}>
-          <p>
-            <Chip label="en" variant="outlined" />
-          </p>
-          <p>
-            en
-          </p>
+          <Chip label="en" variant="outlined" />
+          <p>en</p>
         </Box>
         <>
           {/*  */}
@@ -122,9 +109,7 @@ const PageBoxTransition = () => {
                 {...TransitionProps}
               >
                 <ClickAwayListener onClickAway={toggleActive.off}>
-                  <Card
-                    className="shadow-lg max-w-[356px]"
-                  >
+                  <Card className="shadow-lg max-w-[356px]">
                     <CardMedia
                       component="img"
                       height={128}
@@ -139,30 +124,29 @@ const PageBoxTransition = () => {
                       >
                         Details --props
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        <Box component="dl">
-                          {[
-                            {
-                              key: "isActive",
-                              value: "otvara/zatvara sadržaj komponente",
-                            },
-                            {
-                              key: "header",
-                              value: "sadržaj zaglavlja",
-                            },
-                          ].map((node) => (
-                            <Fragment key={node.key}>
-                              <dt className="font-bold">{node.key}</dt>
-                              <dd className="pl-1 opacity-80">{node.value}</dd>
-                            </Fragment>
-                          ))}
-                        </Box>
-                      </Typography>
+                      <Box component="dl">
+                        {[
+                          {
+                            key: "isActive",
+                            value: "otvara/zatvara sadržaj komponente",
+                          },
+                          {
+                            key: "header",
+                            value: "sadržaj zaglavlja",
+                          },
+                        ].map((node) => (
+                          <Fragment key={node.key}>
+                            <dt className="font-bold text-sm">{node.key}</dt>
+                            <dd className="pl-1 opacity-80 text-sm">
+                              {node.value}
+                            </dd>
+                          </Fragment>
+                        ))}
+                      </Box>
                     </CardContent>
                     <CardActions className="justify-center">
                       <Button
                         onClick={toggleActive.off}
-                        dense
                         color="secondary"
                         size="small"
                         variant="outlined"

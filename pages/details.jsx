@@ -54,7 +54,11 @@ const PageBoxTransition = () => {
           <Details
             isActive={isActiveDetails}
             header={
-              <Box onClick={toggleDetails} component="h4" className="text-white cursor-pointer p-2 pl-4 bg-primary/90 hover:bg-primary dark:bg-gray-700 rounded-lg">
+              <Box
+                onClick={toggleDetails}
+                component="h4"
+                className="text-white cursor-pointer p-2 pl-4 bg-primary/90 hover:bg-primary dark:bg-gray-700 rounded-lg"
+              >
                 {isActiveDetails ? "Zatvori" : "Prikaži"}
               </Box>
             }
@@ -102,9 +106,7 @@ const PageBoxTransition = () => {
           </p>
         </Box>
         <Box fontSize="89%" sx={{ opacity: 0.56 }}>
-          <p>
-            <Chip label="en" variant="outlined" />
-          </p>
+          <Chip label="en" variant="outlined" />
           <p>
             Allows arbitrary hiding and displaying of content according to
             isActive signal. It is usually part of larger components, such as
@@ -154,30 +156,29 @@ const PageBoxTransition = () => {
                       >
                         Details --props
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        <Box component="dl">
-                          {[
-                            {
-                              key: "isActive",
-                              value: "otvara/zatvara sadržaj komponente",
-                            },
-                            {
-                              key: "header",
-                              value: "sadržaj zaglavlja",
-                            },
-                          ].map((node) => (
-                            <Fragment key={node.key}>
-                              <dt className="font-bold">{node.key}</dt>
-                              <dd className="pl-1 opacity-80">{node.value}</dd>
-                            </Fragment>
-                          ))}
-                        </Box>
-                      </Typography>
+                      <Box component="dl">
+                        {[
+                          {
+                            key: "isActive",
+                            value: "otvara/zatvara sadržaj komponente",
+                          },
+                          {
+                            key: "header",
+                            value: "sadržaj zaglavlja",
+                          },
+                        ].map((node) => (
+                          <Fragment key={node.key}>
+                            <dt className="font-bold text-sm">{node.key}</dt>
+                            <dd className="pl-1 opacity-80 text-sm">
+                              {node.value}
+                            </dd>
+                          </Fragment>
+                        ))}
+                      </Box>
                     </CardContent>
                     <CardActions className="justify-center">
                       <Button
                         onClick={toggleActive.off}
-                        dense
                         color="secondary"
                         size="small"
                         variant="outlined"

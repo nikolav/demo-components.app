@@ -186,9 +186,7 @@ const PageBoxTransition = () => {
           </p>
         </Box>
         <Box fontSize="89%" sx={{ opacity: 0.56 }}>
-          <p>
-            <Chip label="en" variant="outlined" />
-          </p>
+          <Chip label="en" variant="outlined" />
           <p>
             This component consists of several smaller components assembled into
             a single unit that allows the user to work with tools more easily,
@@ -239,35 +237,34 @@ const PageBoxTransition = () => {
                     >
                       FloatingPanel --props
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      <Box component="dl">
-                        {[
-                          {
-                            key: "title",
-                            value: "naslov krtice",
-                          },
-                          {
-                            key: "offsetTop",
-                            value:
-                              "razmak od vrha ekrana pri prvom otvaranju strane",
-                          },
-                          {
-                            key: "width",
-                            value: "širina kartice",
-                          },
-                        ].map((node) => (
-                          <Fragment key={node.key}>
-                            <dt className="font-bold">{node.key}</dt>
-                            <dd className="pl-1 opacity-80">{node.value}</dd>
-                          </Fragment>
-                        ))}
-                      </Box>
-                    </Typography>
+                    <Box component="dl">
+                      {[
+                        {
+                          key: "title",
+                          value: "naslov krtice",
+                        },
+                        {
+                          key: "offsetTop",
+                          value:
+                            "razmak od vrha ekrana pri prvom otvaranju strane",
+                        },
+                        {
+                          key: "width",
+                          value: "širina kartice",
+                        },
+                      ].map((node) => (
+                        <Fragment key={node.key}>
+                          <dt className="font-bold text-sm">{node.key}</dt>
+                          <dd className="pl-1 opacity-80 text-sm">
+                            {node.value}
+                          </dd>
+                        </Fragment>
+                      ))}
+                    </Box>
                   </CardContent>
                   <CardActions className="justify-center">
                     <Button
                       onClick={toggleActive.off}
-                      dense
                       color="secondary"
                       size="small"
                       variant="outlined"

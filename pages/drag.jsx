@@ -58,7 +58,10 @@ const PageBoxTransition = () => {
                   component="h4"
                   className="flex justify-between items-center shadow-lg p-2 px-4 bg-primary dark:bg-gray-800"
                   sx={{
-                    backgroundColor: ({ palette }) => "dark" === palette.mode ? palette.background.paper : "primary.main"
+                    backgroundColor: ({ palette }) =>
+                      "dark" === palette.mode
+                        ? palette.background.paper
+                        : "primary.main",
                   }}
                 >
                   <MdDragIndicator className="text-2xl text-white" />
@@ -120,9 +123,7 @@ const PageBoxTransition = () => {
           </p>
         </Box>
         <Box fontSize="89%" className="text-black/50 dark:text-white">
-          <p>
-            <Chip label="en" variant="outlined" />
-          </p>
+          <Chip label="en" variant="outlined" />
           <p>
             Large number of applications online require complex drag-drop
             functionality. Drag component in the background uses framer-motion
@@ -165,27 +166,26 @@ const PageBoxTransition = () => {
                       >
                         Drag --props
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        <Box component="dl">
-                          {[
-                            {
-                              key: "-",
-                              value:
-                                "Ne uzima ulaz već se direktno koristi. Drag.Handle komponenta označava deo koji služi kao ručica za prevlačenje.",
-                            },
-                          ].map((node) => (
-                            <Fragment key={node.key}>
-                              <dt className="font-bold">{node.key}</dt>
-                              <dd className="pl-1 opacity-80">{node.value}</dd>
-                            </Fragment>
-                          ))}
-                        </Box>
-                      </Typography>
+                      <Box component="dl">
+                        {[
+                          {
+                            key: "-",
+                            value:
+                              "Ne uzima ulaz već se direktno koristi. Drag.Handle komponenta označava deo koji služi kao ručica za prevlačenje.",
+                          },
+                        ].map((node) => (
+                          <Fragment key={node.key}>
+                            <dt className="font-bold text-sm">{node.key}</dt>
+                            <dd className="pl-1 opacity-80 text-sm">
+                              {node.value}
+                            </dd>
+                          </Fragment>
+                        ))}
+                      </Box>
                     </CardContent>
                     <CardActions className="justify-center">
                       <Button
                         onClick={toggleActive.off}
-                        dense
                         color="secondary"
                         size="small"
                         variant="outlined"

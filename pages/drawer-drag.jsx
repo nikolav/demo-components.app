@@ -196,9 +196,7 @@ const PageBoxTransition = () => {
           </p>
         </Box>
         <Box fontSize="89%" sx={{ opacity: 0.56 }}>
-          <p>
-            <Chip label="en" variant="outlined" />
-          </p>
+          <Chip label="en" variant="outlined" />
           <p>
             Similar to <em>Modal</em> and <em>DrawerBox</em> components shows
             additional more extensive content that the user is working on. When
@@ -248,43 +246,42 @@ const PageBoxTransition = () => {
                       >
                         DrawerDrag --props
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        <Box component="dl">
-                          {[
-                            {
-                              key: "isActive",
-                              value: "otvara/zatvara sadržaj komponente",
-                            },
-                            {
-                              key: "onClose",
-                              value: "izvršava proceduru pri zatvaranju",
-                            },
-                            {
-                              key: "controlls",
-                              value: "opciono prikazuje kontrole",
-                            },
-                            {
-                              key: "offsetTop",
-                              value: "razmak od vrha ekrana",
-                            },
-                            {
-                              key: "offsetToggle",
-                              value:
-                                "minimalna distanca prevlačenja komponente za aktivaciju minimalnog ili maksimalnog prikaza",
-                            },
-                          ].map((node) => (
-                            <Fragment key={node.key}>
-                              <dt className="font-bold">{node.key}</dt>
-                              <dd className="pl-1 opacity-80">{node.value}</dd>
-                            </Fragment>
-                          ))}
-                        </Box>
-                      </Typography>
+                      <Box component="dl">
+                        {[
+                          {
+                            key: "isActive",
+                            value: "otvara/zatvara sadržaj komponente",
+                          },
+                          {
+                            key: "onClose",
+                            value: "izvršava proceduru pri zatvaranju",
+                          },
+                          {
+                            key: "controlls",
+                            value: "opciono prikazuje kontrole",
+                          },
+                          {
+                            key: "offsetTop",
+                            value: "razmak od vrha ekrana",
+                          },
+                          {
+                            key: "offsetToggle",
+                            value:
+                              "minimalna distanca prevlačenja komponente za aktivaciju minimalnog ili maksimalnog prikaza",
+                          },
+                        ].map((node) => (
+                          <Fragment key={node.key}>
+                            <dt className="font-bold text-sm">{node.key}</dt>
+                            <dd className="pl-1 opacity-80 text-sm">
+                              {node.value}
+                            </dd>
+                          </Fragment>
+                        ))}
+                      </Box>
                     </CardContent>
                     <CardActions className="justify-center">
                       <Button
                         onClick={toggleActive.off}
-                        dense
                         color="secondary"
                         size="small"
                         variant="outlined"

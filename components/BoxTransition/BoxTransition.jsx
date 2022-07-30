@@ -1,6 +1,6 @@
 //
 import { useRef, useEffect, useState } from "react";
-import { CSSTransition } from "react-transition-group";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { useStateSwitch } from "../../src/hooks";
 import { noop } from "../../src/util";
 //
@@ -9,6 +9,10 @@ const DEFAULT_TIMEOUT_OUT = 245;
 const DEFAULT_EFFECT = {
   in: "fadeIn",
   out: "fadeOut",
+};
+const DEFAULT_EFFECT_switch = {
+  in: "flipInY",
+  out: "flipOutY",
 };
 ////
 ////
@@ -166,11 +170,42 @@ classNames={{
 </Transition>
 */
 
-  // delay = 0,
-  // repeat = 0,
-  // https://www.w3schools.com/cssref/css3_pr_animation-timing-function.asp
-  // animation-timing-function:
-  //   linear|ease|ease-in|ease-out|ease-in-out|
-  //   step-start|step-end|steps(int,start|end)|
-  //   cubic-bezier(n,n,n,n)|initial|inherit;
-  // ease = DEFAULT_EASE,
+// delay = 0,
+// repeat = 0,
+// https://www.w3schools.com/cssref/css3_pr_animation-timing-function.asp
+// animation-timing-function:
+//   linear|ease|ease-in|ease-out|ease-in-out|
+//   step-start|step-end|steps(int,start|end)|
+//   cubic-bezier(n,n,n,n)|initial|inherit;
+// ease = DEFAULT_EASE,
+
+export const BoxSwitch = ({
+  //
+  effect = DEFAULT_EFFECT_switch,
+  //
+  key,
+  // ={ a: Node, b: Node }
+  components,
+  //
+  // out-in | in-out
+  mode = "out-in",
+}) => {
+  const components_ = useRef(components).current;
+  console.log(components_[key]);
+  ////
+  return (
+    <SwitchTransition mode={mode}>
+      <CSSTransition
+        key={key}
+        classNames={{
+          enter: "animate__animated",
+          enterActive: `animate__${effect.in}`,
+          exit: `animate__${effect.out}`,
+          exitActive: "animate__animated",
+        }}
+      >
+        {components_[key]}
+      </CSSTransition>
+    </SwitchTransition>
+  );
+};

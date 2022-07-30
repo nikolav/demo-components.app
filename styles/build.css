@@ -1551,6 +1551,10 @@ select {
   height: 256px;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
 .h-fit {
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -1764,6 +1768,16 @@ select {
 
 .bg-slate-100\/80 {
   background-color: rgb(241 245 249 / 0.8);
+}
+
+.bg-red-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+
+.bg-blue-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
 }
 
 .bg-white\/10 {

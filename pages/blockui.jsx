@@ -156,9 +156,7 @@ const PageBlockui = () => {
           </p>
         </Box>
         <Box fontSize="89%" sx={{ opacity: 0.56 }}>
-          <p>
             <Chip label="en" variant="outlined" />
-          </p>
           <p>
             Don{"'"}t forget to add BlockUI component to the application while
             system is busy with a http request. It bocks user access to other
@@ -204,7 +202,6 @@ const PageBlockui = () => {
                       >
                         BlockUI --props
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
                         <Box component="dl">
                           {[
                             {
@@ -213,17 +210,15 @@ const PageBlockui = () => {
                             },
                           ].map((node) => (
                             <Fragment key={node.key}>
-                              <dt className="font-bold">{node.key}</dt>
-                              <dd className="pl-1 opacity-80">{node.value}</dd>
+                              <dt className="font-bold text-sm">{node.key}</dt>
+                              <dd className="pl-1 opacity-80 text-sm">{node.value}</dd>
                             </Fragment>
                           ))}
                         </Box>
-                      </Typography>
                     </CardContent>
                     <CardActions className="justify-center">
                       <Button
                         onClick={toggleActive.off}
-                        dense
                         color="secondary"
                         size="small"
                         variant="outlined"

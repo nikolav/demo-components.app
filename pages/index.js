@@ -1,79 +1,31 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import LayoutMain from "../components/layout/LayoutMain";
 import {
   Box,
-  Divider,
   Paper,
   MenuList,
   MenuItem,
   ListItemText,
   Button,
 } from "@mui/material";
-import { usePlotChart, usePieChart, useStateSwitch } from "../src/hooks";
+import { BoxSwitch } from "../components";
 ////
 /////
 export default function Index({ ...rest }) {
-  const root = useRef();
-  const { isActive, toggle } = useStateSwitch();
-  //
-  usePlotChart({
-    // usePieChart({
-    isActive,
-    root: root?.current,
-    data: [
-      {
-        date: "2022-05-12",
-        value: 11,
-      },
-      {
-        date: "2022-05-15",
-        value: 14,
-      },
-      {
-        date: "2022-05-03",
-        value: 14,
-      },
-      {
-        date: "2022-05-18",
-        value: 21,
-      },
-      {
-        date: "2022-05-30",
-        value: 12,
-      },
-      {
-        date: "2022-05-31",
-        value: 22,
-      },
-      // {
-      //   key: "@1",
-      //   value: 11,
-      // },
-      // {
-      //   key: "@2",
-      //   value: 12,
-      // },
-      // {
-      //   key: "@3",
-      //   value: 21,
-      // },
-      // {
-      //   key: "@4",
-      //   value: 15,
-      // },
-    ],
-  });
+  const [k$, setk] = useState("a");
   ////
   return (
     <LayoutMain {...rest}>
       {/*  */}
       {/* left */}
       <section>
-        <Paper component="p" elevation={2} className="p-4 leading-relaxed">
-          Pozdrav 👋🏻 <br />
-          Trenutno radim na ovoj aplikaciji. <br />
-          Planiram da postavim komponente iz{" "}
+        <Paper elevation={2} className="p-4 leading-relaxed">
+          <Box component="p">
+            Pozdrav 👋🏻 <br />
+            Trenutno radim na ovoj aplikaciji. <br />
+            Planiram da postavim komponente iz{" "}
+          </Box>
           <a
             href="https://github.com/nikolav/demo-components.app/tree/main/components"
             target="_blank"
@@ -82,9 +34,8 @@ export default function Index({ ...rest }) {
           >
             ovog foldera
           </a>
-          . <br />
-          <Divider className="my-4" />
-          <MenuList className="p-4">
+          .
+          <MenuList className="p-4 mt-4">
             {[
               {
                 name: "Accordion",
@@ -134,16 +85,20 @@ export default function Index({ ...rest }) {
               </Link>
             ))}
           </MenuList>
-          <Box component="p" className="p-4 opacity-80">
-            Hvala, svako dobro.
-          </Box>
+          <Box className="p-4 opacity-80">Hvala, svako dobro.</Box>
         </Paper>
       </section>
       {/*  */}
       {/* right */}
       <section>
-        <Button  onClick={toggle}>OK</Button>
-        <div className="m-0 p-0" ref={root} id="canvas" />
+        <Button onClick={() => setk("a" === k$ ? "b" : "a")}>OK</Button>
+        {/* <BoxSwitch
+          key={k$}
+          components={{
+            a: <div className="bg-red-200 w-32 h-32">A</div>,
+            b: <div className="bg-blue-200 w-32 h-32">B</div>,
+          }}
+        /> */}
       </section>
     </LayoutMain>
   );

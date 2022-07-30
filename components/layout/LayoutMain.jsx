@@ -139,11 +139,9 @@ const LayoutMain = ({ children }) => {
                 title={`<${component}>`}
                 key={component}
               >
-                <Box component="strong">
-                  <Link href={`/${link}`}>
-                    <a className="appbar-link-icon text-xl">{icon}</a>
-                  </Link>
-                </Box>
+                <Link href={`/${link}`}>
+                  <a className="font-bold appbar-link-icon text-xl">{icon}</a>
+                </Link>
               </Tooltip>
             ))}
           </Stack>
@@ -176,8 +174,8 @@ const LayoutMain = ({ children }) => {
       </AppBar>
       {/*  */}
       {/* content */}
-      <Box maxWidth={972} pt="4rem" mx="auto" width={{ sm: "92%" }}>
-        <Container>
+      <Container>
+        <Box maxWidth={972} pt="4rem" mx="auto" width={{ sm: "92%" }}>
           <Grid container spacing={{ xs: 1, sm: 2, md: 4 }}>
             <Grid item xs={12} md={6}>
               {children[0]}
@@ -186,84 +184,78 @@ const LayoutMain = ({ children }) => {
               {children[1]}
             </Grid>
           </Grid>
-        </Container>
-      </Box>
+        </Box>
+      </Container>
       {/*  */}
       {/*
        */}
       <Drawer anchor="left" open={isActiveDrawer} onClose={toggleDrawer.off}>
         {/*  */}
         {/* drawer.links */}
-        <Box minWidth={234}>
-          <List>
-            {[
-              {
-                key: "Accordion",
-                // icon: imgAccordion,
-                icon: "📰",
-                link: "/accordion",
-              },
-              {
-                key: "BlockUI",
-                icon: "⛔",
-                link: "/blockui",
-              },
-              {
-                key: "BoxTransition",
-                icon: "🍱",
-                link: "/box-transition",
-              },
-              {
-                key: "BoxTransition",
-                icon: "📜",
-                link: "/choose-file",
-              },
-              {
-                key: "DarkModeToggle",
-                icon: "🌜",
-                link: "/dark-mode",
-              },
-              {
-                key: "Details",
-                icon: "🎫",
-                link: "/details",
-              },
-              {
-                key: "Drag",
-                icon: "🤚🏻",
-                link: "/drag",
-              },
-              {
-                key: "DrawerBox",
-                icon: "📦",
-                link: "/drawer-box",
-              },
-              {
-                key: "DrawerDrag",
-                icon: "🔃",
-                link: "/drawer-drag",
-              },
-              {
-                key: "FloatingPanel",
-                icon: "📟",
-                link: "/floating-panel",
-              },
-            ].map((node) => (
-              <ListItem
-                key={node.key}
-                disablePadding
-                onClick={toggleDrawer.off}
-              >
-                <Link href={node.link}>
-                  <ListItemButton>
-                    <ListItemIcon>{node.icon}</ListItemIcon>
-                    <ListItemText primary={node.key} />
-                  </ListItemButton>
-                </Link>
-              </ListItem>
-            ))}
-          </List>
-        </Box>
+        <List sx={{ minWidth: 234 }}>
+          {[
+            {
+              key: "Accordion",
+              // icon: imgAccordion,
+              icon: "📰",
+              link: "/accordion",
+            },
+            {
+              key: "BlockUI",
+              icon: "⛔",
+              link: "/blockui",
+            },
+            {
+              key: "BoxTransition",
+              icon: "🍱",
+              link: "/box-transition",
+            },
+            {
+              key: "ChooseFile",
+              icon: "📜",
+              link: "/choose-file",
+            },
+            {
+              key: "DarkModeToggle",
+              icon: "🌜",
+              link: "/dark-mode",
+            },
+            {
+              key: "Details",
+              icon: "🎫",
+              link: "/details",
+            },
+            {
+              key: "Drag",
+              icon: "🤚🏻",
+              link: "/drag",
+            },
+            {
+              key: "DrawerBox",
+              icon: "📦",
+              link: "/drawer-box",
+            },
+            {
+              key: "DrawerDrag",
+              icon: "🔃",
+              link: "/drawer-drag",
+            },
+            {
+              key: "FloatingPanel",
+              icon: "📟",
+              link: "/floating-panel",
+            },
+          ].map((node) => (
+            <ListItem key={node.key} disablePadding onClick={toggleDrawer.off}>
+              <Link href={node.link}>
+                <ListItemButton>
+                  <ListItemIcon>{node.icon}</ListItemIcon>
+                  <ListItemText primary={node.key} />
+                </ListItemButton>
+              </Link>
+            </ListItem>
+          ))}
+        </List>
       </Drawer>
     </>
   );

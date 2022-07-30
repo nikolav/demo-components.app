@@ -1,4 +1,4 @@
-import React, { useEffect, forwardRef } from "react";
+import React, { useRef, useEffect, forwardRef } from "react";
 import { useFileReader } from "../../src/hooks";
 import { useAppData } from "../../app/store";
 import { pick } from "../../src/util";
@@ -18,6 +18,8 @@ function ChooseFile(
     // }
     FILE = "wzcagoycqzyfxwfqrewzur",
     //
+
+    //
     children,
     //
     ...rest
@@ -26,7 +28,7 @@ function ChooseFile(
   ref
 ) {
   const appdata = useAppData();
-  const ID = `ChooseFile.${appdata.id()}`;
+  const ID = `ChooseFile--${FILE}`;
   //
   // use browser api to read file into `urlData` object
   const __ = useFileReader();

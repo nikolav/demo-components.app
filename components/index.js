@@ -1,7 +1,7 @@
 import Accordion from "./Accordion/Accordion";
 import BlockUI from "./BlockUI/BlockUI";
 import Body from "./Body/Body";
-import BoxTransition from "./BoxTransition/BoxTransition";
+import BoxTransition, { BoxSwitch } from "./BoxTransition/BoxTransition";
 import ChooseFile from "./ChooseFile/ChooseFile";
 import DarkModeToggle from "./DarkModeToggle/DarkModeToggle";
 import Details from "./Details/Details";
@@ -54,4 +54,5 @@ export {
   Slider,
   SwitchIcon,
   Tooltip,
+  BoxSwitch,
 };

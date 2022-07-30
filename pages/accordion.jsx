@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, Fragment } from "react";
-import Head from "next/head"
+import Head from "next/head";
 import LayoutMain from "../components/layout/LayoutMain";
 import { Link, Accordion, BoxTransition } from "../components";
 import {
@@ -35,13 +35,13 @@ const PageAccordion = () => {
   const overflow = useBodyOverflow();
   useEffect(() => {
     overflow.hidden(isOpenPopper);
-  }, [isOpenPopper])
+  }, [isOpenPopper]);
   //
   return (
     <LayoutMain>
       <section>
-      <Head>
-          <title>nikolav | Accordion,  ReactJS</title>
+        <Head>
+          <title>nikolav | Accordion, ReactJS</title>
         </Head>
 
         <Accordion
@@ -148,9 +148,7 @@ const PageAccordion = () => {
           </p>
         </Box>
         <Box fontSize="89%" sx={{ opacity: 0.56 }}>
-          <p>
-            <Chip label="en" variant="outlined" />
-          </p>
+          <Chip label="en" variant="outlined" />
           <p>
             The accordion component allows the user to show and hide sections of
             related content on a page. An accordion is a lightweight container
@@ -165,11 +163,11 @@ const PageAccordion = () => {
             placement="bottom"
             modifiers={[
               {
-                name: "offset", 
+                name: "offset",
                 options: {
-                  offset: [0, -128]
-                }
-              }
+                  offset: [0, -128],
+                },
+              },
             ]}
             keepMounted
             transition
@@ -182,9 +180,7 @@ const PageAccordion = () => {
                 {...TransitionProps}
               >
                 <ClickAwayListener onClickAway={toggleActive.off}>
-                  <Card
-                  className="shadow-md"
-                  sx={{ maxWidth: 356 }}>
+                  <Card className="shadow-md" sx={{ maxWidth: 356 }}>
                     <CardMedia
                       component="img"
                       height={96}
@@ -198,39 +194,38 @@ const PageAccordion = () => {
                       >
                         Accordion --props
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        <Box component="dl">
-                          {[
-                            {
-                              key: "active",
-                              value: "otvara karticu sa ovim klučem @mount",
-                            },
-                            {
-                              key: "expanded",
-                              value:
-                                "ostavlja karticu otvorenu nakon aktivacije drugih",
-                            },
-                            {
-                              key: "item",
-                              value: "prikazuje elemente samo sa ovim `flagom`",
-                            },
-                            {
-                              key: "onToggle",
-                              value: "izvršava proceduru pri promeni kartice",
-                            },
-                          ].map((node) => (
-                            <Fragment key={node.key}>
-                              <dt className="font-bold">{node.key}</dt>
-                              <dd className="pl-1 opacity-80">{node.value}</dd>
-                            </Fragment>
-                          ))}
-                        </Box>
-                      </Typography>
+                      <Box component="dl">
+                        {[
+                          {
+                            key: "active",
+                            value: "otvara karticu sa ovim klučem @mount",
+                          },
+                          {
+                            key: "expanded",
+                            value:
+                              "ostavlja karticu otvorenu nakon aktivacije drugih",
+                          },
+                          {
+                            key: "item",
+                            value: "prikazuje elemente samo sa ovim `flagom`",
+                          },
+                          {
+                            key: "onToggle",
+                            value: "izvršava proceduru pri promeni kartice",
+                          },
+                        ].map((node) => (
+                          <Fragment key={node.key}>
+                            <dt className="font-bold text-sm">{node.key}</dt>
+                            <dd className="pl-1 opacity-80 text-sm">
+                              {node.value}
+                            </dd>
+                          </Fragment>
+                        ))}
+                      </Box>
                     </CardContent>
                     <CardActions className="justify-center">
                       <Button
                         onClick={toggleActive.off}
-                        dense
                         color="secondary"
                         size="small"
                         variant="outlined"
