@@ -99,11 +99,7 @@ const Panel = ({
     ...options,
   };
   const [popperElement, setPopperElement] = useState(null);
-  const { styles, attributes } = usePopper(
-    anchor,
-    popperElement,
-    popperConfig
-  );
+  const { styles, attributes } = usePopper(anchor, popperElement, popperConfig);
   //
   return isActive ? (
     <PortalOverlays>
@@ -141,8 +137,8 @@ const PanelAppear = ({
             initial={APPEAR[effect].initial}
             exit={APPEAR[effect].exit}
             animate={APPEAR[effect].animate}
-            // key={key}
             className={`m-0 p-0 ${className}`}
+            key="PanelAppear-root"
             {...rest}
           >
             {children}

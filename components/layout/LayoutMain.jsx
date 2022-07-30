@@ -163,13 +163,13 @@ const LayoutMain = ({ children }) => {
               </IconButton>
             </Link>
 
-            <IconButton size="md" className="ml-2">
-              <Link href="https://github.com/nikolav/demo-components.app/tree/main/components">
-                <a target="_blank">
+            <Link href="https://github.com/nikolav/demo-components.app/tree/main/components">
+              <a target="_blank">
+                <IconButton size="md" className="ml-2">
                   <RiGithubLine className="appbar-icon" />
-                </a>
-              </Link>
-            </IconButton>
+                </IconButton>
+              </a>
+            </Link>
             <DarkModeToggle />
           </Stack>
         </Toolbar>

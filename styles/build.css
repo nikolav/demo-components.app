@@ -1573,10 +1573,6 @@ select {
   width: 20rem;
 }
 
-.w-48 {
-  width: 12rem;
-}
-
 .w-32 {
   width: 8rem;
 }
@@ -1585,14 +1581,6 @@ select {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-}
-
-.w-16 {
-  width: 4rem;
-}
-
-.w-24 {
-  width: 6rem;
 }
 
 .max-w-\[356px\] {
@@ -1701,16 +1689,16 @@ select {
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 
-.space-x-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .overflow-hidden {
@@ -1774,6 +1762,10 @@ select {
   background-color: rgb(70 130 179 / var(--tw-bg-opacity));
 }
 
+.bg-slate-100\/80 {
+  background-color: rgb(241 245 249 / 0.8);
+}
+
 .bg-white\/10 {
   background-color: rgb(255 255 255 / 0.1);
 }
@@ -1799,10 +1791,6 @@ select {
 
 .bg-slate-500\/50 {
   background-color: rgb(100 116 139 / 0.5);
-}
-
-.bg-slate-100\/80 {
-  background-color: rgb(241 245 249 / 0.8);
 }
 
 .bg-gradient-to-b {
@@ -1900,6 +1888,11 @@ select {
   line-height: 2rem;
 }
 
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -1908,11 +1901,6 @@ select {
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
-}
-
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 
 .font-bold {
@@ -1975,14 +1963,6 @@ select {
 
 .opacity-\[\.56\] {
   opacity: .56;
-}
-
-.opacity-60 {
-  opacity: 0.6;
-}
-
-.opacity-40 {
-  opacity: 0.4;
 }
 
 .shadow-md {
@@ -2145,6 +2125,10 @@ select {
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
+.dark .dark\:bg-slate-800\/20 {
+  background-color: rgb(30 41 59 / 0.2);
+}
+
 .dark .dark\:bg-slate-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
@@ -2153,14 +2137,6 @@ select {
 .dark .dark\:bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.dark .dark\:bg-slate-800\/80 {
-  background-color: rgb(30 41 59 / 0.8);
-}
-
-.dark .dark\:bg-slate-800\/20 {
-  background-color: rgb(30 41 59 / 0.2);
 }
 
 .dark .dark\:font-bold {

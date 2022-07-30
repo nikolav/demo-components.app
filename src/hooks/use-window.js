@@ -6,11 +6,11 @@ import { debounce } from "../util";
 
 //
 export const useWindow = () => {
-  const [w$, setW] = useState(null);
+  const [w$, setw] = useState(null);
   const isWindow = "undefined" !== typeof window;
   //
   useEffect(() => {
-    isWindow && setW(window);
+    isWindow && setw(window);
   }, [isWindow]);
   //
   return w$;

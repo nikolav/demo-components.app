@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import LayoutMain from "../components/layout/LayoutMain";
 import {
@@ -8,13 +8,65 @@ import {
   MenuList,
   MenuItem,
   ListItemText,
+  Button,
 } from "@mui/material";
+import { usePlotChart, usePieChart, useStateSwitch } from "../src/hooks";
 ////
 /////
-export default function Index(props) {
+export default function Index({ ...rest }) {
+  const root = useRef();
+  const { isActive, toggle } = useStateSwitch();
   //
+  usePlotChart({
+    // usePieChart({
+    isActive,
+    root: root?.current,
+    data: [
+      {
+        date: "2022-05-12",
+        value: 11,
+      },
+      {
+        date: "2022-05-15",
+        value: 14,
+      },
+      {
+        date: "2022-05-03",
+        value: 14,
+      },
+      {
+        date: "2022-05-18",
+        value: 21,
+      },
+      {
+        date: "2022-05-30",
+        value: 12,
+      },
+      {
+        date: "2022-05-31",
+        value: 22,
+      },
+      // {
+      //   key: "@1",
+      //   value: 11,
+      // },
+      // {
+      //   key: "@2",
+      //   value: 12,
+      // },
+      // {
+      //   key: "@3",
+      //   value: 21,
+      // },
+      // {
+      //   key: "@4",
+      //   value: 15,
+      // },
+    ],
+  });
+  ////
   return (
-    <LayoutMain {...props}>
+    <LayoutMain {...rest}>
       {/*  */}
       {/* left */}
       <section>
@@ -89,7 +141,10 @@ export default function Index(props) {
       </section>
       {/*  */}
       {/* right */}
-      <section>👷🏻‍♂️🚧</section>
+      <section>
+        <Button  onClick={toggle}>OK</Button>
+        <div className="m-0 p-0" ref={root} id="canvas" />
+      </section>
     </LayoutMain>
   );
 }
