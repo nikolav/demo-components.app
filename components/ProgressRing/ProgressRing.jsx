@@ -82,7 +82,7 @@ const ProgressRing = ({
         <motion.svg
           key="ProgressRing.tbjoyspabnr"
           style={{
-            display: "block",
+            display: "inline-block",
             width: "100%",
             height: "100%",
           }}

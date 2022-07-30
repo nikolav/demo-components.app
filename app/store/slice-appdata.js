@@ -7,6 +7,7 @@ export const TEST = "fktzzfpmzpb";
 export const ADMIN = "otqknvlgpve";
 export const TEMP_FILE = "mngbaguzkgn"
 export const USERNAME = "hmzgqoqouzl"
+export const QUIZ = "yhxppbenogf"
 //
 const initialState = {
   [ADMIN]: {
@@ -17,7 +18,12 @@ const initialState = {
   },
   [TEST]: "1.22.333",
   [TEMP_FILE]: null,
-  [USERNAME]: ""
+  [USERNAME]: "",
+  [QUIZ]: {
+    1: null,
+    2: null,
+    3: null,
+  },
 };
 
 export const appdataSlice = createSlice({

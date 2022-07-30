@@ -22,6 +22,9 @@ const OPTIONS = {
   //
   key: (d) => d.key,
   value: (d) => d.value,
+  //
+  _strokeWidth: 0,
+  _stroke: "#000000",
 };
 
 //
@@ -40,6 +43,9 @@ const usePieChart = ({ data, root, isActive = true, options = {} }) => {
     colors,
     key,
     padding,
+    //
+    _strokeWidth,
+    _stroke,
   } = useMemo(() => merge({}, OPTIONS, options), [options]);
   const { isReady } = useWindowDocument();
   // @center.graph
@@ -91,7 +97,7 @@ const usePieChart = ({ data, root, isActive = true, options = {} }) => {
         //  2. create paths
         svg = select(root)
           .append("svg")
-          .style("border", "1px dotted gray")
+          // .style("border", "1px dotted gray")
           .attr("width", width + legendWidth)
           .attr("height", height);
         //graph container
@@ -133,8 +139,8 @@ const usePieChart = ({ data, root, isActive = true, options = {} }) => {
       paths
         .enter()
         .append("path")
-        .attr("stroke", "black")
-        .attr("stroke-width", 2)
+        .attr("stroke", _stroke)
+        .attr("stroke-width", _strokeWidth)
         .attr("fill", (d) => color(d.data.key))
         .each((d, i, n) => (n[i]._d = d))
         .transition(t)

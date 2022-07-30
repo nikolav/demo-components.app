@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import Link from "next/link";
 import LayoutMain from "../components/layout/LayoutMain";
 import {
-  Box,
   Paper,
+  Box,
   MenuList,
   MenuItem,
   ListItemText,
   Button,
+  ButtonGroup,
 } from "@mui/material";
+import { ProgressRing, SwitchIcon, BoxSwitch } from "../components";
 ////
 /////
 export default function Index({ ...rest }) {
+  const [p$, setp] = useState(1);
   ////
   return (
     <LayoutMain {...rest}>
@@ -75,6 +78,10 @@ export default function Index({ ...rest }) {
                 name: "FloatingPanel",
                 link: "/floating-panel",
               },
+              {
+                name: "IconCrossfade",
+                link: "/icon-crossfade",
+              },
             ].map(({ link, name }) => (
               <Link href={link} key={name}>
                 <MenuItem>
@@ -89,7 +96,53 @@ export default function Index({ ...rest }) {
       {/*  */}
       {/* right */}
       <section>
-        <Button>OK</Button>
+        <ButtonGroup size="large" variant="outlined" color="primary">
+          <Button
+            onClick={() => setp((p) => p + 1)}
+            className="flex items-center justify-between px-2 space-x-2"
+          >
+            <strong className="flex h-6">
+              <ProgressRing
+                bg="rgba(0,0,0,.045)"
+                duration={1111}
+                progress={p$ * 25}
+                width={100}
+                rounded={false}
+                allowDecrease
+              />
+            </strong>
+            <strong>dalje</strong>
+          </Button>
+          <Button onClick={() => setp(1)}>
+            reset
+          </Button>
+        </ButtonGroup>
+        <BoxSwitch
+          duration={634}
+          components={{
+            1: (
+              <Paper elevation={2} className="w-64 h-48 bg-red-200">
+                1
+              </Paper>
+            ),
+            2: (
+              <Paper elevation={2} className="w-64 h-48 bg-blue-200">
+                2
+              </Paper>
+            ),
+            3: (
+              <Paper elevation={2} className="w-64 h-48 bg-yellow-200">
+                3
+              </Paper>
+            ),
+            4: (
+              <Paper elevation={2} className="w-64 h-48 bg-green-200">
+                4
+              </Paper>
+            ),
+          }}
+          current={p$}
+        />
       </section>
     </LayoutMain>
   );

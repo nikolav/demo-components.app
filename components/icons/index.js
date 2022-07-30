@@ -56,6 +56,8 @@ import {
   AiOutlineCalendar,
   AiFillTwitterCircle,
   AiOutlineIdcard,
+  AiOutlineUserAdd,
+  AiOutlineUser,
 } from "react-icons/ai";
 import {
   RiCloseCircleFill,
@@ -117,6 +119,8 @@ const IconContentPaste = ContentPaste;
 ////
 ////
 export {
+  AiOutlineUser,
+  AiOutlineUserAdd,
   AddIcon,
   AddShoppingCartIcon,
   AiFillTwitterCircle,

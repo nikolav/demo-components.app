@@ -133,6 +133,11 @@ const LayoutMain = ({ children }) => {
                 icon: "📟",
                 link: "floating-panel",
               },
+              {
+                component: "IconCrossfade",
+                icon: "🌟",
+                link: "icon-crossfade",
+              },
             ].map(({ component, icon, link }) => (
               <Tooltip
                 placement="bottom"
@@ -244,6 +249,11 @@ const LayoutMain = ({ children }) => {
               key: "FloatingPanel",
               icon: "📟",
               link: "/floating-panel",
+            },
+            {
+              key: "IconCrossfade",
+              icon: "🌟",
+              link: "/icon-crossfade",
             },
           ].map((node) => (
             <ListItem key={node.key} disablePadding onClick={toggleDrawer.off}>
