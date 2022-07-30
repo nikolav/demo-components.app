@@ -122,7 +122,7 @@ const PageIconCrossfade = () => {
               >
                 <Button
                   onClick={() => setp((p) => p + 1)}
-                  className="flex items-center justify-around px-2"
+                  className="flex items-center justify-between px-2"
                   disabled={4 === p$}
                 >
                   <span className="flex h-6">
@@ -135,7 +135,7 @@ const PageIconCrossfade = () => {
                       allowDecrease
                     />
                   </span>
-                  <span>dalje</span>
+                  <span className="inline-block ml-2">dalje</span>
                 </Button>
                 <Button onClick={quizReset}>ponovi</Button>
               </ButtonGroup>
