@@ -138,15 +138,22 @@ const LayoutMain = ({ children }) => {
                 icon: "🌟",
                 link: "icon-crossfade",
               },
+              {
+                component: "Modal",
+                icon: "💳",
+                link: "modal",
+              },
             ].map(({ component, icon, link }) => (
               <Tooltip
                 placement="bottom"
                 title={`<${component}>`}
                 key={component}
               >
-                <Link href={`/${link}`}>
-                  <a className="font-bold appbar-link-icon text-xl">{icon}</a>
-                </Link>
+                <strong className="inline-block">
+                  <Link href={`/${link}`}>
+                    <a className="font-bold appbar-link-icon text-xl">{icon}</a>
+                  </Link>
+                </strong>
               </Tooltip>
             ))}
           </Stack>
@@ -254,6 +261,11 @@ const LayoutMain = ({ children }) => {
               key: "IconCrossfade",
               icon: "🌟",
               link: "/icon-crossfade",
+            },
+            {
+              key: "Modal",
+              icon: "💳",
+              link: "/modal",
             },
           ].map((node) => (
             <ListItem key={node.key} disablePadding onClick={toggleDrawer.off}>

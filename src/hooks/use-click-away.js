@@ -1,19 +1,26 @@
 import { useEffect } from "react";
-import useIsMounted from "./use-is-mounted";
+import { useWindowDocument } from "./use-window";
 //
-const useClickAway = (ref, handle, isActive$ = true) => {
-  const m$ = useIsMounted();
-  const document_ = ref?.current?.ownerDocument;
+const useClickAway = (
+  // ref
+  root,
+  // callback
+  handle,
+  // wait dom
+  isActive$ = true
+) => {
+  const { document } = useWindowDocument();
+  const html = document?.documentElement;
   //
   const handle_ = (evt) =>
-    ref?.current && !ref.current.contains(evt.target) && handle(evt);
+    root?.current && !root.current.contains(evt.target) && handle(evt);
   //
-  const cleanup = () => document_ && document_.removeEventListener("click", handle_);
+  const cleanup = () => html?.removeEventListener("click", handle_);
   //
   useEffect(() => {
-    isActive$ && m$ && document_ && document_.addEventListener("click", handle_);
+    isActive$ && html?.addEventListener("click", handle_);
     return cleanup;
-  }, [m$, document_, isActive$]);
+  }, [html, isActive$]);
   //
   return cleanup;
 };

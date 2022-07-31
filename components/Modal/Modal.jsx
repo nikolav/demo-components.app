@@ -39,7 +39,7 @@ const Modal = ({
   //
 }) => {
   //
-  const refModal = useRef();
+  const root = useRef();
   //
   // schedule evt-handler when component mounts
   //   close modal @key.escape
@@ -50,7 +50,7 @@ const Modal = ({
   );
   //
   // close @click outside modal
-  useClickAway(refModal, onClose, isActive);
+  useClickAway(root, onClose, isActive);
   //
   const transitionType = {
     ...("tween" !== animation
@@ -77,7 +77,7 @@ const Modal = ({
           {/*  */}
           {/* modal */}
           <motion.div
-            ref={refModal}
+            ref={root}
             key="Modal.utsthdsdkpa"
             initial={EFFECT["hidden.bellow"]}
             animate={{

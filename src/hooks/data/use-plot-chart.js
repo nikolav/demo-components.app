@@ -15,7 +15,7 @@ import { useWindowDocument } from "../use-window";
 const OPTIONS = {
   width: 550,
   height: 400,
-  color: "steelblue",
+  color: "currentcolor",
   paddingX: 32,
   paddingY: 48,
   //
@@ -25,6 +25,7 @@ const OPTIONS = {
   //
   // minor tweeks
   _xAxisTextRotationDegrees: -24,
+  _xAxisTextOpacity: .85,
   _dotRadius: 4,
   _ticksX: 10,
   _ticksY: 3,
@@ -49,6 +50,7 @@ const usePlotChart = ({ isActive, data, root, options }) => {
     value,
     //
     _xAxisTextRotationDegrees,
+    _xAxisTextOpacity,
     _dotRadius,
     _ticksX,
     _ticksY,
@@ -143,7 +145,7 @@ const usePlotChart = ({ isActive, data, root, options }) => {
         .selectAll("text")
         .attr("text-anchor", "end")
         .attr("transform", `rotate(${_xAxisTextRotationDegrees})`)
-        .attr("fill-opacity", .85);
+        .attr("fill-opacity", _xAxisTextOpacity);
     }
   }, [data, isActive, c$.graph]);
   //

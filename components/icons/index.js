@@ -11,21 +11,22 @@ import { CgFormatItalic } from "react-icons/cg";
 import { ImQuotesLeft } from "react-icons/im";
 import { GoListUnordered, GoListOrdered } from "react-icons/go";
 import {
-  FaStar,
-  FaHome,
-  FaFacebookF,
-  FaViber,
-  FaAlignLeft,
   FaAlignCenter,
-  FaAlignRight,
   FaAlignJustify,
-  FaRegComments,
+  FaAlignLeft,
+  FaAlignRight,
   FaExclamationTriangle,
-  FaRegSave,
   FaFacebook,
+  FaFacebookF,
   FaGithubAlt,
-  FaWindowMinimize,
+  FaHome,
+  FaPiggyBank,
+  FaRegComments,
+  FaRegSave,
   FaRegWindowMaximize,
+  FaStar,
+  FaViber,
+  FaWindowMinimize,
 } from "react-icons/fa";
 import { IoHelp } from "react-icons/io5";
 import { FiCamera, FiShare2 } from "react-icons/fi";
@@ -119,16 +120,17 @@ const IconContentPaste = ContentPaste;
 ////
 ////
 export {
-  AiOutlineUser,
-  AiOutlineUserAdd,
   AddIcon,
   AddShoppingCartIcon,
   AiFillTwitterCircle,
   AiOutlineCalendar,
   AiOutlineCloudSync,
+  AiOutlineIdcard,
   AiOutlineLink,
   AiOutlineTag,
   AiOutlineUnderline,
+  AiOutlineUser,
+  AiOutlineUserAdd,
   AiOutlineWhatsApp,
   AlarmIcon,
   ArrowDropDownIcon,
@@ -156,6 +158,7 @@ export {
   FaFacebookF,
   FaGithubAlt,
   FaHome,
+  FaPiggyBank,
   FaRegComments,
   FaRegSave,
   FaRegWindowMaximize,
@@ -216,5 +219,4 @@ export {
   ShareIcon,
   TiArrowLeftThick,
   VscChromeMaximize,
-  AiOutlineIdcard,
 };

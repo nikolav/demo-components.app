@@ -72,6 +72,10 @@ export default function Index({ ...rest }) {
                 name: "IconCrossfade",
                 link: "/icon-crossfade",
               },
+              {
+                name: "Modal",
+                link: "/modal",
+              },
             ].map(({ link, name }) => (
               <Link href={link} key={name}>
                 <MenuItem>
@@ -85,7 +89,11 @@ export default function Index({ ...rest }) {
       </section>
       {/*  */}
       {/* right */}
-      <section>🚧</section>
+      <section>
+        🚧
+      </section>
     </LayoutMain>
   );
 }
+
+// https://codesandbox.io/s/framer-motion-5-drag-to-reorder-tabs-forked-ujptnm
