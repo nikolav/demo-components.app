@@ -8,6 +8,7 @@ import {
   select,
   //   selectAll,
   scaleBand,
+  transition,
 } from "d3";
 import { merge, map } from "../../util";
 import { useWindowDocument } from "../use-window";
@@ -39,17 +40,22 @@ const OPTIONS = {
   //
   _classCanvas: "BarChart--canvas",
   _classGraph: "BarChart--graph",
-  _classVerticalBars: "BarChart--bars",
+  _classBars: "BarChart--bars",
   _classXAxis: "BarChart--xaxis",
   _classYAxis: "BarChart--yaxis",
+  //
+  // [ms]
+  _transitionDuration: 345,
 };
 
+////
+/////
 const useBarChart = ({
   //
   isActive = true,
-  //
+  // ref
   root,
-  //
+  // [{key:string.unique, value: number}]
   data,
   //
   options,
@@ -74,11 +80,12 @@ const useBarChart = ({
     //
     _classCanvas,
     _classGraph,
-    _classVerticalBars,
+    _classBars,
     _classXAxis,
     _classYAxis,
     _paddingInner,
     _paddingOuter,
+    //
     _ticksX,
     _ticksY,
     // _tickSize,
@@ -88,6 +95,7 @@ const useBarChart = ({
     // _tickValues,
     // _xAxisTextOpacity,
     // _xAxisTextRotationDegrees,
+    _transitionDuration,
   } = useMemo(() => merge({}, OPTIONS, options), [options]);
   //
   const innerWidth = width - 2 * paddingX;
@@ -116,16 +124,16 @@ const useBarChart = ({
           .attr("class", _classCanvas);
         graph = svg
           .append("g")
-          .attr("class", _classGraph)
-          .attr("transform", `translate(${paddingX}, ${paddingY})`);
+          .attr("transform", `translate(${paddingX}, ${paddingY})`)
+          .attr("class", _classGraph);
         xAxis = svg
           .append("g")
-          .attr("class", _classXAxis)
-          .attr("transform", `translate(${paddingX}, ${height - paddingY})`);
+          .attr("transform", `translate(${paddingX}, ${height - paddingY})`)
+          .attr("class", _classXAxis);
         yAxis = svg
           .append("g")
-          .attr("class", _classYAxis)
-          .attr("transform", `translate(${paddingX}, ${paddingY})`);
+          .attr("transform", `translate(${paddingX}, ${paddingY})`)
+          .attr("class", _classYAxis);
         //
         // can attach static chart labels here
         //  or better do outside hook for reusability
@@ -145,6 +153,7 @@ const useBarChart = ({
     if (data && isActive && c$.graph) {
       const { graph, xAxis, yAxis } = c$;
       const bars = graph.selectAll("rect").data(data, key);
+      const t = transition("@t1--BarChart").duration(_transitionDuration);
       //
       // update scale domains
       x.domain(map(data, key));
@@ -152,27 +161,48 @@ const useBarChart = ({
       //
       // run axis
       // ..can format axis here
-      xAxis.call(axisBottom(x).ticks(_ticksX));
-      yAxis.call(axisLeft(y).ticks(_ticksY));
+      xAxis.transition(t).call(axisBottom(x).ticks(_ticksX));
+      yAxis.transition(t).call(axisLeft(y).ticks(_ticksY));
       //
-      // [current]
-      bars
-        .attr("x", (d) => x(d.key))
-        .attr("y", (d) => y(d.value))
-        .attr("width", x.bandwidth)
-        .attr("height", (d) => innerHeight - y(d.value));
       // [exit]
-      bars.exit().remove();
+      bars
+        .exit()
+        // .initial
+        .attr("fill", "#ff0000")
+        .transition(t)
+        // .animate
+        .attr("fill-opacity", 0)
+        .attr("y", y(0))
+        .attr("height", 0)
+        .remove();
+      //
       // [enter]
       bars
         .enter()
         .append("rect")
         .attr("x", (d) => x(d.key))
+        .attr("width", x.bandwidth())
+        .attr("fill", color)
+        .attr("class", _classBars)
+        // transition.initial
+        .attr("y", y(0))
+        .attr("height", 0)
+        .attr("fill-opacity", 0)
+        // make transition
+        .transition(t)
+        // transition.animate
+        .attr("y", (d) => y(d.value))
+        .attr("height", (d) => innerHeight - y(d.value))
+        .attr("fill-opacity", 1);
+      //
+      // [current]
+      //   ..can .merge selection with [enter] before transition to do one pass
+      bars
+        .transition(t)
+        .attr("x", (d) => x(d.key))
         .attr("y", (d) => y(d.value))
         .attr("width", x.bandwidth())
-        .attr("height", (d) => innerHeight - y(d.value))
-        .attr("fill", color)
-        .attr("class", _classVerticalBars);
+        .attr("height", (d) => innerHeight - y(d.value));
       //
       //   ..tweaks
     }

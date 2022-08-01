@@ -33,7 +33,7 @@ const LINK_GITHUB_COMPONENT =
   "https://github.com/nikolav/demo-components.app/blob/main/components/Modal/Modal.jsx";
 //
 const reportGen = () =>
-  "2022-01-31 2022-02-28 2022-03-31 2022-04-30 2022-05-31 2022-06-30 2022-07-31 2022-08-30 2022-09-30 2022-10-31 2022-11-30 2022-12-31"
+  "2022-01-30 2022-02-27 2022-03-30 2022-04-29 2022-05-30 2022-06-29 2022-07-30 2022-08-29 2022-09-29 2022-10-30 2022-11-29 2022-12-30"
     .split(" ")
     .map((date) => ({ date, value: random(1000) }));
 //
@@ -76,16 +76,18 @@ const PageBoxTransition = () => {
               onClick={toggleIsActiveModal.on}
             >
               <FaPiggyBank className="text-2xl" />
-              <span className="inline-block ml-4">izveštaj</span>
+              <span className="inline-block ml-4">pregled finansija</span>
             </Button>
           </ButtonGroup>
         </Box>
         {/*  */}
         {/* modal.graph */}
         <Modal isActive={isActiveModal} onClose={toggleIsActiveModal.off}>
-          <Typography component="h4" variant="h5" className="mt-4 text-center">
-            2022.
-          </Typography>
+          <section className="mt-4 text-lg text-center">
+            <p>
+              2022. <em className="opacity-50">promenljivo...</em>
+            </p>
+          </section>
           <PlotChartDemo isActive={isActiveModal} />
         </Modal>
       </section>
@@ -216,19 +218,32 @@ export default PageBoxTransition;
 //
 function PlotChartDemo({ isActive = true }) {
   const root = useRef();
-  const [d$, setd] = useState(null);
   const { isDark } = useColorMode();
+  const [d$, setd] = useState(null);
+  const [i$, seti] = useState(null);
+  const dataGen = () => setd(reportGen());
+  const cleanup_ = () => clearInterval(i$);
+  //
   useEffect(() => {
-    setd(reportGen());
-  }, []);
+    if (isActive) {
+      seti(setInterval(dataGen, 3456));
+      dataGen();
+    } else {
+      cleanup_();
+    }
+    //
+    return cleanup_;
+  }, [isActive]);
   usePlotChart({
     isActive,
     data: d$,
     root: root?.current,
     options: {
       width: 640,
-      _dotRadius: 5,
       color: isDark() ? "white" : "steelblue",
+      paddingX: 48,
+      _dotRadius: 5,
+      _ticksX: 12,
     },
   });
   //

@@ -7,6 +7,7 @@ import {
   scaleLinear,
   scaleTime,
   select,
+  transition,
 } from "d3";
 import { merge } from "../../util";
 import { useWindowDocument } from "../use-window";
@@ -25,10 +26,12 @@ const OPTIONS = {
   //
   // minor tweeks
   _xAxisTextRotationDegrees: -24,
-  _xAxisTextOpacity: .85,
+  _xAxisTextOpacity: 0.85,
   _dotRadius: 4,
   _ticksX: 10,
   _ticksY: 3,
+  //
+  _transitionDuration: 345,
 };
 
 const usePlotChart = ({ isActive, data, root, options }) => {
@@ -54,13 +57,14 @@ const usePlotChart = ({ isActive, data, root, options }) => {
     _dotRadius,
     _ticksX,
     _ticksY,
+    _transitionDuration,
   } = useMemo(() => merge({}, OPTIONS, options), [options]);
   const innerWidth = width - 2 * paddingX;
   const innerHeight = height - 2 * paddingY;
   //
   // .. skip domain, set @init
-  const scT = scaleTime().range([0, innerWidth]);
-  const scV = scaleLinear().range([innerHeight, 0]);
+  const x = scaleTime().range([0, innerWidth]);
+  const y = scaleLinear().range([innerHeight, 0]);
   //
   //
   // @init
@@ -73,16 +77,15 @@ const usePlotChart = ({ isActive, data, root, options }) => {
     if (isReady && root) {
       if (isActive) {
         // domains @init
-        scT.domain(extent(data, date));
-        scV.domain([0, max(data, value)]);
+        // x.domain(extent(data, date));
+        // y.domain([0, max(data, value)]);
         //
         svg = select(root)
           .append("svg")
           .attr("class", "PlotChart--svg")
           .attr("width", width)
-          .attr("height", height)
-          // .style("border", "1px dotted grey")
-          ;
+          .attr("height", height);
+        // .style("border", "1px dotted grey")
 
         graph = svg
           .append("g")
@@ -97,8 +100,8 @@ const usePlotChart = ({ isActive, data, root, options }) => {
           .append("g")
           .attr("class", "PlotChart--yAxis")
           // y-axis @left
-          .attr("transform", `translate(${paddingX}, ${paddingY})`)
-          ;
+          .attr("transform", `translate(${paddingX}, ${paddingY})`);
+        //
       } else {
         c$.svg && c$.svg.remove();
       }
@@ -112,33 +115,46 @@ const usePlotChart = ({ isActive, data, root, options }) => {
     if (data && isActive && c$.graph) {
       const { graph: g, xAxis, yAxis } = c$;
       const dots = g.selectAll("circle").data(data);
+      const t = transition("@t1--PlotChart").duration(_transitionDuration);
       //
       // update scale domains
-      scT.domain(extent(data, date));
-      scV.domain([0, max(data, value)]);
+      x.domain(extent(data, date));
+      y.domain([0, max(data, value)]);
+      //
       // run axis
-      xAxis.call(axisBottom(scT).ticks(_ticksX));
-      yAxis.call(axisLeft(scV).ticks(_ticksY));
-      //
-      //
+      xAxis.transition(t).call(axisBottom(x).ticks(_ticksX));
+      yAxis.transition(t).call(axisLeft(y).ticks(_ticksY));
       // [current]
       //  update position only
       dots
-        .attr("cx", (d) => scT(new Date(d.date)))
-        .attr("cy", (d) => scV(d.value));
+        .transition(t)
+        .attr("cx", (d) => x(new Date(d.date)))
+        .attr("cy", (d) => y(d.value));
       //
       // [exit]
-      dots.exit().remove();
+      dots
+        .exit()
+        .attr("fill", "#ff0000")
+        .transition(t)
+        .attr("fill-opacity", 0)
+        .attr("cy", y(0))
+        .remove();
       //
       // [enter]; update shapes
       dots
         .enter()
         .append("circle")
-        .attr("class", "PlotChart--dots")
         .attr("r", _dotRadius)
-        .attr("cx", (d) => scT(new Date(d.date)))
-        .attr("cy", (d) => scV(d.value))
-        .attr("fill", color);
+        .attr("cx", (d) => x(new Date(d.date)))
+        .attr("fill", color)
+        .attr("class", "PlotChart--dots")
+        // .initial
+        .attr("cy", y(0))
+        .attr("fill-opacity", 0)
+        .transition(t)
+        // .animate
+        .attr("cy", (d) => y(d.value))
+        .attr("fill-opacity", 1);
       //
       // tweak x-axis text
       xAxis
