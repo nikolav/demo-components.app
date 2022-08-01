@@ -1,12 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabase as client } from "../../supabase";
-import { useIsMounted } from "../../src/hooks";
+import { useWindowDocument } from "../../src/hooks";
 
 export const AuthSessionContext = createContext();
 export const useAuthSession = () => useContext(AuthSessionContext);
 
 export default function AuthSessionProvider({ children }) {
-  const isMounted = useIsMounted();
+  const { isMounted } = useWindowDocument();
   const [session, setSession] = useState(null);
   //
   useEffect(() => {

@@ -22,12 +22,13 @@ import useBodyOverflow from "./use-body-overflow";
 import useCountDown from "./use-count-down";
 import usePieChart from "./data/use-pie-chart";
 import usePlotChart from "./data/use-plot-chart";
+import useBarChart from "./data/use-bar-chart";
 
 //
 export {
-  usePlotChart,
   useAppEvents,
   useAuthApi,
+  useBarChart,
   useBodyOverflow,
   useClickAway,
   useCountDown,
@@ -39,6 +40,7 @@ export {
   useJQuery,
   useLocalStorage,
   usePieChart,
+  usePlotChart,
   useQueryMain,
   useQueryResource,
   useQueryResourceBase,

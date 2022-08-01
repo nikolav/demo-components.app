@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import LayoutMain from "../components/layout/LayoutMain";
 import { Paper, Box, MenuList, MenuItem, ListItemText } from "@mui/material";
+import { useBarChart } from "../src/hooks"
 ////
 /////
 export default function Index({ ...rest }) {
+  const root = useRef()
+  useBarChart({
+    root: root?.current, 
+    options: {
+      color: "steelblue",
+    },
+    data: [
+      {
+        key: "🍎", 
+        value: 12,
+      },
+      {
+        key: "🍌", 
+        value: 14,
+      },
+      {
+        key: "🍒", 
+        value: 22,
+      },
+      {
+        key: "🍊", 
+        value: 32,
+      },
+      {
+        key: "🍉", 
+        value: 2,
+      },
+    ]
+  })
   ////
   return (
     <LayoutMain {...rest}>
@@ -91,6 +121,7 @@ export default function Index({ ...rest }) {
       {/* right */}
       <section>
         🚧
+        <div ref={root} />
       </section>
     </LayoutMain>
   );
