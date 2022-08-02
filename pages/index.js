@@ -84,16 +84,11 @@ export default function Index({ ...rest }) {
               </Link>
             ))}
           </MenuList>
-          <Box className="p-4 opacity-80">Hvala, svako dobro.</Box>
         </Paper>
       </section>
       {/*  */}
       {/* right */}
-      <section>
-        🚧
-      </section>
+      <section>🚧</section>
     </LayoutMain>
   );
 }
-
-// https://codesandbox.io/s/framer-motion-5-drag-to-reorder-tabs-forked-ujptnm

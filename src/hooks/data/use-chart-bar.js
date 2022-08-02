@@ -50,7 +50,7 @@ const OPTIONS = {
 
 ////
 /////
-const useBarChart = ({
+const useChartBar = ({
   //
   isActive = true,
   // ref
@@ -215,4 +215,4 @@ const useBarChart = ({
 };
 
 //
-export default useBarChart;
+export default useChartBar;

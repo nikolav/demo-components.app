@@ -8,7 +8,7 @@ import {
   schemeCategory10,
   select,
 } from "d3";
-import { legendColor } from "d3-svg-legend"
+import { legendColor } from "d3-svg-legend";
 import { merge, map } from "../../util";
 import { useWindowDocument } from "../use-window";
 //
@@ -25,10 +25,12 @@ const OPTIONS = {
   //
   _strokeWidth: 0,
   _stroke: "#000000",
+  //
+  _transitionDiration: 345,
 };
 
 //
-const usePieChart = ({ data, root, isActive = true, options = {} }) => {
+const useChartPie = ({ data, root, isActive = true, options = {} }) => {
   const [canvas$, setCanvas] = useState({
     svg: null,
     graph: null,
@@ -36,16 +38,17 @@ const usePieChart = ({ data, root, isActive = true, options = {} }) => {
   });
   const {
     width,
-    legendWidth,
     height,
-    value,
-    innerRadius,
+    legendWidth,
     colors,
-    key,
+    innerRadius,
     padding,
+    key,
+    value,
     //
     _strokeWidth,
     _stroke,
+    _transitionDiration,
   } = useMemo(() => merge({}, OPTIONS, options), [options]);
   const { isReady } = useWindowDocument();
   // @center.graph
@@ -106,15 +109,9 @@ const usePieChart = ({ data, root, isActive = true, options = {} }) => {
         legend = svg
           .append("g")
           .attr("transform", `translate(${width + padding}, ${padding})`);
-        //
       } else {
-        if (canvas$.svg) {
-          canvas$.svg.remove();
-          resetCanvas_();
-          return;
-        }
+        canvas$.svg && canvas$.svg.remove();
       }
-      //
     }
     //
     setCanvas((c) => ({ ...c, svg, graph, legend }));
@@ -123,18 +120,17 @@ const usePieChart = ({ data, root, isActive = true, options = {} }) => {
   // @update
   useEffect(() => {
     if (isActive && data && canvas$.graph) {
-      const { graph: g, legend } = canvas$;
+      const { graph, legend } = canvas$;
       // refresh domain
       color.domain(map(data, key));
-      //
       legend.call(legendgen);
       //
-      const paths = g.selectAll("path").data(piegen(data));
-      const t = transition().duration(567);
-      // current
-      paths.transition(t).attrTween("d", arctween_update);
+      const paths = graph.selectAll("path").data(piegen(data));
+      const t = transition("@t1--PieChart").duration(_transitionDiration);
       // exit
       paths.exit().transition(t).attrTween("d", arctween_exit).remove();
+      // current
+      paths.transition(t).attrTween("d", arctween_update);
       // enter
       paths
         .enter()
@@ -148,10 +144,9 @@ const usePieChart = ({ data, root, isActive = true, options = {} }) => {
     }
   }, [isActive, data, canvas$.graph]);
   //
-  //
-  function resetCanvas_() {
-    setCanvas({ svg: null, graph: null, legend: null });
-  }
+  return {
+    svg: canvas$.svg,
+  };
 };
 //
-export default usePieChart;
+export default useChartPie;

@@ -10,9 +10,6 @@ import {
 } from "../components";
 import {
   Box,
-  ToggleButtonGroup,
-  IconButton,
-  ToggleButton,
   Button,
   ButtonGroup,
   Card,
@@ -22,9 +19,12 @@ import {
   Chip,
   ClickAwayListener,
   Grid,
+  IconButton,
   Paper,
   Popper,
   Stack,
+  ToggleButton,
+  ToggleButtonGroup,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -32,7 +32,7 @@ import {
   useSocialLike,
   useStateSwitch,
   useBodyOverflow,
-  usePieChart,
+  useChartPie,
 } from "../src/hooks";
 import {
   BsCodeSlash,
@@ -41,7 +41,7 @@ import {
   AiOutlineUserAdd,
 } from "../components/icons";
 import imgProps from "../public/icon-crossfade.props.jpg";
-import { values, prevent } from "../src/util";
+import { values, prevent, identity } from "../src/util";
 import { useAppData, QUIZ } from "../app/store";
 //
 //
@@ -263,8 +263,8 @@ const PageIconCrossfade = () => {
           <p>
             Za korisnički interfejs koji ima više različith stanja (login,
             logout, kontrole za media plejer i sl.) komponenta{" "}
-            <em>IconCrossfade</em>{" "}
-            može da posluži kao signal za trenutni status.
+            <em>IconCrossfade</em> može da posluži kao signal za trenutni
+            status.
           </p>
         </Box>
         <Box fontSize="89%" sx={{ opacity: 0.56 }}>
@@ -408,7 +408,7 @@ function QuizPanelEnd() {
   const [d$, setd] = useState(null);
   //
   const root = useRef();
-  usePieChart({
+  useChartPie({
     root: root?.current,
     data: d$,
     options: {
@@ -427,8 +427,8 @@ function QuizPanelEnd() {
   //   3: false
   // }
   useEffect(() => {
-    const correctCount = values(quiz).filter((v) => v).length;
-    const data = [
+    const correctCount = values(quiz).filter(identity).length;
+    setd([
       {
         key: "👎🏻",
         value: 3 - correctCount,
@@ -437,9 +437,7 @@ function QuizPanelEnd() {
         key: "👍🏻",
         value: correctCount,
       },
-    ];
-    //
-    setd(data);
+    ]);
   }, []);
   //
   return (

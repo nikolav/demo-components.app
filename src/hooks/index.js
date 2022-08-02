@@ -20,16 +20,21 @@ import useClickAway from "./use-click-away";
 import { useWindowAddEvents, useWindowResizeEvent, useWindow, useWindowDocument } from "./use-window";
 import useBodyOverflow from "./use-body-overflow";
 import useCountDown from "./use-count-down";
-import usePieChart from "./data/use-pie-chart";
-import usePlotChart from "./data/use-plot-chart";
-import useBarChart from "./data/use-bar-chart";
+//
+import useChartPie from "./data/use-chart-pie";
+import useChartPlot from "./data/use-chart-plot";
+import useChartBar from "./data/use-chart-bar";
+import useChartLine from "./data/use-chart-line";
 
 //
 export {
   useAppEvents,
   useAuthApi,
-  useBarChart,
   useBodyOverflow,
+  useChartBar,
+  useChartLine,
+  useChartPie,
+  useChartPlot,
   useClickAway,
   useCountDown,
   useFancyboxGallery,
@@ -39,8 +44,6 @@ export {
   useIsMounted,
   useJQuery,
   useLocalStorage,
-  usePieChart,
-  usePlotChart,
   useQueryMain,
   useQueryResource,
   useQueryResourceBase,

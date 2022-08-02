@@ -34,7 +34,7 @@ const OPTIONS = {
   _transitionDuration: 345,
 };
 
-const usePlotChart = ({ isActive, data, root, options }) => {
+const useChartPlot = ({ isActive, data, root, options }) => {
   const { isReady } = useWindowDocument();
   const [c$, setc] = useState({
     svg: null,
@@ -167,4 +167,4 @@ const usePlotChart = ({ isActive, data, root, options }) => {
   //
 };
 
-export default usePlotChart;
+export default useChartPlot;

@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import {
   useSocialLike,
-  usePlotChart,
+  useChartPlot,
   useStateSwitch,
   useBodyOverflow,
 } from "../src/hooks";
@@ -234,7 +234,7 @@ function PlotChartDemo({ isActive = true }) {
     //
     return cleanup_;
   }, [isActive]);
-  usePlotChart({
+  useChartPlot({
     isActive,
     data: d$,
     root: root?.current,

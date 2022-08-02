@@ -23,6 +23,7 @@ import reduce from "lodash/reduce";
 import sample from "lodash/sample";
 import shuffle from "lodash/shuffle";
 import values from "lodash/values";
+import range from "lodash/range";
 
 // https://lodash.com/docs/4.17.15#transform
 import transform from "lodash/transform";
@@ -59,6 +60,7 @@ const groupByCount = (series, value = identity) => {
 };
 
 export {
+  range,
   values,
   addClass,
   arrayRand,
