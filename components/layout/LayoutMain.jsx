@@ -24,8 +24,10 @@ import {
   FaHome,
   RiGithubLine,
   MenuIcon,
+  IoMdPower,
   // iconAccordionColor,
 } from "../../components/icons";
+import { useAuth } from "../../app/store";
 
 //
 // const imgAccordion = (
@@ -42,6 +44,7 @@ import {
 /////
 const LayoutMain = ({ children }) => {
   const { isActive: isActiveDrawer, toggle: toggleDrawer } = useStateSwitch();
+  const { auth, logout } = useAuth();
   ////
   ////
   return (
@@ -72,7 +75,7 @@ const LayoutMain = ({ children }) => {
                   sx={{ flexGrow: 1 }}
                   className="opacity-[.56] transition-transform hover:opacity-100 hover:scale-[1.012]"
                 >
-                  nikolav.rs
+                  {auth?.name ? `👋🏻 ${auth.name}` : "nikolav.rs"}
                 </Typography>
               </a>
             </Link>
@@ -143,6 +146,11 @@ const LayoutMain = ({ children }) => {
                 icon: "💳",
                 link: "modal",
               },
+              {
+                component: "OverlayHover",
+                icon: "🎴",
+                link: "overlay-hover",
+              },
             ].map(({ component, icon, link }) => (
               <Tooltip
                 placement="bottom"
@@ -164,9 +172,16 @@ const LayoutMain = ({ children }) => {
             // spacing={12}
             className="items-center space-x-2"
           >
+
+            {auth && (
+              <Tooltip placement="bottom" title="⛔ odjava">
+                <IconButton onClick={logout}>
+                  <IoMdPower className="text-3xl appbar-icon" />
+                </IconButton>
+              </Tooltip>
+            )}
             {/*  */}
             {/* home */}
-
             <Link href="/">
               <IconButton>
                 <FaHome className="text-3xl appbar-icon" />
@@ -266,6 +281,11 @@ const LayoutMain = ({ children }) => {
               key: "Modal",
               icon: "💳",
               link: "/modal",
+            },
+            {
+              key: "OverlayHover",
+              icon: "🎴",
+              link: "/overlay-hover",
             },
           ].map((node) => (
             <ListItem key={node.key} disablePadding onClick={toggleDrawer.off}>

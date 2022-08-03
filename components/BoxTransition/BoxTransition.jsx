@@ -138,7 +138,8 @@ export const BoxSwitch = ({
   //
   ...rest
 }) => {
-  const components_ = useRef(components).current;
+  // const components_ = useRef(components).current;
+  const components_ = components;
   const root = useRef();
   const setDuration = () => {
     root.current?.style.setProperty(

@@ -19,14 +19,12 @@ import omit from "lodash/omit";
 import pick from "lodash/pick";
 import pickBy from "lodash/pickBy";
 import random from "lodash/random";
+import range from "lodash/range";
 import reduce from "lodash/reduce";
 import sample from "lodash/sample";
 import shuffle from "lodash/shuffle";
-import values from "lodash/values";
-import range from "lodash/range";
-
-// https://lodash.com/docs/4.17.15#transform
 import transform from "lodash/transform";
+import values from "lodash/values";
 //
 import classnames from "classnames";
 //
@@ -60,8 +58,6 @@ const groupByCount = (series, value = identity) => {
 };
 
 export {
-  range,
-  values,
   addClass,
   arrayRand,
   assign,
@@ -93,6 +89,7 @@ export {
   pickBy,
   prevent,
   random,
+  range,
   ready,
   reduce,
   removeClass,
@@ -104,4 +101,5 @@ export {
   transform,
   True,
   type,
+  values,
 };

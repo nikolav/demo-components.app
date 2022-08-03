@@ -76,6 +76,10 @@ export default function Index({ ...rest }) {
                 name: "Modal",
                 link: "/modal",
               },
+              {
+                name: "OverlayHover",
+                link: "/overlay-hover",
+              },
             ].map(({ link, name }) => (
               <Link href={link} key={name}>
                 <MenuItem>

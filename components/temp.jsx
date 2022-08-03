@@ -147,7 +147,6 @@ const PageBoxTransition = () => {
                     <CardActions className="justify-center">
                       <Button
                         onClick={toggleActive.off}
-                        dense
                         color="secondary"
                         size="small"
                         variant="outlined"

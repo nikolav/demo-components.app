@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useStateSwitch from "../../src/hooks/use-state-switch";
-import { has } from "../../src/util";
+import { has, noop } from "../../src/util";
 
 //
 const DEFAULT_DURATION_OPEN = 0.24;
@@ -53,19 +53,33 @@ const OverlayHover = ({
   //
   effect = DEFAULT_EFFECT,
   //
+  onClose = noop,
+  //
+  onOverlayLeave = null, 
+  //
+  triggerOverlayClose = null,
+  //
+  initialActive = false,
+  //
   className = "",
   //
   ...rest
 }) => {
-  const { isActive, toggle } = useStateSwitch();
+  const { isActive, toggle } = useStateSwitch(initialActive);
   //
   if (!has(EFFECT, effect)) effect = DEFAULT_EFFECT;
+  useEffect(() => {
+    isActive && onClose();
+  }, [isActive])
+  useEffect(() => {
+    triggerOverlayClose && toggle.off()
+  }, [triggerOverlayClose])
   //
   return (
     // stretch to fit @content
     <div
       onMouseOver={toggle.on}
-      onMouseLeave={toggle.off}
+      onMouseLeave={onOverlayLeave || toggle.off}
       className={`w-fit h-fit overflow-hidden relative ${className}`}
       {...rest}
     >

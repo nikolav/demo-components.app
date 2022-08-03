@@ -1,0 +1,31 @@
+.loginUser {
+    background-image: url("../app/etc/icon-user.svg");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+    background-size: 18px;
+}
+.loginEmail {
+    background-image: url("../app/etc/icon-envelope.svg");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+    background-size: 18px;
+}
+.loginPassword {
+    background-image: url("../app/etc/icon-key.svg");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+    background-size: 16px;
+}
+
+.bg1 {
+    background-image: url("../public/bg1.jpg");
+    background-repeat: no-repeat;
+    background-position: "center";
+    background-size: "cover";
+}
+.bg2 {
+    background-image: url("../public/bg2.jpg");
+    background-repeat: no-repeat;
+    background-position: "center";
+    background-size: "cover";
+}
