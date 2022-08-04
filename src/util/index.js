@@ -56,8 +56,15 @@ const groupByCount = (series, value = identity) => {
     {}
   );
 };
+const withReturnValue = (callback, returnValue = null) => {
+  return (...args) => {
+    callback(...args);
+    return returnValue;
+  };
+};
 
 export {
+  withReturnValue,
   addClass,
   arrayRand,
   assign,

@@ -20,7 +20,7 @@ const ProgressBarVertical = ({
   // track rounded
   rounded = true,
   // thumb color
-  color = "steelblue",
+  color = "currentcolor",
   // track color
   bg = "lightgray",
   // transition duration

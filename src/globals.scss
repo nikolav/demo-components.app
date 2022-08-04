@@ -1,16 +1,15 @@
 
 // https://codepen.io/devstreak/pen/dMYgeO
 .scrollbar-thin::-webkit-scrollbar-track,
-.scrollbar-thin--dark::-webkit-scrollbar-track {
+.scrollbar-thin--dark::-webkit-scrollbar-track,
+.scrollbar-none::-webkit-scrollbar-track {
   background: transparent;
 }
-
 .scrollbar-thin::-webkit-scrollbar,
 .scrollbar-thin--dark::-webkit-scrollbar {
   width: 0.2rem;
   background: transparent;
 }
-
 .scrollbar-thin::-webkit-scrollbar-thumb {
   background-color: steelblue;
 }
@@ -18,6 +17,13 @@
   background-color: white !important;
 }
 
+.scrollbar-none::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+.scrollbar-none::-webkit-scrollbar-thumb {
+  background: transparent;
+}
 
 @keyframes blockuiRotation {
   from {

@@ -151,6 +151,11 @@ const LayoutMain = ({ children }) => {
                 icon: "🎴",
                 link: "overlay-hover",
               },
+              {
+                component: "Progress",
+                icon: "🔋",
+                link: "progress",
+              },
             ].map(({ component, icon, link }) => (
               <Tooltip
                 placement="bottom"
@@ -286,6 +291,11 @@ const LayoutMain = ({ children }) => {
               key: "OverlayHover",
               icon: "🎴",
               link: "/overlay-hover",
+            },
+            {
+              key: "Progress",
+              icon: "🔋",
+              link: "/progress",
             },
           ].map((node) => (
             <ListItem key={node.key} disablePadding onClick={toggleDrawer.off}>

@@ -80,6 +80,10 @@ export default function Index({ ...rest }) {
                 name: "OverlayHover",
                 link: "/overlay-hover",
               },
+              {
+                name: "Progress",
+                link: "/progress",
+              },
             ].map(({ link, name }) => (
               <Link href={link} key={name}>
                 <MenuItem>

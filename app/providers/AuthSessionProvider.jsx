@@ -12,12 +12,12 @@ export default function AuthSessionProvider({ children }) {
   useEffect(() => {
     let session_;
     if (isMounted) {
-      //
+      // handle session status updates
       client.auth.onAuthStateChange((eType, session) => {
         if ("SIGNED_OUT" == eType) return setSession(null);
         if ("SIGNED_IN" == eType) return setSession(session);
       });
-      //
+      // fetch session @mount
       session_ = client.auth.session();
       if (session_) {
         setSession(session_);

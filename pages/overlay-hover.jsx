@@ -43,13 +43,13 @@ const LINK_GITHUB_COMPONENT =
   "https://github.com/nikolav/demo-components.app/blob/main/components/OverlayHover/OverlayHover.jsx";
 //
 const dataGen = () =>
-range(1, 12).map((n) => ({
-  key: n,
-  value: random(10),
-}));
+  range(1, 12).map((n) => ({
+    key: n,
+    value: random(10),
+  }));
 
 //
-const PageBoxTransition = () => {
+const PageOverlayHover = () => {
   const { like, likeCount, isLiked } = useSocialLike("--OverlayHover");
   //
   const { isActive, toggle: toggleActive } = useStateSwitch();
@@ -65,13 +65,14 @@ const PageBoxTransition = () => {
     overflow.hidden(isOpenPopper);
   }, [isOpenPopper]);
   //
-  const flags = useFlags();
   const { login, register, processing } = useAuth();
+  const flags = useFlags();
   useEffect(() => {
     flags[processing ? "on" : "off"](FLAG_APP_IS_PROCESSING);
   }, [processing]);
   const { isActive: isActiveAuth, toggle: toggleAuth } = useStateSwitch();
   const { isActive: isLogin, toggle: toggleIsLogin } = useStateSwitch(true);
+  // tigger overlay-close --force
   const [c$, setc] = useState();
   useEffect(() => {
     if (!isActiveAuth) {
@@ -85,8 +86,7 @@ const PageBoxTransition = () => {
       password: (p) => 0 < p.length,
     },
     {
-      onSubmit: login,
-      onError: noop,
+      onSubmit: async (creds) => (await login(creds), true),
     }
   );
   const inputsRegister = useInputSynced(
@@ -96,8 +96,7 @@ const PageBoxTransition = () => {
       password: (p) => 0 < p.length,
     },
     {
-      onSubmit: register,
-      onError: noop,
+      onSubmit: async (creds) => (await register(creds), true),
     }
   );
   //
@@ -336,9 +335,21 @@ const PageBoxTransition = () => {
           onClose={toggleIsActiveDrawerR.off}
         >
           <Stack spacing={1} className="items-center">
-            <LineChart isActive={isActiveDrawerR} color="rgb(239,68,68)" yLabel="🍎" />
-            <LineChart isActive={isActiveDrawerR} color="rgb(234,179,8)" yLabel="🍋" />
-            <LineChart isActive={isActiveDrawerR} color="rgb(34,197,94)" yLabel="🥝" />
+            <LineChart
+              isActive={isActiveDrawerR}
+              color="rgb(239,68,68)"
+              yLabel="🍎"
+            />
+            <LineChart
+              isActive={isActiveDrawerR}
+              color="rgb(234,179,8)"
+              yLabel="🍋"
+            />
+            <LineChart
+              isActive={isActiveDrawerR}
+              color="rgb(34,197,94)"
+              yLabel="🥝"
+            />
           </Stack>
         </DrawerBox>
       </section>
@@ -458,7 +469,7 @@ const PageBoxTransition = () => {
   );
 };
 
-export default PageBoxTransition;
+export default PageOverlayHover;
 
 function LineChart({ isActive, color, yLabel }) {
   const root = useRef();

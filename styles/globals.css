@@ -1,5 +1,6 @@
 .scrollbar-thin::-webkit-scrollbar-track,
-.scrollbar-thin--dark::-webkit-scrollbar-track {
+.scrollbar-thin--dark::-webkit-scrollbar-track,
+.scrollbar-none::-webkit-scrollbar-track {
   background: transparent;
 }
 
@@ -15,6 +16,15 @@
 
 .dark .scrollbar-thin--dark::-webkit-scrollbar-thumb {
   background-color: white !important;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.scrollbar-none::-webkit-scrollbar-thumb {
+  background: transparent;
 }
 
 @keyframes blockuiRotation {
