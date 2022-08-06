@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import {
   AppBar,
   Box,
@@ -42,9 +43,93 @@ import { useAuth } from "../../app/store";
 //   https://codesandbox.io/s/bold-hill-stmnwk?file=/src/App.js
 // https://next-auth.js.org/getting-started/example#frontend---add-react-hook
 /////
+const routes = [
+  {
+    component: "Accordion",
+    icon: "📰",
+    link: "accordion",
+  },
+  {
+    component: "BlockUI",
+    icon: "⛔",
+    link: "blockui",
+  },
+  {
+    component: "BoxTransition",
+    icon: "🍱",
+    link: "box-transition",
+  },
+  {
+    component: "ChooseFile",
+    icon: "📜",
+    link: "choose-file",
+  },
+  {
+    component: "DarkModeToggle",
+    icon: "🌜",
+    link: "dark-mode",
+  },
+  {
+    component: "Details",
+    icon: "🎫",
+    link: "details",
+  },
+  {
+    component: "Drag",
+    icon: "🤚🏻",
+    link: "drag",
+  },
+  {
+    component: "DrawerBox",
+    icon: "📦",
+    link: "drawer-box",
+  },
+  {
+    component: "DrawerDrag",
+    icon: "🔃",
+    link: "drawer-drag",
+  },
+  {
+    component: "FloatingPanel",
+    icon: "📟",
+    link: "floating-panel",
+  },
+  {
+    component: "IconCrossfade",
+    icon: "🌟",
+    link: "icon-crossfade",
+  },
+  {
+    component: "Modal",
+    icon: "💳",
+    link: "modal",
+  },
+  {
+    component: "OverlayHover",
+    icon: "🎴",
+    link: "overlay-hover",
+  },
+  {
+    component: "Progress",
+    icon: "🔋",
+    link: "progress",
+  },
+  {
+    component: "Rotation",
+    icon: "⭕",
+    link: "rotation",
+  },
+];
+const routeNames = routes.reduce((a, node) => {
+  a[`/${node.link}`] = node.component;
+  return a;
+}, {});
+////
+/////
 const LayoutMain = ({ children }) => {
   const { isActive: isActiveDrawer, toggle: toggleDrawer } = useStateSwitch();
   const { auth, logout } = useAuth();
+  const { route } = useRouter();
   ////
   ////
   return (
@@ -85,78 +170,7 @@ const LayoutMain = ({ children }) => {
           {/* links */}
 
           <Stack direction="row" className="items-center space-x-4">
-            {[
-              {
-                component: "Accordion",
-                icon: "📰",
-                link: "accordion",
-              },
-              {
-                component: "BlockUI",
-                icon: "⛔",
-                link: "blockui",
-              },
-              {
-                component: "BoxTransition",
-                icon: "🍱",
-                link: "box-transition",
-              },
-              {
-                component: "ChooseFile",
-                icon: "📜",
-                link: "choose-file",
-              },
-              {
-                component: "DarkModeToggle",
-                icon: "🌜",
-                link: "dark-mode",
-              },
-              {
-                component: "Details",
-                icon: "🎫",
-                link: "details",
-              },
-              {
-                component: "Drag",
-                icon: "🤚🏻",
-                link: "drag",
-              },
-              {
-                component: "DrawerBox",
-                icon: "📦",
-                link: "drawer-box",
-              },
-              {
-                component: "DrawerDrag",
-                icon: "🔃",
-                link: "drawer-drag",
-              },
-              {
-                component: "FloatingPanel",
-                icon: "📟",
-                link: "floating-panel",
-              },
-              {
-                component: "IconCrossfade",
-                icon: "🌟",
-                link: "icon-crossfade",
-              },
-              {
-                component: "Modal",
-                icon: "💳",
-                link: "modal",
-              },
-              {
-                component: "OverlayHover",
-                icon: "🎴",
-                link: "overlay-hover",
-              },
-              {
-                component: "Progress",
-                icon: "🔋",
-                link: "progress",
-              },
-            ].map(({ component, icon, link }) => (
+            {routes.map(({ component, icon, link }) => (
               <Tooltip
                 placement="bottom"
                 title={`<${component}>`}
@@ -164,7 +178,7 @@ const LayoutMain = ({ children }) => {
               >
                 <strong className="inline-block">
                   <Link href={`/${link}`}>
-                    <a className="font-bold appbar-link-icon text-xl">{icon}</a>
+                    <a className="text-xl font-bold appbar-link-icon">{icon}</a>
                   </Link>
                 </strong>
               </Tooltip>
@@ -177,7 +191,6 @@ const LayoutMain = ({ children }) => {
             // spacing={12}
             className="items-center space-x-2"
           >
-
             {auth && (
               <Tooltip placement="bottom" title="⛔ odjava">
                 <IconButton onClick={logout}>
@@ -207,7 +220,14 @@ const LayoutMain = ({ children }) => {
       {/*  */}
       {/* content */}
       <Container>
-        <Box maxWidth={972} pt="4rem" mx="auto" width={{ sm: "92%" }}>
+        <Box maxWidth={972} py="3rem" mx="auto" width={{ sm: "92%" }}>
+          {null != routeNames[route] && (
+            <Box className="mb-8 text-center">
+              <Typography component="h1" variant="h4" className="text-primary">
+                {routeNames[route]}
+              </Typography>
+            </Box>
+          )}
           <Grid container spacing={{ xs: 1, sm: 2, md: 4 }}>
             <Grid item xs={12} md={6}>
               {children[0]}
@@ -225,84 +245,16 @@ const LayoutMain = ({ children }) => {
         {/*  */}
         {/* drawer.links */}
         <List sx={{ minWidth: 234 }}>
-          {[
-            {
-              key: "Accordion",
-              // icon: imgAccordion,
-              icon: "📰",
-              link: "/accordion",
-            },
-            {
-              key: "BlockUI",
-              icon: "⛔",
-              link: "/blockui",
-            },
-            {
-              key: "BoxTransition",
-              icon: "🍱",
-              link: "/box-transition",
-            },
-            {
-              key: "ChooseFile",
-              icon: "📜",
-              link: "/choose-file",
-            },
-            {
-              key: "DarkModeToggle",
-              icon: "🌜",
-              link: "/dark-mode",
-            },
-            {
-              key: "Details",
-              icon: "🎫",
-              link: "/details",
-            },
-            {
-              key: "Drag",
-              icon: "🤚🏻",
-              link: "/drag",
-            },
-            {
-              key: "DrawerBox",
-              icon: "📦",
-              link: "/drawer-box",
-            },
-            {
-              key: "DrawerDrag",
-              icon: "🔃",
-              link: "/drawer-drag",
-            },
-            {
-              key: "FloatingPanel",
-              icon: "📟",
-              link: "/floating-panel",
-            },
-            {
-              key: "IconCrossfade",
-              icon: "🌟",
-              link: "/icon-crossfade",
-            },
-            {
-              key: "Modal",
-              icon: "💳",
-              link: "/modal",
-            },
-            {
-              key: "OverlayHover",
-              icon: "🎴",
-              link: "/overlay-hover",
-            },
-            {
-              key: "Progress",
-              icon: "🔋",
-              link: "/progress",
-            },
-          ].map((node) => (
-            <ListItem key={node.key} disablePadding onClick={toggleDrawer.off}>
-              <Link href={node.link}>
+          {routes.map((node) => (
+            <ListItem
+              key={node.component}
+              disablePadding
+              onClick={toggleDrawer.off}
+            >
+              <Link href={`/${node.link}`}>
                 <ListItemButton>
                   <ListItemIcon>{node.icon}</ListItemIcon>
-                  <ListItemText primary={node.key} />
+                  <ListItemText primary={node.component} />
                 </ListItemButton>
               </Link>
             </ListItem>

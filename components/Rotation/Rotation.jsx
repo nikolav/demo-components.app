@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { prevent, noop, arrayRand, has } from "../../src/util";
-import useTimer from "../../src/hooks/use-timer";
-import useIsMounted from "../../src/hooks/use-is-mounted";
+import { useTimer, useIsMounted } from "../../src/hooks";
 
 // [sec.]
 const DEFAULT_ROTATION_TIMEOUT = 5;
@@ -62,8 +61,7 @@ export default function Rotation({
   //
   ...rest
 }) {
-  const refNodes = useRef(nodes);
-  const NODES = refNodes.current;
+  const NODES = useRef(nodes).current;
   //
   const isMounted = useIsMounted();
   const [active, setActive] = useState(

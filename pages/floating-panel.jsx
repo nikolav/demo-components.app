@@ -93,6 +93,7 @@ const PageBoxTransition = () => {
           <FloatingPanel
             title={<em className="font-bold">chat.with@nikolav.admin</em>}
             className="rounded-b-xl overflow-hidden"
+            offsetTop={312}
           >
             <Paper elevation={0} className="relative z-[1]">
               <Box className="h-[256px] p-2 py-4 overflow-y-auto scrollbar-thin scrollbar-thin--dark">

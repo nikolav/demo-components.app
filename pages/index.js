@@ -84,6 +84,10 @@ export default function Index({ ...rest }) {
                 name: "Progress",
                 link: "/progress",
               },
+              {
+                name: "Rotation",
+                link: "/rotation",
+              },
             ].map(({ link, name }) => (
               <Link href={link} key={name}>
                 <MenuItem>

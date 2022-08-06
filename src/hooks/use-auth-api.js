@@ -7,7 +7,7 @@ import {
   AUTH_API_URL_users,
   AUTH_SESSION_TOKEN,
 } from "../../app/store";
-import useIsMounted from "./use-is-mounted";
+import { useWindowDocument } from "./use-window";
 //
 const ACCESS_TOKEN = "accessToken";
 const AUTH_CONFIG = { strategy: "local" };
@@ -50,7 +50,7 @@ export const useAuthApi = () => useContext(AuthApiContext);
 //   POST ${AUTH_API_URL_users}  # +user
 //   GET  ${AUTH_API_URL_users}  # fetch-user
 export const AuthApiProvider = ({ children }) => {
-  const isMounted = useIsMounted();
+  const { isMounted } = useWindowDocument();
   const [authSession, setAuthSession] = useState({
     //
     // auth flags
