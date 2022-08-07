@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
-import { dbRealtime as db } from "../../firebase";
+import { firebase } from "../../app/services";
+// import { dbRealtime as db } from "../../firebase";
 import { onValue, set, ref, push, remove } from "firebase/database";
 import { sortByTimestampDesc, paste } from "../util";
+
+//
+const { dbRealtime: db } = firebase;
 //
 const CREATED_AT = "_@";
 //@@@

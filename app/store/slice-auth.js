@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { supabase as client } from "../../supabase";
+import { supabase as client } from "../services"
+// import { supabase as client } from "../../supabase";
 import { createSlice } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
 import { omit } from "../../src/util";

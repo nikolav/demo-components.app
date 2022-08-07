@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { supabase as client } from "../../supabase";
+import { supabase as client } from "../services";
+// import { supabase as client } from "../../supabase";
 import { useWindowDocument } from "../../src/hooks";
 
 export const AuthSessionContext = createContext();

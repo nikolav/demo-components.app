@@ -1,6 +1,9 @@
 import { useState, useEffect, createContext, useContext } from "react";
-import { dbRealtime as db } from "../../firebase";
+import { firebase } from "../services";
 import { ref, onValue } from "firebase/database";
+// import { dbRealtime as db } from "../../firebase";
+
+const { dbRealtime: db } = firebase;
 //
 export const GravatarsContext = createContext();
 export const useGravatars = () => useContext(GravatarsContext);

@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
-import { dbRealtime as db } from "../../firebase";
+import { firebase } from "../../app/services";
+// import { dbRealtime as db } from "../../firebase";
 import { onValue, set, ref } from "firebase/database";
-import useIsMounted from "./use-is-mounted";
+import { useWindowDocument } from "./use-window";
+
+//
+const { dbRealtime: db } = firebase;
 //
 export const localId = (id) => `yxgfnyzciku.${id}`;
 //@@
 const useSocialLike = (id) => {
   //
-  const isMounted = useIsMounted();
+  const { isMounted } = useWindowDocument();
   const LIKECACHE = localId(id);
   //
   const [likeCount, setLikeCount] = useState(0);
