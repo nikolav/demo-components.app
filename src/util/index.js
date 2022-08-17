@@ -8,6 +8,7 @@ import debounce from "lodash/debounce";
 import each from "lodash/each";
 import filter from "lodash/filter";
 import groupBy from "lodash/groupBy";
+import identity from "lodash/identity";
 import isFunction from "lodash/isFunction";
 import isString from "lodash/isString";
 import keys from "lodash/keys";
@@ -34,7 +35,6 @@ const { has } = q.object;
 const { isEmail } = q.test;
 const { sortByTimestampDesc } = q.array;
 const { stripEndSlashes } = q.str;
-const identity = (x) => x;
 //
 const arrayRand = sample;
 const paste = assign;
@@ -64,7 +64,6 @@ const withReturnValue = (callback, returnValue = null) => {
 };
 
 export {
-  withReturnValue,
   addClass,
   arrayRand,
   assign,
@@ -109,4 +108,5 @@ export {
   True,
   type,
   values,
+  withReturnValue,
 };

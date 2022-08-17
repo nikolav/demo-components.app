@@ -2,9 +2,12 @@ import { useEffect } from "react";
 import { paste, md5 } from "../util";
 import { useGravatars } from "../../app/providers/GravatarsProvider";
 import { useAuth } from "../../app/store/slice-auth";
-import { dbRealtime as db } from "../../firebase";
+import { firebase } from "../../app/services";
+// import { dbRealtime as db } from "../../firebase";
 import { ref, set } from "firebase/database";
 import { useWindowDocument } from "./use-window";
+//
+const { dbRealtime: db } = firebase;
 //
 // https://www.gravatar.com/avatar/6621adb9b4f1ee95b68259a2553ac3ab?d=robohash&size=92
 // d=monsterid|wavatar|robohash
