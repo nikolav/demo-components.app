@@ -3,18 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"sass:watch\" \"watch:css\" \"next dev\" ",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "build:export": "next build && next export",
     "build:css": "tailwindcss -i ./src/tailwind.css -o ./styles/build.css",
     "watch:css": "tailwindcss -i ./src/tailwind.css -o ./styles/build.css --watch",
-    "sass:globals:build": "sass ./src/globals.scss ./styles/globals.css ",
-    "sass:globals:watch": "sass ./src/globals.scss ./styles/globals.css --watch",
+    "sass:build": "sass ./src/globals.scss ./styles/globals.css ",
+    "sass:watch": "sass ./src/globals.scss ./styles/globals.css --watch",
     "test": "jest ",
     "test:watch": "jest --watch",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci",
+    "docs": "serve -p 8888 docs"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -80,6 +81,7 @@
     "@testing-library/user-event": "^14.2.1",
     "autoprefixer": "^10.4.7",
     "babel-jest": "^28.1.1",
+    "concurrently": "^7.3.0",
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
     "html5-boilerplate": "^8.0.0",
@@ -91,6 +93,7 @@
     "postcss-import": "^14.1.0",
     "react-test-renderer": "^18.2.0",
     "sass": "^1.52.3",
+    "serve": "^14.0.1",
     "tailwindcss": "^3.1.4"
   }
 }
