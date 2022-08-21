@@ -9,7 +9,7 @@ import TwitterProvider from "next-auth/providers/twitter";
 import CredentialsProvider from "next-auth/providers/credentials";
 //
 // import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-// import clientPromise from "../../../src/mongodb";
+// import clientPromise from "../../../app/services/mongodb";
 
 export default async function handle(req, res) {
   // Do whatever you want here, before the request is passed down to `NextAuth`

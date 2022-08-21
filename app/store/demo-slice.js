@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
-import { paste } from "../../src/util";
+import { assign } from "../../src/util";
 
 //
 export const DEMO = "lbdrdkryztu";
@@ -30,9 +30,9 @@ export function useDemo() {
   const demo = useSelector((state) => state.demo);
   const dispatch = useDispatch();
   //
-  const demoClient = paste((name) => demo[name], {
+  const client = assign((name) => demo[name], {
     setDemo: (version) => dispatch(setDemo(version)),
   });
   //
-  return demoClient;
+  return client;
 }

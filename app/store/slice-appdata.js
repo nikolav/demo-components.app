@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
-import { paste, has, nanoid } from "../../src/util";
+import { assign, has, nanoid } from "../../src/util";
 
 //
 export const TEST = "fktzzfpmzpb";
@@ -58,7 +58,7 @@ export function useAppData() {
   const appdata = useSelector((state) => state.appdata);
   const dispatch = useDispatch();
   //
-  const handle = paste((name) => appdata[name], {
+  const client = assign((name) => appdata[name], {
     debug: () => JSON.stringify(appdata, null, 2),
     //
     id: nanoid,
@@ -71,5 +71,5 @@ export function useAppData() {
     // 
   });
   //
-  return handle;
+  return client;
 }

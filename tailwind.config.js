@@ -9,6 +9,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./src/hooks/use-body-overflow.js",
     "./public/**/*.html",
+    "./docs/**/*.html",
   ],
   theme: {
     extend: {

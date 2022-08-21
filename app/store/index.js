@@ -15,8 +15,9 @@ import { useAuthApi } from "../../src/hooks/use-auth-api";
 import { useColorModeTW, MODE_LIGHT, MODE_DARK } from "./slice-color-mode-tw";
 //
 const API_URL_dev = "http://localhost:3344/";
-const API_URL_production = "http://api.com/";
+const API_URL_production = "https://jeytgwpjlmm.herokuapp.com/";
 const REST_RESOURCE_main = "main";
+const REST_RESOURCE_messages = "messages";
 //
 const AUTH_API_URL = "http://localhost:3344/authentication";
 const AUTH_API_URL_users = "http://localhost:3344/users";
@@ -35,6 +36,7 @@ export {
   AUTH_SESSION_TOKEN,
   //
   REST_RESOURCE_main,
+  REST_RESOURCE_messages,
   //
   useAppData,
   ADMIN,
